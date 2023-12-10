@@ -19,7 +19,8 @@
     }
   },
   "scripts": {
-    "build": "vite build && npm run app:dist",
+    "build": "vite build",
+    "build:local": "vite build && npm run app:dist",
     "dev": "vite",
     "test:electron": "jest --config=jest.electron.config.js",
     "test:react": "jest --config=jest.react.config.js",
