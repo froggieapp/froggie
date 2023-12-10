@@ -12,7 +12,6 @@ const forsen = async () => {
     channels: settings?.channels || [],
   });
   if (!useStore) throw new Error("No store found");
-
   const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
   root.render(
     <BrowserRouter>

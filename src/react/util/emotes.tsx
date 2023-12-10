@@ -13,14 +13,8 @@ export const stringRegexToJsx = (msg: string, regex: RegExp, Element: React.FC<E
   const matches = msg.matchAll(regex);
   let lastIdx = 0;
   let i = 0;
-  console.log("========= stringRegexToJsx ========");
-  console.log("TEXXT= ", msg);
-  console.log("matches= ", matches);
   for (const match of matches) {
-    console.log("match", match);
-
     if (match.length >= 3) {
-      console.log(match);
       const matchText = match[0];
       const emoteId = match[1];
       const emoteName = match[2];
@@ -36,8 +30,6 @@ export const stringRegexToJsx = (msg: string, regex: RegExp, Element: React.FC<E
     }
   }
 
-  console.log("parsedResult", parsedResult);
-  console.log("================");
   if (!parsedResult.length) return msg;
 
   return parsedResult;

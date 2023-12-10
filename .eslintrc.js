@@ -12,7 +12,8 @@ module.exports = {
     plugins: ['prettier', '@typescript-eslint'],
     root: true,
     rules: {
-        "prettier/prettier": ["error"]
+        "prettier/prettier": ["error"],
+        "no-console": ["error", { "allow": ["error", "warn"]}]
     },
     settings: {
         react: {
