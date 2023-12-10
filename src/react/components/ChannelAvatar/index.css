@@ -1,0 +1,17 @@
+.saved-channel * {
+  pointer-events: none;
+}
+
+.channel-avatar {
+  border-radius: 0px;
+}
+
+.saved-channel {
+  overflow: hidden;
+  transition: border-radius 0.2s ease-out 100ms;
+  border-radius: 50%;
+}
+
+.saved-channel:hover {
+  border-radius: 12px;
+}

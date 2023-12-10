@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": false,
+    "strict": true,
+    "allowJs": false,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": false,
+    "noEmit": true,
+    "jsx": "react",
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"],
+      "src/*": ["src/react/*"],
+      "@electron/*": ["src/electron/*"],
+      "@shared/*": ["src/react/shared/*"],
+      "@styles/*": ["src/react/styles/*"],
+      "@KickerinoTypes/*": ["types/*"]
+    },
+  },
+  "include": [
+    "./types/**/*.d.ts", "./public/**/*", "./src/**/*", "vite.config.ts", "./types.d.ts"],
+    "references": [{ "path": "./tsconfig.node.json" }]
+}

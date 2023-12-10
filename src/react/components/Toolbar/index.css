@@ -1,0 +1,40 @@
+.toolbar {
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: var(--toolbar-height);
+  background-color: var(--toolbar-bg-color);
+  padding: 0 12px;
+}
+
+.toolbar-left-side {
+  color: var(--logo-text-color);
+  font-weight: bold;
+  font-size: 0.77rem;
+  font-family: var(--display-font);
+}
+
+.toolbar-right-side {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 6px;
+}
+
+.toolbar button {
+  display: flex;
+  align-items: center;
+}
+
+.toolbar button,
+.toolbar button svg {
+  -webkit-app-region: no-drag;
+  width: 18px;
+}
+
+.toolbar .icon {
+  color: var(--toolbar-icon-color);
+}

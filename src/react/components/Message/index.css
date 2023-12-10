@@ -1,0 +1,35 @@
+.chat-message {
+  display: block;
+  text-align: left;
+}
+
+.sender-name {
+  display: inline;
+}
+
+.sender-name span {
+  font-weight: bold;
+  color: #fff;
+  float: left;
+}
+
+.user-message-error-tooltip {
+  margin-right: 4px;
+  display: inline-block;
+}
+
+.user-message-error .sender-name span {
+  color: rgba(255, 0, 34, 0.575);
+}
+
+.user-message-error-tooltip svg,
+.user-message-error .message-content {
+  color: rgb(255, 33, 63);
+}
+
+.message-content {
+  font-weight: normal;
+  display: inline;
+  color: #d1d1d1;
+  line-height: 1.2;
+}

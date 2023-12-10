@@ -1,0 +1,12 @@
+.new-channel-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+  background-color: #1e0b35;
+}
+
+.new-channel-button svg {
+  width: 20px;
+  height: 20px;
+}

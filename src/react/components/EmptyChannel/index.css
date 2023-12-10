@@ -1,0 +1,29 @@
+.empty-channel {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  line-height: 2.88rem;
+}
+
+.empty-channel-heading {
+  font-weight: bold;
+  font-size: 2.325rem;
+  font-family: var(--display-font);
+  color: var(--primary-color);
+}
+
+.empty-channel-alt {
+  color: #d6d6d6;
+  font-size: 1.12rem;
+  font-family: var(--body-font);
+}
+
+.plus-channel-icon {
+  color: var(--primary-color);
+  width: 42px;
+  height: 42px;
+  opacity: 0.77;
+}
