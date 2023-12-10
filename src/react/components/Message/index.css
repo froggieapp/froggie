@@ -1,6 +1,8 @@
 .chat-message {
-  display: block;
   text-align: left;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .sender-name {
@@ -29,7 +31,13 @@
 
 .message-content {
   font-weight: normal;
-  display: inline;
   color: #d1d1d1;
   line-height: 1.2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.message-content:first-child {
+  margin-left: 0;
 }

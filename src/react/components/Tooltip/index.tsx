@@ -18,17 +18,19 @@ import "./index.css";
 type ValidTag = keyof JSX.IntrinsicElements;
 
 type TooltipProps<T extends ValidTag> = {
-  label: string;
-  children: React.ReactNode;
+  label: React.ReactNode;
+  children?: React.ReactNode;
   position: Placement;
   tag?: T;
+  tooltipClassname?: string;
 } & JSX.IntrinsicElements[T];
 
 export const Tooltip = <T extends ValidTag>({
   label,
   position,
-  children,
+  children = null,
   tag = "div" as T,
+  tooltipClassname = "",
   ...props
 }: TooltipProps<T>) => {
   const Tag: ElementType = tag as ElementType;
@@ -63,7 +65,12 @@ export const Tooltip = <T extends ValidTag>({
       </Tag>
       <FloatingPortal>
         {isOpen && (
-          <div className="global-tooltip" ref={refs.setFloating} style={floatingStyles} {...getFloatingProps()}>
+          <div
+            className={`global-tooltip ${tooltipClassname}`}
+            ref={refs.setFloating}
+            style={floatingStyles}
+            {...getFloatingProps()}
+          >
             {label}
           </div>
         )}
