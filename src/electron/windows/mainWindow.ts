@@ -40,10 +40,10 @@ export const createMainWindow = () => {
   loadLocalURL(browserWindow, {
     path: initialChannel ? `channel/${initialChannel.name}` : "",
   });
-  //if (process.env.VITE_DEV_SERVER_URL) {
-  browserWindow.webContents.session.clearCache();
-  browserWindow.webContents.session.clearStorageData();
-  browserWindow.webContents.openDevTools();
-  //}
+  if (process.env.VITE_DEV_SERVER_URL) {
+    browserWindow.webContents.session.clearCache();
+    browserWindow.webContents.session.clearStorageData();
+    browserWindow.webContents.openDevTools();
+  }
   return browserWindow;
 };

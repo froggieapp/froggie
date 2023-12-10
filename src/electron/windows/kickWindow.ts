@@ -23,7 +23,9 @@ const createWindow = (mainWindow: BrowserWindow) => {
   kickPage.loadURL("https://kick.com/terms-of-service");
   kickPage.once("ready-to-show", () => {
     kickPage.show();
-    kickPage.webContents.openDevTools();
+    if (process.env.VITE_DEV_SERVER_URL) {
+      kickPage.webContents.openDevTools();
+    }
   });
   kickPage.once("closed", () => {
     mainWindow.webContents.send(constants.CLOSE_KICK_PAGE);
