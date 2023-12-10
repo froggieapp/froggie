@@ -16,6 +16,10 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v4
 
+      - name: Exit if not on main branch
+        if: endsWith(github.event.base_ref, 'main') == false
+        run: exit -1
+
       - name: Install Node.js, NPM and Yarn
         uses: actions/setup-node@v4
         with:
@@ -26,7 +30,7 @@ jobs:
         with:
           # GitHub token, automatically provided to the action
           # (No need to define this secret in the repo settings)
-          github_token: ${{ secrets.github_token }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
           # If the commit is tagged with a version (e.g. "v1.0.0"),
           # release the app after building
