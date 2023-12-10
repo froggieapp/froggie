@@ -4,7 +4,7 @@ Chat application for Kick
 
 For [download](https://github.com/vicodinee/kickerino/releases) go to the releases page and download the artifact for your platform
 
-![](https://raw.githubusercontent.com/vicodinee/kickerino/misc/sample.gif)
+![](https://github.com/vicodinee/kickerino/blob/main/misc/sample.gif?raw=true)
 
 In active development
 
