@@ -1,6 +1,6 @@
 {
   "name": "kickerino",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A chat application",
   "main": "./build/electron/electron.js",
   "homepage": "https://github.com/vicodinee/kickerino",
