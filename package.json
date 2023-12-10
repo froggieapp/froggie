@@ -9,6 +9,7 @@
   },
   "build": {
     "asar": true,
+    "productName": "kickerino",
     "files": [
       "build/**/*",
       "!node_modules"
