@@ -27,6 +27,8 @@ html {
   --primary-btn-txt-color-hover: rgb(245, 245, 245);
   --body-font: "Roboto", sans-serif;
   --display-font: "Pixelify Sans", sans-serif;
+  --scrollbar-track-color: #43225736;
+  --scrollbar-thumb-color: rgb(77, 13, 119);
 }
 
 body,
@@ -36,20 +38,19 @@ body,
   text-rendering: optimizeLegibility;
 }
 
-::-webkit-scrollbar {
+body ::-webkit-scrollbar {
   width: 1rem;
-  background-color: rgba(var(--accent-color, 0.2));
+  background-color: var(--scrollbar-track-color);
 }
 
-::-webkit-scrollbar-track {
+body ::-webkit-scrollbar-track {
   box-shadow: none;
   color: var(--primary-color);
-  outline: 1px solid white;
 }
 
-body::-webkit-scrollbar-thumb {
-  background-color: darkgrey;
-  outline: 1px solid slategrey;
+body ::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb-color);
+  border-radius: 4px;
 }
 
 #root {

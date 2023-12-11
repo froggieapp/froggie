@@ -13,8 +13,6 @@ export const Channel = () => {
   const params = useParams<{ id: string }>();
   const channelName = params.id ?? "";
   const { data: channelInfo, isLoading: isLoadingChannelInfo } = useChannelInfo(channelName);
-
-  const channelListRef = React.useRef<HTMLDivElement | null>(null);
   const channelId = channelInfo?.chatroom.channel_id.toString();
   const chatId = channelInfo?.chatroom.id?.toString();
 
@@ -23,15 +21,6 @@ export const Channel = () => {
       events: state.getChannelEvents(channelId),
     })),
   );
-
-  const eventCount = events.length;
-
-  React.useEffect(() => {
-    // todo: only do this if user havenet scrolled up manually
-    if (channelListRef.current) {
-      channelListRef.current.scrollTop = channelListRef.current.scrollHeight;
-    }
-  }, [eventCount]);
 
   if (!channelName) {
     return <EmptyChannel />;
@@ -44,7 +33,7 @@ export const Channel = () => {
   return (
     <div className="channel">
       <ChannelInfo avatar={channelInfo?.user.profile_pic ?? ""} name={channelInfo?.user.username ?? ""} />
-      <div className="message-list" ref={channelListRef}>
+      <div className="message-list">
         {events.map((e) => (
           <ChatEvent event={e} key={e.id} />
         ))}
