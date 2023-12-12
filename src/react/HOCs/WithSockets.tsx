@@ -18,6 +18,7 @@ export const WithSockets: React.FC<WithSocketsProps> = ({ children }) => {
           id: messageData.data.id,
           messageId: messageData.data.id,
           type: "MESSAGE",
+          senderNameColor: messageData.data.sender?.identity.color || "",
           createdOn: Number(messageData.data.created_at),
           sender: messageData.data.sender?.slug || messageData.data.sender?.username || "",
           content: messageData.data.content,

@@ -14,7 +14,14 @@ export const ChatEventRow = React.forwardRef<HTMLDivElement, ChatEventRowProps>(
   const renderEvent = () => {
     switch (event.type) {
       case "MESSAGE": {
-        return <Message error={event.error} senderName={event.sender} content={event.content} />;
+        return (
+          <Message
+            error={event.error}
+            senderName={event.sender}
+            nameColor={event.senderNameColor}
+            content={event.content}
+          />
+        );
       }
       case "SOCKET_SUBSCRIBED": {
         return <p className="socket-subscribed info-chat-event">Connected successfuly</p>;

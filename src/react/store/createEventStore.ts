@@ -5,6 +5,7 @@ export interface MessageEvent {
   type: "MESSAGE";
   createdOn: number;
   sender: string;
+  senderNameColor: string;
   content: string;
   messageId: string;
   error?: string;

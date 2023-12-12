@@ -1,3 +1,9 @@
+blockquote::after {
+  display: block;
+  content: " (source: " attr(cite) ") ";
+  color: hotpink;
+}
+
 .chat-message {
   text-align: left;
   display: flex;
@@ -5,13 +11,12 @@
   align-items: center;
 }
 
-.sender-name {
+.sender-name-wrapper {
   display: inline;
 }
 
-.sender-name span {
+.sender-name-wrapper .sender-name {
   font-weight: bold;
-  color: #fff;
   float: left;
 }
 
@@ -20,7 +25,7 @@
   display: inline-block;
 }
 
-.user-message-error .sender-name span {
+.user-message-error .sender-name-wrapper .sender-name {
   color: rgba(255, 0, 34, 0.575);
 }
 

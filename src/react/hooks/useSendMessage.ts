@@ -6,6 +6,7 @@ import { sendMessage } from "../util/API";
 
 interface MessageInfo {
   sender: string;
+  senderNameColor: string;
   chatroomId: string;
   channelId: string;
   content: string;
@@ -28,6 +29,7 @@ export const useSendMessage = () => {
         createdOn: Date.now(),
         sender: variables.sender,
         content: variables.content,
+        senderNameColor: variables.senderNameColor,
         type: "MESSAGE",
         isOptimistic: true,
       };
