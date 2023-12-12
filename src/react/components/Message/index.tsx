@@ -10,7 +10,7 @@ interface MessageProps {
   error: string | undefined;
 }
 
-export const Message: React.FC<MessageProps> = ({ senderName, content, error }) => {
+const _Message: React.FC<MessageProps> = ({ senderName, content, error }) => {
   const contentWithEmojis = parseKickEmotes(content);
 
   return (
@@ -27,3 +27,5 @@ export const Message: React.FC<MessageProps> = ({ senderName, content, error }) 
     </div>
   );
 };
+
+export const Message = React.memo(_Message);

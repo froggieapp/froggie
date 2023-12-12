@@ -44,10 +44,10 @@ export const AddChannelModalContent = () => {
         channelId: newChannel.data.chatroom.channel_id?.toString(),
       });
       addChannel(
-        channelName,
+        newChannel.data.user.username,
         newChannel.data.user.profile_pic,
-        newChannel.data.chatroom.id?.toString(),
         newChannel.data.chatroom.channel_id?.toString(),
+        newChannel.data.chatroom.id?.toString(),
       );
       setIsOpen(false);
       navigate(`/channel/${channelName}`);

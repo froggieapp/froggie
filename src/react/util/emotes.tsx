@@ -14,7 +14,7 @@ export const stringRegexToJsx = (msg: string, regex: RegExp, Element: React.FC<E
   let lastIdx = 0;
   let i = 0;
   for (const match of matches) {
-    if (match.length >= 3) {
+    if (match.index !== undefined && match.length >= 3) {
       const matchText = match[0];
       const emoteId = match[1];
       const emoteName = match[2];

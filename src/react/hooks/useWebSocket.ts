@@ -107,7 +107,13 @@ export const useWebSocket = (url: string, options?: WebSocketHookOptions) => {
       } catch (err) {
         console.error("Error on socket close cb", err);
       }
-      wsCurrent?.close();
+      if (wsCurrent?.readyState === 1) {
+        wsCurrent?.close();
+      } else {
+        wsCurrent.addEventListener("open", () => {
+          wsCurrent.close();
+        });
+      }
     };
   }, [url, skip, shouldParseJSON, send]);
 
@@ -122,5 +128,8 @@ export const useWebSocket = (url: string, options?: WebSocketHookOptions) => {
     }
   }, [socketReady, send]);
 
-  return send;
+  return {
+    socketReady,
+    send,
+  };
 };

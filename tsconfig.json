@@ -27,6 +27,7 @@
       "@styles/*": ["src/react/styles/*"],
       "@KickerinoTypes/*": ["types/*"]
     },
+    "types": ["vite/client", "jest"]
   },
   "include": [
     "./types/**/*.d.ts", "./public/**/*", "./src/**/*", "vite.config.ts", "./types.d.ts"],

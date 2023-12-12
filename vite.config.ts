@@ -6,9 +6,10 @@ import renderer from 'vite-plugin-electron-renderer'
 import pkg from './package.json'
 import path from 'path'
 
-export default defineConfig(({ command }: ConfigEnv) => {
+export default defineConfig(({ command, mode }: ConfigEnv) => {
   rmSync('dist', { recursive: true, force: true })
 
+  const isDev = mode === 'development'
   const isBuild = command === 'build'
   const sourcemap = true
 
@@ -31,7 +32,9 @@ export default defineConfig(({ command }: ConfigEnv) => {
         outDir: './build'
       },
     plugins: [
-      react(),
+      react({
+        jsxImportSource: isDev ? '@welldone-software/why-did-you-render' : 'react',
+      }),
       electron([
         {
           entry: 'src/electron/electron.ts',

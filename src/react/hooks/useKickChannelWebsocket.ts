@@ -30,7 +30,6 @@ interface ChannelWebsockedOptions {
 
 export const useKickChannelWebsocket = ({ onChatMessage, onSubscribed, onGiftedSub }: ChannelWebsockedOptions) => {
   const updateEvent = useStore((state) => state.updateEvent);
-  const channelsRef = React.useRef(useStore.getState().channels);
   const eventsRef = React.useRef(useStore.getState().events);
   const channelCount = useStore((state) => state.channels.length);
   const pingInterval = React.useRef<null | number>(null);
@@ -55,19 +54,6 @@ export const useKickChannelWebsocket = ({ onChatMessage, onSubscribed, onGiftedS
       ),
     [],
   );
-  React.useEffect(
-    () =>
-      useStore.subscribe(
-        (state) => state.channels,
-        (channels) => {
-          channelsRef.current = channels;
-        },
-        {
-          fireImmediately: true,
-        },
-      ),
-    [],
-  );
 
   React.useEffect(() => {
     savedOnChatMessageCallback.current = onChatMessage;
@@ -82,9 +68,9 @@ export const useKickChannelWebsocket = ({ onChatMessage, onSubscribed, onGiftedS
   }, []);
 
   const kickChannelToConnInfo = (channelOrChatroom: string) => {
-    return channelsRef.current?.find(
-      (c) => channelOrChatroom.includes(c.channelId) || channelOrChatroom.includes(c.chatroomId),
-    );
+    return useStore
+      .getState()
+      .channels?.find((c) => channelOrChatroom.includes(c.channelId) || channelOrChatroom.includes(c.chatroomId));
   };
 
   const parseMessageData = (data: string | undefined | null) => {
@@ -96,24 +82,14 @@ export const useKickChannelWebsocket = ({ onChatMessage, onSubscribed, onGiftedS
     }
   };
 
-  const send = useWebSocket(WEB_SOCKET_URL, {
+  const { send, socketReady } = useWebSocket(WEB_SOCKET_URL, {
     parseJSON: true,
-    skip: !channelsRef.current.length,
-    onOpen: () => {
-      channelsSuccessfulySubscribed.current = {};
-    },
+    skip: !channelCount,
+    onOpen: () => {},
     onClose: () => {
-      channelsSuccessfulySubscribed.current = {};
       if (pingInterval.current) clearInterval(pingInterval.current);
     },
-    onBeforeClose: (sendMessage) => {
-      if (!channelsRef.current) return;
-      for (let i = 0; i < channelsRef.current.length; i += 1) {
-        const connInfo = channelsRef.current[i];
-        sendMessage(PAYLOADS.unsubscribeChannel(connInfo.channelId));
-        sendMessage(PAYLOADS.unsubscribe(connInfo.chatroomId));
-      }
-    },
+    onBeforeClose: () => {},
     onError: (err) => {
       console.error(err);
     },
@@ -199,10 +175,11 @@ export const useKickChannelWebsocket = ({ onChatMessage, onSubscribed, onGiftedS
   });
 
   React.useEffect(() => {
-    if (channelsRef.current.length) {
+    if (socketReady) {
+      const channels = useStore.getState().channels;
       const newSubChannels: ChannelConnectionInfo[] = [];
-      for (let i = 0; i < channelsRef.current.length; i += 1) {
-        const channel = channelsRef.current[i];
+      for (let i = 0; i < channels.length; i += 1) {
+        const channel = channels[i];
         if (!subscribedChannels.current.some((c) => c.channelId === channel.channelId)) {
           send(PAYLOADS.subscribeChannel(channel.channelId), true);
           send(PAYLOADS.subscribe(channel.chatroomId), true);
@@ -212,7 +189,7 @@ export const useKickChannelWebsocket = ({ onChatMessage, onSubscribed, onGiftedS
       const removedSubChannels: ChannelConnectionInfo[] = [];
       for (let i = 0; i < subscribedChannels.current.length; i += 1) {
         const channel = subscribedChannels.current[i];
-        if (!channelsRef.current.some((c) => c.channelId === channel.channelId)) {
+        if (!channels.some((c) => c.channelId === channel.channelId)) {
           send(PAYLOADS.unsubscribeChannel(channel.channelId), true);
           send(PAYLOADS.unsubscribe(channel.chatroomId), true);
           removedSubChannels.push(channel);
@@ -221,6 +198,9 @@ export const useKickChannelWebsocket = ({ onChatMessage, onSubscribed, onGiftedS
       subscribedChannels.current = [...subscribedChannels.current, ...newSubChannels].filter(
         (c) => !removedSubChannels.some((removedChannel) => removedChannel.channelId === c.channelId),
       );
+    } else if (!socketReady) {
+      subscribedChannels.current = [];
+      channelsSuccessfulySubscribed.current = {};
     }
-  }, [send, channelCount]);
+  }, [send, channelCount, socketReady]);
 };

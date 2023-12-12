@@ -30,7 +30,7 @@ describe("useWebSocket", () => {
         parseJSON: true,
       }),
     );
-    const send = result.current;
+    const { send } = result.current;
     expect(mockOnOpen).not.toHaveBeenCalled();
     await server.connected;
     expect(mockOnOpen).toHaveBeenCalledTimes(1);
@@ -99,7 +99,7 @@ describe("useWebSocket", () => {
         parseJSON: true,
       }),
     );
-    const send = result.current;
+    const { send } = result.current;
     const msgs = [{ data: "queued msg 1" }, { data: "queued msg 2" }, { data: "queued msg 3" }];
     for (let i = 0; i < msgs.length; i += 1) send(msgs[i], true);
 
