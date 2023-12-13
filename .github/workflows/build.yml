@@ -27,6 +27,12 @@ jobs:
           cache: 'npm'
           cache-dependency-path: '**/package-lock.json'
 
+      - name: Generate changelog
+        id: changelog
+        uses: metcalfc/changelog-generator@v4.2.0
+        with:
+          mytoken: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
         with:
@@ -37,3 +43,9 @@ jobs:
           # If the commit is tagged with a version (e.g. "v1.0.0"),
           # release the app after building
           release: ${{ startsWith(github.ref, 'refs/tags/v') }}
+
+      - name: Discord Webhook Action
+        uses: tsickert/discord-webhook@v5.3.0
+        with:
+          webhook-url: ${{ secrets.RELEASES_WEBHOOK_URL }}
+          content: "#[${{github.ref_name}}](https://github.com/vicodinee/kickerino/releases/tag/${{github.ref_name}})\n${{ steps.changelog.outputs.changelog }}"
