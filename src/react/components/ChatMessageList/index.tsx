@@ -1,9 +1,8 @@
-import { StoreState, useStore } from "@/react/store/Store";
 import React from "react";
 import { ChatEventRow } from "../ChatEventRow";
 import "./index.css";
 import { useVirtualizer } from "@tanstack/react-virtual";
-import debounce from "debounce";
+import { useEventCountSubscribe } from "./useEventCountSubscribe";
 
 interface ChatMessageListProps {
   channelId: string | undefined;
@@ -12,21 +11,7 @@ interface ChatMessageListProps {
 export const ChatMessageList: React.FC<ChatMessageListProps> = ({ channelId }) => {
   const listRef = React.useRef<HTMLDivElement>(null);
   const [isAutoScrollEnabled, setIsAutoScrollEnabled] = React.useState(true);
-  const lastScroll = React.useRef(0);
-  const [eventCount, setEventCount] = React.useState(() => useStore.getState().getChannelEvents(channelId).length);
-
-  React.useEffect(() => {
-    setIsAutoScrollEnabled(true);
-    const updateState = (count: number) => {
-      setEventCount(count);
-    };
-    const debounceCb = debounce((state: StoreState) => updateState(state.getChannelEvents(channelId).length), 200);
-    const subscribe = useStore.subscribe(debounceCb);
-    return () => {
-      debounceCb.clear();
-      subscribe();
-    };
-  }, [setEventCount, channelId]);
+  const eventCount = useEventCountSubscribe(channelId);
 
   const virtualizer = useVirtualizer({
     count: eventCount,
@@ -34,27 +19,37 @@ export const ChatMessageList: React.FC<ChatMessageListProps> = ({ channelId }) =
     estimateSize: () => 30,
   });
 
-  const onScroll = (e: React.UIEvent<HTMLElement>) => {
-    const newScroll = e.currentTarget.scrollTop;
-    const scrollHeight = e.currentTarget.scrollHeight;
-    const clientHeight = e.currentTarget.clientHeight;
-    const isUp = newScroll >= 0 && newScroll < lastScroll.current;
-    if (isUp) {
-      setIsAutoScrollEnabled(false);
-    } else if (Math.ceil(scrollHeight - newScroll) === clientHeight) {
-      setIsAutoScrollEnabled(true);
-    }
-    lastScroll.current = newScroll;
-  };
+  React.useEffect(() => {
+    setIsAutoScrollEnabled(true);
+  }, [virtualizer, setIsAutoScrollEnabled, channelId]);
+
+  const onScroll = React.useCallback(
+    (e: React.UIEvent<HTMLElement>) => {
+      const el = e.currentTarget;
+      const newScroll = e.currentTarget.scrollTop;
+      const scrollHeight = e.currentTarget.scrollHeight;
+      const clientHeight = e.currentTarget.clientHeight;
+      const percentageScrolled = (el.scrollTop / (scrollHeight - clientHeight)) * 100;
+      const isUp = newScroll > 0 && percentageScrolled <= 99.95;
+      if (isUp) {
+        setIsAutoScrollEnabled(false);
+      } else if (scrollHeight - newScroll >= clientHeight) {
+        setIsAutoScrollEnabled(true);
+      }
+    },
+    [setIsAutoScrollEnabled],
+  );
 
   const items = virtualizer.getVirtualItems();
   React.useEffect(() => {
-    if (!!eventCount && isAutoScrollEnabled) {
-      virtualizer.scrollToIndex(eventCount - 1, {
-        align: "start",
-      });
-    }
-  }, [eventCount, isAutoScrollEnabled, virtualizer]);
+    requestAnimationFrame(() => {
+      if (!!eventCount && isAutoScrollEnabled && virtualizer.scrollDirection !== "backward") {
+        virtualizer.scrollToIndex(eventCount - 1, {
+          align: "start",
+        });
+      }
+    });
+  }, [channelId, eventCount, isAutoScrollEnabled, virtualizer]);
 
   return (
     <div className="message-list-wrapper">
