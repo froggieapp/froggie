@@ -1,0 +1,53 @@
+.kick-badge-icon,
+.kick-badge-icon-text {
+  line-height: 0;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.kick-badge-icon,
+.kick-badge-wrapper {
+  width: 20px;
+  height: 20px;
+}
+
+.kick-badge-icon-text {
+  font-size: 15px;
+  display: block;
+  line-height: 0;
+}
+
+.kick-badge-icon-subscriber {
+  color: #00ff51;
+}
+
+.kick-badge-icon-gifter {
+  color: #ff006a;
+}
+
+.kick-badge-icon-gifter + .kick-badge-count {
+  color: white;
+}
+
+.kick-badge-icon-verified-user {
+  color: rgb(12, 152, 245);
+}
+
+.kick-badge-wrapper {
+  display: block;
+  position: relative;
+  float: left;
+}
+
+.kick-badge-count {
+  font-size: 0.64rem;
+  color: black;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+  font-weight: 700;
+  font-family: Consolas, monaco, monospace;
+}

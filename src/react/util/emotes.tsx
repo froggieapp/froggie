@@ -1,7 +1,7 @@
 import React from "react";
 import { KickEmote } from "../components/KickEmote";
 
-const KICK_EMOTE_REGEXR = new RegExp(/\[emote:(\d{3,9}):([a-zA-Z0-9]{2,20})\]/g);
+const KICK_EMOTE_REGEXR = new RegExp(/\[emote:(\d{3,9}):([a-zA-Z0-9_]{2,22})\]/g);
 
 export interface EmoteProps {
   id: string;

@@ -1,3 +1,4 @@
+import { Kick } from "@KickerinoTypes/Kick";
 import React from "react";
 import { useKickChannelWebsocket } from "src/hooks/useKickChannelWebsocket";
 import { useStore } from "src/store/Store";
@@ -22,6 +23,9 @@ export const WithSockets: React.FC<WithSocketsProps> = ({ children }) => {
           createdOn: Number(messageData.data.created_at),
           sender: messageData.data.sender?.slug || messageData.data.sender?.username || "",
           content: messageData.data.content,
+          kickBadges: messageData.data.sender?.identity?.badges?.filter((b) =>
+            Kick.SUPPORTED_KICK_BADGES.includes(b.type),
+          ),
         });
       }
     },

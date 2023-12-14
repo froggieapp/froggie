@@ -5,19 +5,22 @@ blockquote::after {
 }
 
 .chat-message {
-  text-align: left;
+  display: block;
+}
+
+.message-sender-identity {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-.sender-name-wrapper {
-  display: inline;
-}
-
-.sender-name-wrapper .sender-name {
-  font-weight: bold;
   float: left;
+  column-gap: 4px;
+}
+
+.message-content-wrapper {
+  display: block;
+}
+
+.message-content-wrapper .sender-name {
+  font-weight: bold;
+  float: right;
 }
 
 .user-message-error-tooltip {
@@ -25,7 +28,7 @@ blockquote::after {
   display: inline-block;
 }
 
-.user-message-error .sender-name-wrapper .sender-name {
+.user-message-error .message-content-wrapper .sender-name {
   color: rgba(255, 0, 34, 0.575);
 }
 
@@ -38,9 +41,9 @@ blockquote::after {
   font-weight: normal;
   color: #d1d1d1;
   line-height: 1.2;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  display: block;
 }
 
 .message-content:first-child {

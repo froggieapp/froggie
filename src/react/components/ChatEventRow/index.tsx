@@ -20,6 +20,7 @@ export const ChatEventRow = React.forwardRef<HTMLDivElement, ChatEventRowProps>(
             senderName={event.sender}
             nameColor={event.senderNameColor}
             content={event.content}
+            kickBadges={event.kickBadges || []}
           />
         );
       }

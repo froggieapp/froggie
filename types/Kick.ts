@@ -1,4 +1,12 @@
 export namespace Kick {
+    export const SUPPORTED_KICK_BADGES = ['subscriber', 'sub_gifter', 'moderator', 'verified'] as const
+    export type SUPPORTED_KICK_BADGE = typeof SUPPORTED_KICK_BADGES[number]
+    export type KickBadges = {
+        type: SUPPORTED_KICK_BADGE
+        text: string
+        count?: number
+    }[]
+
     export const enum EVENT_TYPES {
         ChatMessageEvent ='App\\Events\\ChatMessageEvent',
         FollowersUpdatedEvent = 'App\\Events\\FollowersUpdated',
@@ -35,7 +43,7 @@ export namespace Kick {
             slug: string
             identity: {
                 color: string
-                badges: string[]
+                badges: KickBadges
             }
         } | undefined | null
     } | undefined | null

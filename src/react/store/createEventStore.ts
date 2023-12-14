@@ -1,3 +1,4 @@
+import { Kick } from "@KickerinoTypes/Kick";
 import { StateCreator } from "zustand";
 
 export interface MessageEvent {
@@ -11,6 +12,8 @@ export interface MessageEvent {
   error?: string;
   isOptimistic?: boolean;
   isTouched?: boolean;
+  // todo: figure out the abstraction of badges
+  kickBadges?: Kick.KickBadges;
 }
 
 interface SocketSubscribedEvent {

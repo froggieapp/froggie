@@ -3,10 +3,12 @@ import { getUniqueId } from "../util/util";
 import { useStore } from "../store/Store";
 import { MessageEvent } from "@/react/store/createEventStore";
 import { sendMessage } from "../util/API";
+import { Kick } from "@KickerinoTypes/Kick";
 
 interface MessageInfo {
   sender: string;
   senderNameColor: string;
+  kickBadges: Kick.KickBadges;
   chatroomId: string;
   channelId: string;
   content: string;
@@ -32,6 +34,7 @@ export const useSendMessage = () => {
         senderNameColor: variables.senderNameColor,
         type: "MESSAGE",
         isOptimistic: true,
+        kickBadges: variables.kickBadges,
       };
       addEvent(variables.channelId, optimisticMessage);
       return { optimisticMessage };

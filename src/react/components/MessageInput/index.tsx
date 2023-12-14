@@ -33,6 +33,7 @@ export const MessageInput: React.FC<MessageInputProps> = ({ chatroomId, channelI
         channelId,
         content: message,
         // todo: query user identity
+        kickBadges: [],
         senderNameColor: "#fff",
       });
       if (!keyMap.current["Shift"]) {
