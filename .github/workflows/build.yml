@@ -7,7 +7,8 @@ on:
 jobs:
   release:
     runs-on: ${{ matrix.os }}
-
+    outputs:
+      output1: ${{ steps.changelog.outputs.changelog }}
     strategy:
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
@@ -44,8 +45,23 @@ jobs:
           # release the app after building
           release: ${{ startsWith(github.ref, 'refs/tags/v') }}
 
-      - name: Discord Webhook Action
+  post-release:
+    needs: release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Modify the changelog
+        id: modified
+        run: |
+          set -o noglob
+          log=$(cat << "EOF" | ${{ needs.release.outputs.changelog }} | sed -i -E "s/\((.+?)\)/<\1>/"
+          EOF
+          )
+          log="${log//'%'/'%25'}"
+          log="${log//$'\n'/'%0A'}"
+          log="${log//$'\r'/'%0D'}"
+          echo "log=$log" >> $GITHUB_OUTPUT
+      - name: notify-discord
         uses: tsickert/discord-webhook@v5.3.0
         with:
           webhook-url: ${{ secrets.RELEASES_WEBHOOK_URL }}
-          content: "#[${{github.ref_name}}](https://github.com/vicodinee/kickerino/releases/tag/${{github.ref_name}})\n${{ steps.changelog.outputs.changelog }}"
+          content: "# New Release ${{github.ref_name}}\nGet it here: [${{github.ref_name}}](https://github.com/vicodinee/kickerino/releases/tag/${{github.ref_name}})\n${{ steps.modified.outputs.log }}"
