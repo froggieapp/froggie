@@ -53,7 +53,7 @@ jobs:
         id: modified
         run: |
           set -o noglob
-          log=$(cat << "EOF" | echo ${{ needs.release.outputs.changelog }} | sed -E 's/\((.+?)\)/\(<\1>\)/')
+          log=$(cat << "EOF" | sed -E 's/\(([^)]+?)\)/<\1>/g' <<< ${{ needs.release.outputs.changelog }})
           log="${log//'%'/'%25'}"
           log="${log//$'\n'/'%0A'}"
           log="${log//$'\r'/'%0D'}"
