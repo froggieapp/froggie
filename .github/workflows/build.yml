@@ -53,6 +53,20 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - run: npm ci
+      - run: npm run build-storybook
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: storybook-static
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+          clean: true
+          target-folder: storybook-docs
       - name: Generate changelog
         id: changelog
         uses: metcalfc/changelog-generator@v4.2.0
@@ -67,11 +81,6 @@ jobs:
           log="${log//$'\n'/'%0A'}"
           log="${log//$'\r'/'%0D'}"
           echo "log=$log" >> $GITHUB_OUTPUT
-      - name: Publish storybook
-        id: build-publish
-        with:
-          path: storybook-static
-        uses: bitovi/github-actions-storybook-to-github-pages@v1.0.0
       - name: notify-discord
         uses: tsickert/discord-webhook@v5.3.0
         with:
