@@ -63,3 +63,6 @@ jobs:
         with:
           webhook-url: ${{ secrets.RELEASES_WEBHOOK_URL }}
           content: "# New Release ${{github.ref_name}}\nGet it here: [${{github.ref_name}}](https://github.com/vicodinee/kickerino/releases/tag/${{github.ref_name}})\n${{ steps.modified.outputs.log }}"
+      - name: Publish storybook
+        id: build-publish
+        uses: bitovi/github-actions-storybook-to-github-pages@v1.0.0
