@@ -62,7 +62,7 @@ jobs:
         id: modified
         run: |
           set -o noglob
-          log=$(cat << "EOF" | echo ${{ steps.changelog.outputs.changelog }} | sed -E 's/\(([^)]+?)\)/<\1>/g')
+          log=$(cat << "EOF" | echo "${{ steps.changelog.outputs.changelog }}" | sed -E 's/\(([^)]+?)\)/<\1>/g')
           log="${log//'%'/'%25'}"
           log="${log//$'\n'/'%0A'}"
           log="${log//$'\r'/'%0D'}"
