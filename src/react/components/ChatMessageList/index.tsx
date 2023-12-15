@@ -30,7 +30,7 @@ export const ChatMessageList: React.FC<ChatMessageListProps> = ({ channelId }) =
       const scrollHeight = e.currentTarget.scrollHeight;
       const clientHeight = e.currentTarget.clientHeight;
       const percentageScrolled = (el.scrollTop / (scrollHeight - clientHeight)) * 100;
-      const isUp = newScroll > 0 && percentageScrolled <= 99.95;
+      const isUp = newScroll >= 0 && percentageScrolled <= 99.95;
       if (isUp) {
         setIsAutoScrollEnabled(false);
       } else if (scrollHeight - newScroll >= clientHeight) {
