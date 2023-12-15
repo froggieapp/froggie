@@ -28,12 +28,6 @@ jobs:
           cache: 'npm'
           cache-dependency-path: '**/package-lock.json'
 
-      - name: Generate changelog
-        id: changelog
-        uses: metcalfc/changelog-generator@v4.2.0
-        with:
-          mytoken: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
         with:
@@ -56,6 +50,13 @@ jobs:
       pages: write
       id-token: write
     steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v4
+      - name: Generate changelog
+        id: changelog
+        uses: metcalfc/changelog-generator@v4.2.0
+        with:
+          mytoken: ${{ secrets.GITHUB_TOKEN }}
       - name: Modify the changelog
         id: modified
         run: |
