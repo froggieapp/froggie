@@ -5,22 +5,36 @@ blockquote::after {
 }
 
 .chat-message {
-  display: block;
+  display: inline-block;
+  line-height: 1.33;
+}
+
+.message-badge-wrapper {
+  display: inline-flex;
+  column-gap: 3px;
+}
+
+.message-sender-identity-wrapper {
+  float: left;
+  vertical-align: middle;
+  height: 20px;
+}
+
+.message-sender-identity-wrapper,
+.message-content {
+  display: inline;
 }
 
 .message-sender-identity {
   display: flex;
-  float: left;
   column-gap: 4px;
+  align-items: center;
+  height: 100%;
 }
 
-.message-content-wrapper {
-  display: block;
-}
-
-.message-content-wrapper .sender-name {
+.chat-message .sender-name {
   font-weight: bold;
-  float: right;
+  line-height: 1;
 }
 
 .user-message-error-tooltip {
@@ -40,10 +54,8 @@ blockquote::after {
 .message-content {
   font-weight: normal;
   color: #d1d1d1;
-  line-height: 1.2;
   overflow-wrap: break-word;
   word-break: break-all;
-  display: block;
 }
 
 .message-content:first-child {

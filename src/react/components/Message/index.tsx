@@ -20,22 +20,26 @@ const _Message: React.FC<MessageProps> = ({ senderName, content, error, nameColo
 
   return (
     <div className={!error ? "chat-message" : "chat-message user-message-error"}>
-      <div className="message-content-wrapper">
-        <span className="message-sender-identity">
+      <div className="message-sender-identity-wrapper">
+        <div className="message-sender-identity">
           {error ? (
             <Tooltip tag="span" className="user-message-error-tooltip" position="top" label={error}>
               <ExclamationCircleIcon width={20} />
             </Tooltip>
           ) : null}
-          {kickBadges.length
-            ? kickBadges.map((b) => <KickBadge key={b.type} type={b.type} text={b.text} count={b.count} />)
-            : null}
-          <span style={nameStyle} className="sender-name">
+          {kickBadges.length ? (
+            <div className="message-badge-wrapper">
+              {kickBadges.map((b) => (
+                <KickBadge key={b.type} type={b.type} text={b.text} count={b.count} />
+              ))}
+            </div>
+          ) : null}
+          <div style={nameStyle} className="sender-name">
             {`${senderName}:`}&nbsp;
-          </span>
-        </span>
-        <span className="message-content">{contentWithEmojis}</span>
+          </div>
+        </div>
       </div>
+      <span className="message-content">{contentWithEmojis}</span>
     </div>
   );
 };
