@@ -56,11 +56,7 @@ export const MessageInput: React.FC<MessageInputProps> = ({ chatroomId, channelI
   }
 
   if (isLoading) {
-    return (
-      <div className="please-log-in-banner">
-        Loading...
-      </div>
-    );
+    return <div className="please-log-in-banner">Loading...</div>;
   }
 
   return (
