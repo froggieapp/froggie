@@ -60,6 +60,8 @@ jobs:
           echo "log=$log" >> $GITHUB_OUTPUT
       - name: Publish storybook
         id: build-publish
+        with:
+          path: storybook-static
         uses: bitovi/github-actions-storybook-to-github-pages@v1.0.0
       - name: notify-discord
         uses: tsickert/discord-webhook@v5.3.0
