@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Exit if not on main branch
         if: endsWith(github.event.base_ref, 'main') == false
@@ -42,9 +44,6 @@ jobs:
   post-release:
     needs: release
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.build-publish.outputs.page_url }}
     permissions:
       contents: read
       pages: write
@@ -52,6 +51,8 @@ jobs:
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Generate changelog
         id: changelog
         uses: metcalfc/changelog-generator@v4.2.0
@@ -61,7 +62,7 @@ jobs:
         id: modified
         run: |
           set -o noglob
-          log=$(cat << "EOF" | echo ${{ needs.release.outputs.changelog }} | sed -E 's/\(([^)]+?)\)/<\1>/g')
+          log=$(cat << "EOF" | echo ${{ steps.changelog.outputs.changelog }} | sed -E 's/\(([^)]+?)\)/<\1>/g')
           log="${log//'%'/'%25'}"
           log="${log//$'\n'/'%0A'}"
           log="${log//$'\r'/'%0D'}"
