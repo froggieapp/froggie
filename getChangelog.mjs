@@ -15,24 +15,6 @@ const buildEmbed = ({
 }) => {
     return JSON.stringify({
       "content": content,
-      "components": [
-        {
-          type: 1,
-          components: [
-            {
-              "style": 5,
-              "label": `Download`,
-              "url": downloadUrl,
-              "disabled": false,
-              "emoji": {
-                "id": null,
-                "name": `🔥`
-              },
-              "type": 2
-            }
-          ]
-        }
-      ],
       "embeds": [
         {
           type: "rich",
@@ -40,6 +22,10 @@ const buildEmbed = ({
           description: "",
           color: 0xa205f1,
           fields: [
+            {
+                "name": `Download`,
+                "value": downloadUrl
+            },
             {
               "name": `Changes`,
               "value": changeLog
@@ -101,7 +87,7 @@ const run = async () => {
     
     if (!diff?.commits?.length) return;
 
-    const changelogTitle = `'New Release ${releases[0].tag_name}`
+    const changelogTitle = `New Release ${releases[0].tag_name}`
     let changelog = ''
     for (let i = 0; i < diff.commits.length; i += 1) {
         const c = diff.commits[i]
@@ -114,7 +100,7 @@ const run = async () => {
             "Content-Type": "application/json",
         },
         body: buildEmbed({
-            content: '🎉',
+            content: '',
             title: changelogTitle,
             downloadUrl: releases[0].html_url,
             changeLog: changelog
