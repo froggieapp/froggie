@@ -1,6 +1,6 @@
 {
   "name": "kickerino",
-  "version": "0.1.33",
+  "version": "0.1.34",
   "description": "A chat application",
   "main": "./build/electron/electron.js",
   "homepage": "https://github.com/vicodinee/kickerino",
@@ -86,6 +86,7 @@
     "tsconfig-paths": "^4.2.0",
     "typescript": "^4.9.5",
     "vite": "^5.0.4",
+    "vite-plugin-commonjs": "^0.10.1",
     "vite-plugin-electron": "^0.15.4",
     "vite-plugin-electron-renderer": "^0.14.5"
   },

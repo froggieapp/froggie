@@ -1,1 +1,0 @@
-import{j as r}from"./jsx-runtime-7IlSn7t-.js";import"./index-now8m1FP.js";import"./_commonjsHelpers-5-cIlDoe.js";const p={decorators:[o=>r.jsx("div",{style:{padding:"1rem",minWidth:400,boxShadow:"8px 9px 57px 0px rgba(161,0,255,0.42)",borderRadius:"4px",background:"var(--content-bg-color)"},children:r.jsx(o,{})})],parameters:{layout:"centered"}};export{p as default};
