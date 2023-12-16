@@ -63,6 +63,8 @@ jobs:
           branch: main
           clean: true
           target-folder: docs
+          clean-exclude: |
+            .nojekyll
       - name: Generate changelog
         id: changelog
         uses: metcalfc/changelog-generator@v4.2.0
@@ -78,6 +80,7 @@ jobs:
           log="${log//$'\r'/'%0D'}"
           echo "log=$log" >> $GITHUB_OUTPUT
       - name: notify-discord
+        if: ${{ !contains(steps.modified.outputs.log, 'No Changes') }}
         uses: tsickert/discord-webhook@v5.3.0
         with:
           webhook-url: ${{ secrets.RELEASES_WEBHOOK_URL }}

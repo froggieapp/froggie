@@ -2,3 +2,5 @@ node_modules
 dist
 build
 storybook-static
+docs/*
+!docs/.nojekyll
