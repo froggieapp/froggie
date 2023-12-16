@@ -10,7 +10,7 @@ interface ChannelInfoProps {
 export const ChannelInfo: React.FC<ChannelInfoProps> = ({ name, avatar }) => {
   return (
     <div className="channel-info">
-      <Avatar className="channel-profile" alt={`${name}'s avatar`} src={avatar} />
+      <Avatar className="channel-profile" name={name} alt={`${name}'s avatar`} src={avatar} />
       <span className="channel-name">{name}</span>
     </div>
   );

@@ -26,7 +26,7 @@ export const ChannelAvatar: React.FC<ChannelAvatarProps> = ({ name, avatar }) =>
       className="saved-channel"
       onClick={onClick}
     >
-      <Avatar src={avatar} className="channel-avatar" alt={`${name}'s channel picture`} />
+      <Avatar name={name} src={avatar} className="channel-avatar" alt={`${name}'s channel picture`} />
     </Tooltip>
   );
 };
