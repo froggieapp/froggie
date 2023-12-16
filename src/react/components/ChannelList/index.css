@@ -3,4 +3,13 @@
   align-items: center;
   flex-direction: column;
   row-gap: 12px;
+  overflow-y: auto;
+  height: 100%;
+  max-height: 100%;
+  padding-top: 12px;
+  padding-bottom: 64px;
+}
+
+.channel-list::-webkit-scrollbar {
+  display: none;
 }

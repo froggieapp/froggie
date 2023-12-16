@@ -6,3 +6,6 @@ export const PUSHER_APP_KEY = "eb1d5f283081a78b932c";
 export const WEB_SOCKET_URL = `${SOCKET_API_URL}/${PUSHER_APP_KEY}?${SOCKET_API_PARAMS}`;
 export const KICK_SOCKET_PING_TIMEOUT = 120 * 1000;
 export const KICK_MSG_MAX_CHAR = 500;
+
+// TODO: turn this into user settings
+export const MAX_STORED_MESSAGES = 300;

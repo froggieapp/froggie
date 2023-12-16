@@ -1,5 +1,6 @@
 import { Kick } from "@KickerinoTypes/Kick";
 import { StateCreator } from "zustand";
+import { MAX_STORED_MESSAGES } from "../util/constants";
 
 export interface MessageEvent {
   id: string;
@@ -45,12 +46,35 @@ export interface EventState extends EventProps {
 export const createEventStore: StateCreator<EventState, [], [], EventState> = (set, get) => ({
   events: {},
   addEvent: (channelId: string, event: StoreEvent) => {
-    set(({ events }) => ({
-      events: {
-        ...events,
-        [channelId]: channelId in events ? [...events[channelId], event] : [event],
-      },
-    }));
+    set(({ events }) => {
+      if (!(channelId in events)) {
+        return {
+          events: {
+            ...events,
+            [channelId]: [event],
+          },
+        };
+      }
+
+      const channelEvents = events[channelId];
+      const newLength = channelEvents.length + 1;
+
+      if (newLength >= MAX_STORED_MESSAGES) {
+        return {
+          events: {
+            ...events,
+            [channelId]: [...events[channelId].slice(1), event],
+          },
+        };
+      }
+
+      return {
+        events: {
+          ...events,
+          [channelId]: [...events[channelId], event],
+        },
+      };
+    });
   },
   getChannelEvents: (channelId: string | undefined | null) => {
     if (!channelId) return [];

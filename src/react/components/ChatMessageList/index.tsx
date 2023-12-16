@@ -3,6 +3,7 @@ import { ChatEventRow } from "../ChatEventRow";
 import "./index.css";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { useEventCountSubscribe } from "./useEventCountSubscribe";
+import { useStore } from "@/react/store/Store";
 
 interface ChatMessageListProps {
   channelId: string | undefined;
@@ -11,7 +12,7 @@ interface ChatMessageListProps {
 export const ChatMessageList: React.FC<ChatMessageListProps> = ({ channelId }) => {
   const listRef = React.useRef<HTMLDivElement>(null);
   const [isAutoScrollEnabled, setIsAutoScrollEnabled] = React.useState(true);
-  const eventCount = useEventCountSubscribe(channelId);
+  const { eventCount, lastEvent } = useEventCountSubscribe(channelId);
 
   const virtualizer = useVirtualizer({
     count: eventCount,
@@ -21,7 +22,7 @@ export const ChatMessageList: React.FC<ChatMessageListProps> = ({ channelId }) =
 
   React.useEffect(() => {
     setIsAutoScrollEnabled(true);
-  }, [virtualizer, setIsAutoScrollEnabled, channelId]);
+  }, [setIsAutoScrollEnabled, channelId]);
 
   const onScroll = React.useCallback(
     (e: React.UIEvent<HTMLElement>) => {
@@ -30,7 +31,7 @@ export const ChatMessageList: React.FC<ChatMessageListProps> = ({ channelId }) =
       const scrollHeight = e.currentTarget.scrollHeight;
       const clientHeight = e.currentTarget.clientHeight;
       const percentageScrolled = (el.scrollTop / (scrollHeight - clientHeight)) * 100;
-      const isUp = newScroll >= 0 && percentageScrolled <= 99.95;
+      const isUp = newScroll >= 0 && percentageScrolled <= 99.93;
       if (isUp) {
         setIsAutoScrollEnabled(false);
       } else if (scrollHeight - newScroll >= clientHeight) {
@@ -41,15 +42,17 @@ export const ChatMessageList: React.FC<ChatMessageListProps> = ({ channelId }) =
   );
 
   const items = virtualizer.getVirtualItems();
+  const lastEventId = lastEvent?.id;
   React.useEffect(() => {
     requestAnimationFrame(() => {
-      if (!!eventCount && isAutoScrollEnabled && virtualizer.scrollDirection !== "backward") {
-        virtualizer.scrollToIndex(eventCount - 1, {
+      const currentEventCount = useStore.getState().getChannelEvents(channelId).length;
+      if (lastEventId && !!currentEventCount && isAutoScrollEnabled) {
+        virtualizer.scrollToIndex(currentEventCount - 1, {
           align: "start",
         });
       }
     });
-  }, [channelId, eventCount, isAutoScrollEnabled, virtualizer]);
+  }, [channelId, lastEventId, isAutoScrollEnabled, virtualizer]);
 
   return (
     <div className="message-list-wrapper">
