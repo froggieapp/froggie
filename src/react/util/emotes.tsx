@@ -32,6 +32,10 @@ export const stringRegexToJsx = (msg: string, regex: RegExp, Element: React.FC<E
 
   if (!parsedResult.length) return msg;
 
+  if (lastIdx < msg.length) {
+    parsedResult.push(<span key={i}>{msg.substring(lastIdx)}</span>);
+  }
+
   return parsedResult;
 };
 
