@@ -65,23 +65,7 @@ jobs:
           target-folder: docs
           clean-exclude: |
             .nojekyll
-      - name: Generate changelog
-        id: changelog
-        uses: metcalfc/changelog-generator@v4.2.0
-        with:
-          mytoken: ${{ secrets.GITHUB_TOKEN }}
-      - name: Modify the changelog
-        id: modified
-        run: |
-          set -o noglob
-          log=$(cat << "EOF" | echo "${{ steps.changelog.outputs.changelog }}" | sed -E 's/\(([^)]+?)\)/<\1>/g')
-          log="${log//'%'/'%25'}"
-          log="${log//$'\n'/'%0A'}"
-          log="${log//$'\r'/'%0D'}"
-          echo "log=$log" >> $GITHUB_OUTPUT
-      - name: notify-discord
-        if: ${{ !contains(steps.modified.outputs.log, 'No Changes') }}
-        uses: tsickert/discord-webhook@v5.3.0
-        with:
-          webhook-url: ${{ secrets.RELEASES_WEBHOOK_URL }}
-          content: "# New Release ${{github.ref_name}}\nGet it here: [${{github.ref_name}}](https://github.com/vicodinee/kickerino/releases/tag/${{github.ref_name}})\n${{ steps.modified.outputs.log }}"
+      - name: Publish changelog to Discord
+        env:
+          WEBHOOK_URL: ${{ secrets.RELEASES_WEBHOOK_URL }}
+        run: npm run get-changelog ${{ github.ref_name }}
