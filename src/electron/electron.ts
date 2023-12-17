@@ -32,7 +32,11 @@ app.whenReady().then(() => {
   });
 
   ipcMain.handle(constants.CLOSE, (e) => {
-    e.sender.close();
+    try {
+      e.sender.close();
+    } catch(e) {
+      console.error(e)
+    }
   });
 
   ipcMain.on(constants.OPEN_KICK_PAGE, async () => {
