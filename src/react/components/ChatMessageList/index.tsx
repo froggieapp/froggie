@@ -29,7 +29,7 @@ export const ChatMessageList: React.FC<ChatMessageListProps> = ({ channelId }) =
       cancelAnimationFrame(scrollAnim.current);
     }
     isAutoScrolling.current = true;
-    lastScrollTop.current = listRef.current?.scrollTop ?? 0;
+    lastScrollTop.current = 0;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [channelId]);
 

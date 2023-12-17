@@ -8,7 +8,7 @@ Chat application for Kick
 
 ## [Download](https://github.com/vicodinee/kickerino/releases)
 
-![](https://github.com/vicodinee/kickerino/blob/main/misc/sample.gif?raw=true)
+![](https://raw.githubusercontent.com/vicodinee/kickerino/main/misc/sample.gif?)
 
 This is an alpha build, please report any issues
 
