@@ -1,4 +1,4 @@
-import type { StorybookConfig } from "@storybook/react-vite";
+import type { StorybookConfig } from "@storybook/preact-vite";
 import { mergeConfig } from "vite";
 
 const config: StorybookConfig = {
@@ -8,9 +8,7 @@ const config: StorybookConfig = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
   ],
-  framework: {
-    name: "@storybook/react-vite",
-  },
+  framework: "@storybook/preact-vite",
   docs: {
     autodocs: "tag",
   },

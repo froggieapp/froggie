@@ -1,10 +1,11 @@
 import { Kick } from "@KickerinoTypes/Kick";
+import { VNode } from "preact";
 import React from "react";
 import { useKickChannelWebsocket } from "src/hooks/useKickChannelWebsocket";
 import { useStore } from "src/store/Store";
 
 interface WithSocketsProps {
-  children: React.ReactElement;
+  children: VNode;
 }
 
 export const WithSockets: React.FC<WithSocketsProps> = ({ children }) => {

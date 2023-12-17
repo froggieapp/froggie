@@ -1,10 +1,9 @@
-import "./wdyr";
+/// import "./wdyr";
 import React from "react";
-import ReactDOM from "react-dom/client";
 import { App } from "./App";
 import "./styles/global.css";
-import { BrowserRouter } from "react-router-dom";
 import { initializeStore, useStore } from "./store/Store";
+import { render } from "preact";
 
 const forsen = async () => {
   const settings = await window.electronAPI.settings();
@@ -13,14 +12,7 @@ const forsen = async () => {
     channels: settings?.channels || [],
   });
   if (!useStore) throw new Error("No store found");
-  const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
-  root.render(
-    <React.StrictMode>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </React.StrictMode>,
-  );
+  render(<App />, document.getElementById("root") as HTMLElement);
 };
 
 forsen();

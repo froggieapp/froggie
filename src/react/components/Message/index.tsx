@@ -23,8 +23,10 @@ const _Message: React.FC<MessageProps> = ({ senderName, content, error, nameColo
       <div className="message-sender-identity-wrapper">
         <div className="message-sender-identity">
           {error ? (
-            <Tooltip tag="span" className="user-message-error-tooltip" position="top" label={error}>
-              <ExclamationCircleIcon width={20} />
+            <Tooltip position="top" label={error}>
+              <p className={"user-message-error-tooltip"}>
+                <ExclamationCircleIcon width={20} />
+              </p>
             </Tooltip>
           ) : null}
           {kickBadges.length ? (

@@ -1,5 +1,5 @@
 import { FaceSmileIcon } from "@heroicons/react/20/solid";
-import React from "react";
+import React, { ChangeEvent } from "react";
 import "./index.css";
 import { KICK_MSG_MAX_CHAR } from "@/react/util/constants";
 import { useUser } from "@/react/hooks/useUser";
@@ -13,14 +13,14 @@ interface MessageInputProps {
 export const MessageInput: React.FC<MessageInputProps> = ({ chatroomId, channelId }) => {
   const keyMap = React.useRef<Record<string, boolean>>({});
   const [message, setMessage] = React.useState("");
-  const onChange = (e: React.FormEvent<HTMLInputElement>) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setMessage(e.currentTarget.value);
   };
   const { data: user, isLoading } = useUser();
 
   const sendMessageMutation = useSendMessage();
 
-  const handleKeyDownAndUp: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
+  const handleKeyDownAndUp: React.JSX.KeyboardEventHandler<HTMLInputElement> = (e) => {
     keyMap.current[e.key] = e.type === "keydown";
   };
 
@@ -42,7 +42,7 @@ export const MessageInput: React.FC<MessageInputProps> = ({ chatroomId, channelI
     }
   };
 
-  const handleKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
+  const handleKeyDown: React.JSX.KeyboardEventHandler<HTMLInputElement> = (e) => {
     handleKeyDownAndUp(e);
     parseInput();
   };

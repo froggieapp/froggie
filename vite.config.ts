@@ -1,12 +1,11 @@
 import { rmSync } from 'node:fs'
-import { ConfigEnv, IndexHtmlTransformResult, Plugin, defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { ConfigEnv, Plugin, defineConfig } from 'vite'
 import electron from 'vite-plugin-electron'
-import renderer from 'vite-plugin-electron-renderer'
 import pkg from './package.json'
 import path from 'path'
 import { JSDOM } from 'jsdom'
 import child from 'child_process'
+import preact from "@preact/preset-vite";
 
 const addReactDevToolsScriptPlugin = () => ({
   name: 'add-react-devtools-script',
@@ -38,7 +37,11 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
     "@electron": path.resolve(__dirname, "./src/electron"),
     "@styles": path.resolve(__dirname, "./src/react/styles"),
     "@shared": path.resolve(__dirname, "./src/react/shared"),
-    "@KickerinoTypes": path.resolve(__dirname, "./types")
+    "@KickerinoTypes": path.resolve(__dirname, "./types"),
+    "react": "preact/compat",
+    "react-dom/test-utils": "preact/test-utils",
+    "react-dom": "preact/compat",
+    "react/jsx-runtime": "preact/jsx-runtime"
   }
   return {
     base: '',
@@ -51,8 +54,10 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
       },
     plugins: [
       isDev && addReactDevToolsScriptPlugin(),
-      react({
-        jsxImportSource: isDev ? '@welldone-software/why-did-you-render' : 'react',
+      preact({
+        babel: {
+          configFile: true,
+        }
       }),
       electron([
         {
@@ -96,7 +101,6 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
           },
         }
       ]),
-      renderer(),
     ],
     server: {
         port: 3000,

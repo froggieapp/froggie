@@ -1,5 +1,6 @@
 import React from "react";
 import { KickEmote } from "../components/KickEmote";
+import { VNode } from "preact";
 
 const KICK_EMOTE_REGEXR = new RegExp(/\[emote:(\d{3,9}):([a-zA-Z0-9_]{2,22})\]/g);
 
@@ -9,7 +10,7 @@ export interface EmoteProps {
 }
 
 export const stringRegexToJsx = (msg: string, regex: RegExp, Element: React.FC<EmoteProps>) => {
-  const parsedResult: React.ReactElement[] = [];
+  const parsedResult: VNode[] = [];
   const matches = msg.matchAll(regex);
   let lastIdx = 0;
   let i = 0;

@@ -1,19 +1,18 @@
-import React from "react";
-import { ModalButtonWrapper, ModalContent } from "../Modal";
+import React, { ChangeEvent } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getChannelInfo } from "@/react/util/API";
 import { showError } from "@/react/util/util";
 import { ErrorMessage } from "../ErrorMessage";
 import { Input } from "../Input";
-import { useNavigate } from "react-router-dom";
 import { useStore } from "@/react/store/Store";
-import { useModalContext } from "../Modal/ModalContext";
+import { MicroModalWrapper, onClose } from "../MicroModalWrapper";
+import { ADD_CHANNEL_MODAL } from "@/react/util/modals";
+import { ModalButtonWrapper } from "../MicroModalWrapper/ModalButtonWrapper";
+import { useLocation } from "wouter-preact";
 
-export const AddChannelModalContent = () => {
-  const { setIsOpen } = useModalContext();
-
+export const AddChannelModal = () => {
   const [channelName, setChannelName] = React.useState("");
-  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setChannelName(e.currentTarget.value);
   };
 
@@ -23,7 +22,7 @@ export const AddChannelModalContent = () => {
     refetchOnWindowFocus: false,
     enabled: false,
   });
-  const navigate = useNavigate();
+  const setLocation = useLocation()[1];
   const addChannel = useStore((state) => state.addChannel);
 
   const onAddChannel = async () => {
@@ -49,8 +48,8 @@ export const AddChannelModalContent = () => {
         newChannel.data.chatroom.channel_id?.toString(),
         newChannel.data.chatroom.id?.toString(),
       );
-      setIsOpen(false);
-      navigate(`/channel/${channelName}`);
+      onClose(ADD_CHANNEL_MODAL);
+      setLocation(`/channel/${channelName}`);
     } catch (e) {
       showError((e as Error).message);
       console.error(e);
@@ -58,7 +57,11 @@ export const AddChannelModalContent = () => {
   };
 
   return (
-    <ModalContent>
+    <MicroModalWrapper
+      id={ADD_CHANNEL_MODAL}
+      title="New Channel"
+      description="Add a new channel and start spam immediately"
+    >
       <Input label="Channel name">
         <input type="text" value={channelName} onChange={handleChange} />
       </Input>
@@ -70,6 +73,6 @@ export const AddChannelModalContent = () => {
           </button>
         </ModalButtonWrapper>
       </div>
-    </ModalContent>
+    </MicroModalWrapper>
   );
 };

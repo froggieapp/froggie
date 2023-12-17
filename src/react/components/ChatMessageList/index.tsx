@@ -35,7 +35,7 @@ export const ChatMessageList: React.FC<ChatMessageListProps> = ({ channelId }) =
 
   const lastEventId = lastEvent?.id;
 
-  const onWheel: React.WheelEventHandler<HTMLDivElement> = (e) => {
+  const onWheel: React.JSX.WheelEventHandler<HTMLDivElement> = (e) => {
     const el = e.currentTarget;
     if (scrollAnim.current) cancelAnimationFrame(scrollAnim.current);
     isAutoScrolling.current = el.scrollTop > lastScrollTop.current;

@@ -1,12 +1,12 @@
-import { useNavigate } from "react-router-dom";
 import { useICP } from "src/hooks/useICP";
 import constants from "src/shared/constants";
 import contextCommands from "src/shared/contextCommands";
 import { useStore } from "src/store/Store";
 import { queryClient } from "../queryClient";
+import { useLocation } from "wouter-preact";
 
 export const Listener = () => {
-  const navigate = useNavigate();
+  const setLocation = useLocation()[1];
   const removeChannel = useStore((state) => state.removeChannel);
 
   useICP(constants.CLOSE_KICK_PAGE, () => {
@@ -24,9 +24,9 @@ export const Listener = () => {
           window.electronAPI.removeChannel(channel);
           const otherChannels = useStore.getState().channels.filter((c) => c.name !== channel);
           if (otherChannels.length) {
-            navigate(`/channel/${otherChannels[0].name}`);
+            setLocation(`/channel/${otherChannels[0].name}`);
           } else {
-            navigate("/");
+            setLocation("/");
           }
           removeChannel(channel);
         }

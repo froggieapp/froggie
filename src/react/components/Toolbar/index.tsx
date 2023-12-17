@@ -3,7 +3,7 @@ import { MinusIcon, XMarkIcon } from "@heroicons/react/20/solid";
 import "./index.css";
 
 export const Toolbar = () => {
-  const handleClose = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClose = (e: MouseEvent) => {
     e.preventDefault();
     window.electronAPI.close();
   };

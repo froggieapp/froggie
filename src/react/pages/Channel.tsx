@@ -1,11 +1,11 @@
 import React from "react";
-import { useParams } from "react-router-dom";
 import { MessageInput } from "src/components/MessageInput";
 import { ChannelInfo } from "../components/ChannelInfo";
 import { EmptyChannel } from "src/components/EmptyChannel";
 import "@styles/Channel.css";
 import { useChannelInfo } from "../hooks/useChannelInfo";
 import { ChatMessageList } from "../components/ChatMessageList";
+import { useParams } from "wouter-preact";
 
 export const Channel = () => {
   const params = useParams<{ id: string }>();

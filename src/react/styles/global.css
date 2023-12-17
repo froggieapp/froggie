@@ -6,6 +6,14 @@
   box-sizing: border-box;
 }
 
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+}
+
 html {
   --toolbar-bg-color: #28212c;
   --content-bg-color: #17042f;

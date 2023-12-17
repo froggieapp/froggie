@@ -1,20 +1,21 @@
 import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
 import { ChannelList } from "../ChannelList";
 import { ArrowUturnLeftIcon, Cog6ToothIcon } from "@heroicons/react/24/solid";
 import { useStore } from "src/store/Store";
 import "./index.css";
+import { useLocation } from "wouter-preact";
+import { usePrevLocation } from "@/react/hooks/usePrevLocation";
 
 export const Sidebar = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const isConfigPage = location.pathname.includes("config");
+  const [location, setLocation] = useLocation();
+  const prev = usePrevLocation();
+  const isConfigPage = location.includes("config");
   const onClickSettings = () => {
     if (isConfigPage) {
-      navigate(-1);
+      setLocation(prev ? prev : "/");
       return;
     }
-    navigate("/config");
+    setLocation("/config");
   };
 
   const channels = useStore((state) => state.channels);

@@ -2,27 +2,18 @@ import { PlusIcon } from "@heroicons/react/24/solid";
 import React from "react";
 import { Tooltip } from "../Tooltip";
 import "./index.css";
-import { ModalButton, ModalProvider } from "../Modal";
-import { AddChannelModalContent } from "../AddChannelModalContent";
+import { onOpen } from "../MicroModalWrapper";
+import { ADD_CHANNEL_MODAL } from "@/react/util/modals";
 
 export const NewChannelButton = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
-
+  const onClick = () => {
+    onOpen(ADD_CHANNEL_MODAL);
+  };
   return (
-    <ModalProvider
-      title="New Channel"
-      isOpen={isOpen}
-      setIsOpen={setIsOpen}
-      description="Add a new channel and start spam immediately"
-    >
-      <Tooltip tag={"div"} position="right" label={"Add Channel"}>
-        <ModalButton>
-          <button className="new-channel-button" type="button">
-            <PlusIcon />
-          </button>
-        </ModalButton>
-      </Tooltip>
-      <AddChannelModalContent />
-    </ModalProvider>
+    <Tooltip position="right" label={"Add Channel"}>
+      <button onClick={onClick} className="new-channel-button" type="button">
+        <PlusIcon />
+      </button>
+    </Tooltip>
   );
 };

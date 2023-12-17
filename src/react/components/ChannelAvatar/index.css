@@ -1,5 +1,5 @@
-.saved-channel * {
-  pointer-events: none;
+.saved-channel-link {
+  text-decoration: none;
 }
 
 .channel-avatar {

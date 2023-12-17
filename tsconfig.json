@@ -25,7 +25,9 @@
       "@electron/*": ["src/electron/*"],
       "@shared/*": ["src/react/shared/*"],
       "@styles/*": ["src/react/styles/*"],
-      "@KickerinoTypes/*": ["types/*"]
+      "@KickerinoTypes/*": ["types/*"],
+      "react": ["./node_modules/preact/compat/"],
+      "react-dom": ["./node_modules/preact/compat/"]
     },
     "types": ["vite/client", "jest"]
   },

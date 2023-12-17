@@ -1,7 +1,6 @@
-import React from "react";
 import "./index.css";
-import { Tooltip } from "../Tooltip";
-import { EmoteTooltipContent } from "../EmoteTooltipContent";
+import React from "react";
+import { EmoteTooltip } from "../EmoteTooltip";
 
 interface DefaultEmoteProps {
   src: string;
@@ -9,10 +8,11 @@ interface DefaultEmoteProps {
 }
 
 export const DefaultEmote: React.FC<DefaultEmoteProps> = ({ src, name }) => {
-  const EmoteTooltip = React.useMemo(() => <EmoteTooltipContent emoteSrc={src} name={name} />, [src, name]);
   return (
-    <Tooltip tag="span" className="emote-wrapper" position="top" tooltipClassname="emote-tooltip" label={EmoteTooltip}>
-      <img className="emote" src={src} alt={name} />
-    </Tooltip>
+    <EmoteTooltip position="top" emoteSrc={src} label={name}>
+      <span className="emote-wrapper">
+        <img className="emote" src={src} alt={name} />
+      </span>
+    </EmoteTooltip>
   );
 };
