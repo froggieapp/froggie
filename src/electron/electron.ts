@@ -34,8 +34,8 @@ app.whenReady().then(() => {
   ipcMain.handle(constants.CLOSE, (e) => {
     try {
       e.sender.close();
-    } catch(e) {
-      console.error(e)
+    } catch (e) {
+      console.error(e);
     }
   });
 
