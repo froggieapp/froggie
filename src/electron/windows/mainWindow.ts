@@ -12,7 +12,7 @@ export const createMainWindow = () => {
     minWidth: 400,
     minHeight: 400,
     frame: false,
-    transparent: true,
+    transparent: false,
     hasShadow: true,
     webPreferences: {
       nodeIntegration: false,
