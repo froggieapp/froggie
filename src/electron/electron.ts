@@ -6,6 +6,7 @@ import { createMainWindow } from "./windows/mainWindow";
 import { kickWindow } from "./windows/kickWindow";
 import { Serve } from "./serve";
 
+const shell = electron.shell;
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 const ipcMain = electron.ipcMain;
@@ -25,6 +26,12 @@ app.whenReady().then(() => {
 
   ipcMain.handle(constants.GET_SETTINGS, () => {
     return settings.data;
+  });
+
+  ipcMain.handle(constants.OPEN_BROWSER, (_, url) => {
+    if (url.startsWith("https://")) {
+      shell.openExternal(url);
+    }
   });
 
   ipcMain.on(constants.SET_SETTING, async (_, { key, value }) => {

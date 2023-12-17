@@ -44,4 +44,5 @@ contextBridge.exposeInMainWorld("electronAPI", {
     ipcRenderer.removeAllListeners(channel);
   },
   settings: () => ipcRenderer.invoke(constants.GET_SETTINGS),
+  openBrowser: (url: string) => ipcRenderer.invoke(constants.OPEN_BROWSER, url),
 });

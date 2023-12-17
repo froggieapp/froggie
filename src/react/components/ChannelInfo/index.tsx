@@ -8,10 +8,15 @@ interface ChannelInfoProps {
 }
 
 export const ChannelInfo: React.FC<ChannelInfoProps> = ({ name, avatar }) => {
+  const onOpen = () => {
+    window.electronAPI.openBrowser(`https://kick.com/${name}`);
+  };
   return (
     <div className="channel-info">
-      <Avatar className="channel-profile" name={name} alt={`${name}'s avatar`} src={avatar} />
-      <span className="channel-name">{name}</span>
+      <button type="button" className="user-info" onClick={onOpen}>
+        <Avatar className="channel-profile" name={name} alt={`${name}'s avatar`} src={avatar} />
+        <span className="channel-name">{name}</span>
+      </button>
     </div>
   );
 };

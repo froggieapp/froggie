@@ -12,4 +12,5 @@ export interface IElectronAPI {
   receive: (channel: keyof typeof constants, cb: (...args: any[]) => void) => void
   removeAllListeners: (channel: string) => void,
   settings: () => Promise<UserSettings.UserSettingsData | undefined | null>
+  openBrowser: (url: string) => Promise<void>
 }
