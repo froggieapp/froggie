@@ -10,7 +10,7 @@ module.exports = {
         "plugin:storybook/recommended"
     ],
     parser: '@typescript-eslint/parser',
-    plugins: ['prettier', '@typescript-eslint'],
+    plugins: ['prettier', '@typescript-eslint', "react-perf"],
     root: true,
     rules: {
         "prettier/prettier": ["error"],

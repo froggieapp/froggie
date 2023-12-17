@@ -1,10 +1,25 @@
 import { rmSync } from 'node:fs'
-import { ConfigEnv, defineConfig } from 'vite'
+import { ConfigEnv, IndexHtmlTransformResult, Plugin, defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import electron from 'vite-plugin-electron'
 import renderer from 'vite-plugin-electron-renderer'
 import pkg from './package.json'
 import path from 'path'
+import { JSDOM } from 'jsdom'
+import child from 'child_process'
+
+const addReactDevToolsScriptPlugin = () => ({
+  name: 'add-react-devtools-script',
+  apply: 'serve',
+  transformIndexHtml(html) {
+    const jsdom = new JSDOM(html);
+    const script = jsdom.window.document.createElement('script')
+    script.type = "text/javascript"
+    script.src = "http://localhost:8097"
+    jsdom.window.document.head.appendChild(script)
+    return jsdom.serialize() 
+  },
+} as Plugin)
 
 export default defineConfig(({ command, mode }: ConfigEnv) => {
   rmSync('dist', { recursive: true, force: true })
@@ -12,6 +27,10 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
   const isDev = mode === 'development'
   const isBuild = command === 'build'
   const sourcemap = true
+
+  if (isDev) {
+    child.exec('npx react-devtools')
+  }
 
   const alias =  {
     '@': path.resolve(__dirname, './src'),
@@ -21,7 +40,6 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
     "@shared": path.resolve(__dirname, "./src/react/shared"),
     "@KickerinoTypes": path.resolve(__dirname, "./types")
   }
-
   return {
     base: '',
     resolve: {
@@ -32,6 +50,7 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
         outDir: './build'
       },
     plugins: [
+      isDev && addReactDevToolsScriptPlugin(),
       react({
         jsxImportSource: isDev ? '@welldone-software/why-did-you-render' : 'react',
       }),

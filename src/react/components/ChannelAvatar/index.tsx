@@ -12,9 +12,9 @@ interface ChannelAvatarProps {
 
 export const ChannelAvatar: React.FC<ChannelAvatarProps> = ({ name, avatar }) => {
   const navigate = useNavigate();
-  const onClick: React.MouseEventHandler<HTMLButtonElement> = () => {
+  const onClick: React.MouseEventHandler<HTMLButtonElement> = React.useCallback(() => {
     navigate(`/channel/${name}`);
-  };
+  }, [name, navigate]);
   return (
     <Tooltip
       tag="button"

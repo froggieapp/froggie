@@ -25,7 +25,7 @@ export const Channel = () => {
   return (
     <div className="channel">
       <ChannelInfo avatar={channelInfo?.user.profile_pic ?? ""} name={channelInfo?.user.username ?? ""} />
-      <ChatMessageList channelId={channelId} />
+      <ChatMessageList key={channelId} channelId={channelId} />
       <MessageInput channelId={channelId} chatroomId={chatId} />
     </div>
   );
