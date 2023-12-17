@@ -46,6 +46,26 @@ app.whenReady().then(() => {
     }
   });
 
+  ipcMain.handle(constants.MAXIMIZE, () => {
+    try {
+      if (mainWindow.isMaximized()) {
+        mainWindow.unmaximize();
+      } else {
+        mainWindow.maximize();
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  });
+
+  ipcMain.handle(constants.MINIMIZE, () => {
+    try {
+      mainWindow.minimize();
+    } catch (e) {
+      console.error(e);
+    }
+  });
+
   ipcMain.on(constants.OPEN_KICK_PAGE, async () => {
     kickWindow.createWindow(mainWindow);
   });

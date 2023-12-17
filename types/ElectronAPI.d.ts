@@ -6,6 +6,8 @@ declare global {
 
 export interface IElectronAPI {
   close: () => void
+  minimize: () => void
+  maximize: () => void
   openKickPage: () => void
   addChannel: (data: Omit<UserSettings.SettingsChannel, 'order'>) => Promise<void>
   removeChannel: (name: string) => Promise<void>

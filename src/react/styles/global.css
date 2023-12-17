@@ -23,7 +23,8 @@ html {
   --message-input-text-color: rgb(240, 237, 239);
   --message-input-text-color-focus: rgb(255, 254, 255);
   --message-input-text-color-placeholder: rgb(211, 209, 211);
-  --toolbar-icon-color: rgb(91, 245, 150);
+  --toolbar-icon-color: rgba(91, 245, 150, 0.568);
+  --toolbar-icon-color-hover: rgba(91, 245, 150, 0.932);
   --toolbar-height: 25px;
   --main-text-color: rgb(235, 235, 235);
   --logo-text-color: #737a7c;

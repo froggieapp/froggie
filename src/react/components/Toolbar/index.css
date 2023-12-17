@@ -38,3 +38,7 @@
 .toolbar .icon {
   color: var(--toolbar-icon-color);
 }
+
+.toolbar .icon:hover {
+  color: var(--toolbar-icon-color-hover);
+}

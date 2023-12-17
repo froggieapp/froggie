@@ -14,6 +14,8 @@ window.addEventListener(
 
 contextBridge.exposeInMainWorld("electronAPI", {
   close: () => ipcRenderer.invoke(constants.CLOSE),
+  minimize: () => ipcRenderer.invoke(constants.MINIMIZE),
+  maximize: () => ipcRenderer.invoke(constants.MAXIMIZE),
   openKickPage: () => ipcRenderer.send(constants.OPEN_KICK_PAGE),
   removeChannel: async (name: string) => {
     const settings = (await ipcRenderer.invoke(constants.GET_SETTINGS)) as UserSettings.UserSettingsData | undefined;
