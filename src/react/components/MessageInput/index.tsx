@@ -4,6 +4,7 @@ import "./index.css";
 import { KICK_MSG_MAX_CHAR } from "@/react/util/constants";
 import { useUser } from "@/react/hooks/useUser";
 import { useSendMessage } from "@/react/hooks/useSendMessage";
+import { EmojiData, EmotePicker } from "../EmotePicker";
 
 interface MessageInputProps {
   chatroomId: string | undefined;
@@ -16,13 +17,24 @@ export const MessageInput: React.FC<MessageInputProps> = ({ chatroomId, channelI
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setMessage(e.currentTarget.value);
   };
+  const [showEmojiPicker, setShowEmojiPicker] = React.useState(false);
+  const onToggleEmojiPicker = () => setShowEmojiPicker((s) => !s);
   const { data: user, isLoading } = useUser();
-
+  const onClickOutsideEmojiPicker = React.useCallback(() => {
+    if (showEmojiPicker) setShowEmojiPicker(false);
+  }, [showEmojiPicker]);
   const sendMessageMutation = useSendMessage();
 
   const handleKeyDownAndUp: React.JSX.KeyboardEventHandler<HTMLInputElement> = (e) => {
     keyMap.current[e.key] = e.type === "keydown";
   };
+
+  const onAddEmote = React.useCallback(
+    (data: EmojiData) => {
+      setMessage((m) => `${m}${data.native}`);
+    },
+    [setMessage],
+  );
 
   const parseInput = () => {
     if (keyMap.current["Enter"]) {
@@ -61,6 +73,9 @@ export const MessageInput: React.FC<MessageInputProps> = ({ chatroomId, channelI
 
   return (
     <div className="message-input-wrapper">
+      <div className="emote-picker-wrapper">
+        <EmotePicker onClickOutside={onClickOutsideEmojiPicker} onAddEmote={onAddEmote} show={showEmojiPicker} />
+      </div>
       <div className="message-input">
         <input
           value={message}
@@ -73,8 +88,8 @@ export const MessageInput: React.FC<MessageInputProps> = ({ chatroomId, channelI
           onKeyUp={handleKeyDownAndUp}
         />
         <div className="message-input-options">
-          <button type="button">
-            <FaceSmileIcon />
+          <button onClick={onToggleEmojiPicker} type="button">
+            <FaceSmileIcon className="input-smile-icon" data-open={showEmojiPicker || undefined} />
           </button>
         </div>
       </div>

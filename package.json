@@ -1,6 +1,6 @@
 {
   "name": "kickerino",
-  "version": "0.1.41",
+  "version": "0.1.42",
   "description": "A chat application",
   "main": "./build/electron/electron.js",
   "homepage": "https://github.com/vicodinee/kickerino",
@@ -98,12 +98,15 @@
     "vite-plugin-electron-renderer": "^0.14.5"
   },
   "dependencies": {
+    "@emoji-mart/data": "^1.1.2",
+    "@emoji-mart/react": "^1.1.1",
     "@heroicons/react": "^2.0.18",
     "@storybook/preact-vite": "^7.6.5",
     "@tabler/icons-react": "^2.44.0",
     "@tanstack/react-query": "^5.12.2",
     "@tanstack/react-virtual": "^3.0.1",
     "debounce": "^2.0.0",
+    "emoji-mart": "^5.5.2",
     "micromodal": "^0.4.10",
     "preact": "^10.19.3",
     "react-toastify": "^9.1.3",
