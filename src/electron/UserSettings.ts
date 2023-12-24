@@ -2,7 +2,7 @@ import { app } from "electron";
 import path from "path";
 import fs from "fs";
 
-const SETTINGS_FILE = path.join(app.getPath("userData"), "kickerino.json");
+const SETTINGS_FILE = path.join(app.getPath("userData"), "settings.json");
 
 export class UserSettings {
   data: undefined | UserSettings.UserSettingsData;

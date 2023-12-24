@@ -1,4 +1,4 @@
-import { Kick } from "@KickerinoTypes/Kick";
+import { Kick } from "@FroggieTypes/Kick";
 import { StateCreator } from "zustand";
 import { MAX_STORED_MESSAGES } from "../util/constants";
 

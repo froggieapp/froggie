@@ -37,7 +37,7 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
     "@electron": path.resolve(__dirname, "./src/electron"),
     "@styles": path.resolve(__dirname, "./src/react/styles"),
     "@shared": path.resolve(__dirname, "./src/react/shared"),
-    "@KickerinoTypes": path.resolve(__dirname, "./types"),
+    "@FroggieTypes": path.resolve(__dirname, "./types"),
     "react": "preact/compat",
     "react-dom/test-utils": "preact/test-utils",
     "react-dom": "preact/compat",

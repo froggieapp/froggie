@@ -1,4 +1,4 @@
-import { Kick } from "@KickerinoTypes/Kick";
+import { Kick } from "@FroggieTypes/Kick";
 import { IconSword, IconGiftFilled, IconStarFilled, IconDiscountCheckFilled } from "@tabler/icons-react";
 
 export type KickBadgeFC = React.FC<{

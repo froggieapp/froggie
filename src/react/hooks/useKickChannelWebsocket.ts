@@ -3,7 +3,7 @@ import { KICK_SOCKET_PING_TIMEOUT, WEB_SOCKET_URL } from "src/util/constants";
 import { getFirstUntouchedMessage, getUniqueId } from "src/util/util";
 import { useWebSocket } from "./useWebSocket";
 import { useStore } from "src/store/Store";
-import { Kick } from "@KickerinoTypes/Kick";
+import { Kick } from "@FroggieTypes/Kick";
 import { useUser } from "./useUser";
 import { useEffect, useRef } from "preact/hooks";
 

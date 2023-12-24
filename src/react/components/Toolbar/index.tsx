@@ -20,7 +20,7 @@ export const Toolbar = () => {
 
   return (
     <div className="toolbar">
-      <div className="toolbar-left-side">Kickerino</div>
+      <div className="toolbar-left-side">Froggie</div>
       <div className="toolbar-right-side">
         <button type="button" id="minimizeBtn" onClick={handleMinimize}>
           <IconMinus className="icon" />

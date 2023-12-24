@@ -49,8 +49,8 @@ const run = async () => {
     if (!webhook) {
         throw new Error('Missing discord webhook env')
     }
-    const owner = 'vicodinee';
-    const repo = 'kickerino';
+    const owner = 'froggieapp';
+    const repo = 'froggie';
     const octokit = new Octokit({ request: { fetch }});
     const releases = (await octokit.rest.repos.listReleases({
         owner,

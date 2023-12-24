@@ -1,4 +1,4 @@
-import { Kick } from "@KickerinoTypes/Kick";
+import { Kick } from "@FroggieTypes/Kick";
 import { VNode } from "preact";
 import { useKickChannelWebsocket } from "src/hooks/useKickChannelWebsocket";
 import { useStore } from "src/store/Store";

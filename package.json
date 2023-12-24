@@ -1,20 +1,20 @@
 {
-  "name": "kickerino",
+  "name": "froggie",
   "version": "0.1.42",
   "description": "A chat application",
   "main": "./build/electron/electron.js",
-  "homepage": "https://github.com/vicodinee/kickerino",
+  "homepage": "https://github.com/froggieapp/froggie",
   "author": {
     "name": "vicodinee"
   },
   "build": {
     "asar": true,
-    "productName": "kickerino",
+    "productName": "froggie",
     "files": [
       "build/**/*",
       "!node_modules"
     ],
-    "appId": "com.kickerino.app",
+    "appId": "com.froggie.app",
     "mac": {
       "category": "public.app-category.social-networking",
       "artifactName": "${productName}-${version}-${os}-${arch}.${ext}"
@@ -30,8 +30,8 @@
     },
     "publish": {
       "provider": "github",
-      "repo": "kickerino",
-      "owner": "vicodinee",
+      "repo": "froggie",
+      "owner": "froggieapp",
       "releaseType": "release"
     }
   },
@@ -120,7 +120,7 @@
     "react-toastify": "^9.1.3",
     "react-tooltip": "^5.25.0",
     "react-use-draggable-scroll": "^0.4.7",
-    "twemoji-react-assets": "github:peepoTalk/twemoji-react-assets",
+    "twemoji-react-assets": "github:froggieapp/twemoji-react-assets",
     "wouter-preact": "^2.12.2",
     "zustand": "^4.4.6"
   }

@@ -1,5 +1,5 @@
 import { h } from "preact";
-import { Kick } from "@KickerinoTypes/Kick";
+import { Kick } from "@FroggieTypes/Kick";
 import { badgeClassnames, badgeIcons } from "./badgeIcons";
 import "./index.css";
 import { Tooltip } from "../Tooltip";

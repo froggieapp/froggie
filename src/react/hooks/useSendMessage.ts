@@ -3,7 +3,7 @@ import { getUniqueId } from "../util/util";
 import { useStore } from "../store/Store";
 import { MessageEvent } from "@/react/store/createEventStore";
 import { sendMessage } from "../util/API";
-import { Kick } from "@KickerinoTypes/Kick";
+import { Kick } from "@FroggieTypes/Kick";
 
 interface MessageInfo {
   sender: string;

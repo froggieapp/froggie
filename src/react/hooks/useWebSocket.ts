@@ -1,4 +1,4 @@
-import { Kick } from "@KickerinoTypes/Kick";
+import { Kick } from "@FroggieTypes/Kick";
 import { useCallback, useEffect, useRef, useState } from "preact/hooks";
 
 export enum WebSocketState {
