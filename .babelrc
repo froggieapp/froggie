@@ -1,10 +1,12 @@
 {
     "presets": [
-      "@babel/preset-typescript",
-      "@babel/preset-env"
+      "@babel/preset-env",
+      ["@babel/preset-typescript", { "jsxPragma": "h", "jsxPragmaFrag": "Fragment" }]
     ],
     "plugins": [
-      ["@babel/plugin-transform-react-jsx", { "pragma":"h" }],
-      "@babel/plugin-transform-react-jsx-source"
+      ["@babel/plugin-transform-react-jsx", {
+        "pragma": "h",
+        "pragmaFrag": "Fragment"
+        }]
     ]
   }

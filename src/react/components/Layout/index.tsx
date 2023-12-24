@@ -1,8 +1,7 @@
-import React from "react";
+import { h, ComponentChildren } from "preact";
 import { Toolbar } from "../Toolbar";
 import { Sidebar } from "../Sidebar";
 import "./index.css";
-import { ComponentChildren } from "preact";
 
 interface LayoutProps {
   children: ComponentChildren;

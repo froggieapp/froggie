@@ -1,4 +1,4 @@
-import React from "react";
+import { h } from "preact";
 import { ChannelAvatar } from "../ChannelAvatar";
 import { StoreChannel } from "src/store/createChannelsStore";
 import { NewChannelButton } from "../NewChannelButton";

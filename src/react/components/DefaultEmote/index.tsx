@@ -1,5 +1,5 @@
 import "./index.css";
-import React from "react";
+import { h } from "preact";
 import { EmoteTooltip } from "../EmoteTooltip";
 
 interface DefaultEmoteProps {

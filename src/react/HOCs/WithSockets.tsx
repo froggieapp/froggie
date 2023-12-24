@@ -1,6 +1,5 @@
 import { Kick } from "@KickerinoTypes/Kick";
 import { VNode } from "preact";
-import React from "react";
 import { useKickChannelWebsocket } from "src/hooks/useKickChannelWebsocket";
 import { useStore } from "src/store/Store";
 

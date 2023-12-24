@@ -1,5 +1,5 @@
 import type { Preview } from "@storybook/react";
-import React from "react";
+import { h } from "preact";
 import '../src/react/styles/global.css'
 
 const preview: Preview = {

@@ -1,13 +1,13 @@
 import { StoreState, useStore } from "@/react/store/Store";
 import { StoreEvent } from "@/react/store/createEventStore";
 import debounce from "debounce";
-import React from "react";
+import { useEffect, useState } from "preact/hooks";
 
 export const useEventCountSubscribe = (channelId: string | undefined) => {
-  const [eventCount, setEventCount] = React.useState(() => useStore.getState().getChannelEvents(channelId).length);
-  const [lastEvent, setLastEvent] = React.useState<null | StoreEvent>(null);
+  const [eventCount, setEventCount] = useState(() => useStore.getState().getChannelEvents(channelId).length);
+  const [lastEvent, setLastEvent] = useState<null | StoreEvent>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const updateState = (count: number) => {
       setEventCount(count);
     };

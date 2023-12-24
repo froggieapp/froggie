@@ -1,5 +1,5 @@
-import React from "react";
 import { Kick } from "@KickerinoTypes/Kick";
+import { useCallback, useEffect, useRef, useState } from "preact/hooks";
 
 export enum WebSocketState {
   CONNECTING = 0,
@@ -29,17 +29,17 @@ interface WebSocketHookOptions {
 }
 
 export const useWebSocket = (url: string, options?: WebSocketHookOptions) => {
-  const ws = React.useRef<WebSocket | null>(null);
-  const messageQueue = React.useRef<string[]>([]);
+  const ws = useRef<WebSocket | null>(null);
+  const messageQueue = useRef<string[]>([]);
   const skip = options?.skip || false;
-  const [socketReady, setSocketReady] = React.useState<boolean>(false);
-  const onOpenCb = React.useRef<OnOpenCallback | null>(null);
-  const onCloseCb = React.useRef<OnCloseCallback | null>(null);
-  const onErrorCb = React.useRef<((err: string) => void) | null>(null);
-  const onBeforeCloseCb = React.useRef<OnCloseCallback | null>(null);
-  const onMessageCb = React.useRef<OnSendMessageCallback | null>(null);
+  const [socketReady, setSocketReady] = useState<boolean>(false);
+  const onOpenCb = useRef<OnOpenCallback | null>(null);
+  const onCloseCb = useRef<OnCloseCallback | null>(null);
+  const onErrorCb = useRef<((err: string) => void) | null>(null);
+  const onBeforeCloseCb = useRef<OnCloseCallback | null>(null);
+  const onMessageCb = useRef<OnSendMessageCallback | null>(null);
   const shouldParseJSON = options?.parseJSON || false;
-  React.useEffect(() => {
+  useEffect(() => {
     onOpenCb.current = options?.onOpen || null;
     onCloseCb.current = options?.onClose || null;
     onErrorCb.current = options?.onError || null;
@@ -47,19 +47,16 @@ export const useWebSocket = (url: string, options?: WebSocketHookOptions) => {
     onBeforeCloseCb.current = options?.onBeforeClose || null;
   });
 
-  const send = React.useCallback(
-    (data: string | ArrayBufferLike | Blob | ArrayBufferView | object, isJSON?: boolean) => {
-      const payload = isJSON ? JSON.stringify(data) : data;
-      if (ws.current?.readyState === WebSocketState.OPEN) {
-        ws.current.send(payload as string);
-      } else {
-        messageQueue.current.push(payload as string);
-      }
-    },
-    [],
-  );
+  const send = useCallback((data: string | ArrayBufferLike | Blob | ArrayBufferView | object, isJSON?: boolean) => {
+    const payload = isJSON ? JSON.stringify(data) : data;
+    if (ws.current?.readyState === WebSocketState.OPEN) {
+      ws.current.send(payload as string);
+    } else {
+      messageQueue.current.push(payload as string);
+    }
+  }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (skip || !url) return;
     messageQueue.current = [];
     ws.current = new WebSocket(url);
@@ -117,7 +114,7 @@ export const useWebSocket = (url: string, options?: WebSocketHookOptions) => {
     };
   }, [url, skip, shouldParseJSON, send]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (socketReady) {
       const messagesToDelete = [...messageQueue.current];
       for (let i = 0; i < messagesToDelete.length; i += 1) {

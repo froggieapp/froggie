@@ -1,4 +1,3 @@
-import React from "react";
 import { PAYLOADS } from "src/util/KickWebSocket";
 import { KICK_SOCKET_PING_TIMEOUT, WEB_SOCKET_URL } from "src/util/constants";
 import { getFirstUntouchedMessage, getUniqueId } from "src/util/util";
@@ -6,6 +5,7 @@ import { useWebSocket } from "./useWebSocket";
 import { useStore } from "src/store/Store";
 import { Kick } from "@KickerinoTypes/Kick";
 import { useUser } from "./useUser";
+import { useEffect, useRef } from "preact/hooks";
 
 interface RequiredData {
   id: string;
@@ -30,18 +30,18 @@ interface ChannelWebsockedOptions {
 
 export const useKickChannelWebsocket = ({ onChatMessage, onSubscribed, onGiftedSub }: ChannelWebsockedOptions) => {
   const updateEvent = useStore((state) => state.updateEvent);
-  const eventsRef = React.useRef(useStore.getState().events);
+  const eventsRef = useRef(useStore.getState().events);
   const channelCount = useStore((state) => state.channels.length);
-  const pingInterval = React.useRef<null | number>(null);
-  const channelsSuccessfulySubscribed = React.useRef<Record<string, boolean>>({});
-  const savedOnChatMessageCallback = React.useRef<null | ChatMessageCallback>(null);
-  const savedOnSubscribedCallback = React.useRef<null | SocketSubscribedCallback>(null);
-  const savedOnGiftedSubCallback = React.useRef<null | GiftedSubCallback>(null);
-  const subscribedChannels = React.useRef<ChannelConnectionInfo[]>([]);
+  const pingInterval = useRef<null | number>(null);
+  const channelsSuccessfulySubscribed = useRef<Record<string, boolean>>({});
+  const savedOnChatMessageCallback = useRef<null | ChatMessageCallback>(null);
+  const savedOnSubscribedCallback = useRef<null | SocketSubscribedCallback>(null);
+  const savedOnGiftedSubCallback = useRef<null | GiftedSubCallback>(null);
+  const subscribedChannels = useRef<ChannelConnectionInfo[]>([]);
   const { data: user } = useUser();
   const userId = user?.id;
 
-  React.useEffect(
+  useEffect(
     () =>
       useStore.subscribe(
         (state) => state.events,
@@ -55,13 +55,13 @@ export const useKickChannelWebsocket = ({ onChatMessage, onSubscribed, onGiftedS
     [],
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     savedOnChatMessageCallback.current = onChatMessage;
     savedOnSubscribedCallback.current = onSubscribed;
     savedOnGiftedSubCallback.current = onGiftedSub;
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     return () => {
       if (pingInterval.current) clearInterval(pingInterval.current);
     };
@@ -174,7 +174,7 @@ export const useKickChannelWebsocket = ({ onChatMessage, onSubscribed, onGiftedS
     },
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (socketReady) {
       const channels = useStore.getState().channels;
       const newSubChannels: ChannelConnectionInfo[] = [];

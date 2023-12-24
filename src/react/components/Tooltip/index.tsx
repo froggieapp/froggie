@@ -1,6 +1,5 @@
-import React from "react";
+import { h, ComponentChildren } from "preact";
 import "./index.css";
-import { ComponentChildren } from "preact";
 import { PlacesType } from "react-tooltip";
 import { GLOBAL_TOOLTIP } from "@/react/util/tooltips";
 

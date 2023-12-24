@@ -1,47 +1,62 @@
 .message-input-wrapper {
   width: 100%;
-  height: 38px;
-  display: block;
-  padding: 0px 12px;
-  position: relative;
-}
-
-.message-input {
-  display: flex;
-  align-items: center;
-  column-gap: 4px;
-  width: 100%;
-  height: 100%;
   background-color: var(--message-input-bg-color);
-  padding: 0px 14px 0 4px;
   color: var(--message-input-text-color);
-  border-radius: 4px;
-  z-index: 1;
+  border-radius: 16px;
+  padding: 6px 36px 6px 12px;
   outline: none;
   border: none;
   font-size: 0.97rem;
+  position: relative;
+  cursor: text;
 }
 
-.message-input input[type="text"] {
-  background-color: transparent;
+.message-input-wrapper:focus-within {
+  border: 1px solid white;
+}
+
+.input-editor {
+  height: 38px;
+  overflow-y: auto;
+  word-break: break-all;
+}
+
+.input-emote-wrapper,
+.input-emote-wrapper-text {
+  display: inline-block;
+}
+
+.input-emote-wrapper {
+  width: 24px;
+  height: 24px;
+}
+
+.input-emote-wrapper-text {
+  width: 20px;
+  height: 20px;
+}
+
+.input-editor-paragraph span {
+  vertical-align: middle;
+}
+
+.text-input-emote {
   width: 100%;
-  padding-right: 8px;
-  flex: 1;
+  height: 100%;
 }
 
-.message-input input[type="text"]::placeholder {
-  color: var(--message-input-text-color-placeholder);
-}
-
-.message-input:focus,
-.message-input:focus-within {
-  color: var(--message-input-text-color-focus);
+.input-editor::-webkit-scrollbar {
+  display: none;
 }
 
 .message-input-options {
   display: flex;
+  position: absolute;
   column-gap: 4px;
   align-items: center;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .message-input-options button {
@@ -62,14 +77,6 @@
   border-radius: 4px;
 }
 
-.emote-picker-wrapper {
-  position: absolute;
-  bottom: 100%;
-  right: 0;
-  z-index: 10;
-  margin-bottom: 4px;
-}
-
 .input-smile-icon {
   width: 20px;
 }
@@ -77,4 +84,32 @@
 .input-smile-icon[data-open] {
   color: rgb(255, 166, 0);
   width: 22px;
+}
+
+.emote-picker-wrapper {
+  position: absolute;
+  bottom: 59px;
+  right: 0;
+}
+
+.editor-placeholder {
+  position: absolute;
+  overflow: hidden;
+  user-select: none;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  font-size: 1.23rem;
+  opacity: 0.9;
+  display: flex;
+  align-items: center;
+}
+.editor-root {
+  height: 100%;
+}
+
+.editor-root:focus {
+  outline: none;
+  border: none;
 }

@@ -1,5 +1,5 @@
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
-import React from "react";
+import { h } from "preact";
 import "./index.css";
 
 export const EmptyChannel = () => {

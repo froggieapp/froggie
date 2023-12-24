@@ -1,12 +1,12 @@
-import React from "react";
+import { useEffect, useRef, useState } from "preact/hooks";
 import { useLocation } from "wouter-preact";
 
 export const usePrevLocation = () => {
   const [location] = useLocation();
-  const [prevLocation, setPrevLocation] = React.useState<string | null>(null);
-  const lastSavedLocation = React.useRef<string | null>(null);
+  const [prevLocation, setPrevLocation] = useState<string | null>(null);
+  const lastSavedLocation = useRef<string | null>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setPrevLocation(lastSavedLocation.current);
     lastSavedLocation.current = location;
   }, [location]);

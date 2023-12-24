@@ -1,9 +1,8 @@
 /// import "./wdyr";
-import React from "react";
+import { h, render } from "preact";
 import { App } from "./App";
 import "./styles/global.css";
 import { initializeStore, useStore } from "./store/Store";
-import { render } from "preact";
 
 const forsen = async () => {
   const settings = await window.electronAPI.settings();

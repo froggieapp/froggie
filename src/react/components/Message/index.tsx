@@ -1,10 +1,12 @@
-import React from "react";
+import { h } from "preact";
 import "./index.css";
 import { ExclamationCircleIcon } from "@heroicons/react/20/solid";
 import { Tooltip } from "../Tooltip";
 import { parseKickEmotes } from "@/react/util/emotes";
 import { Kick } from "@KickerinoTypes/Kick";
 import { KickBadge } from "../KickBadge";
+import { useMemo } from "preact/hooks";
+import { memo } from "preact/compat";
 
 interface MessageProps {
   senderName: string;
@@ -16,7 +18,7 @@ interface MessageProps {
 
 const _Message: React.FC<MessageProps> = ({ senderName, content, error, nameColor, kickBadges }) => {
   const contentWithEmojis = parseKickEmotes(content);
-  const nameStyle = React.useMemo(() => ({ color: nameColor || "#fff" }), [nameColor]);
+  const nameStyle = useMemo(() => ({ color: nameColor || "#fff" }), [nameColor]);
 
   return (
     <div className={!error ? "chat-message" : "chat-message user-message-error"}>
@@ -46,4 +48,4 @@ const _Message: React.FC<MessageProps> = ({ senderName, content, error, nameColo
   );
 };
 
-export const Message = React.memo(_Message);
+export const Message = memo(_Message);

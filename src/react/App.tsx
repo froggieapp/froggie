@@ -1,4 +1,3 @@
-import React from "react";
 import { Router } from "./Router";
 import { Listener } from "./components/Listener";
 import { WithSockets } from "./HOCs/WithSockets";
@@ -8,6 +7,7 @@ import { Modals } from "./Modals";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import { EmoteTooltiper } from "./components/EmoteTooltiper";
 import { GLOBAL_TOOLTIP } from "./util/tooltips";
+import { h, Fragment } from "preact";
 
 export const App = () => {
   return (

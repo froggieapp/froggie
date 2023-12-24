@@ -1,14 +1,15 @@
 import { Message } from "../Message";
-import React from "react";
+import { h } from "preact";
 import "./index.css";
 import { useStore } from "@/react/store/Store";
 import { StoreEvent } from "@/react/store/createEventStore";
+import { forwardRef } from "preact/compat";
 
 export interface ChatEventRowProps {
   index: number;
   channelName: string | undefined;
 }
-export const ChatEventRow = React.forwardRef<HTMLDivElement, ChatEventRowProps>(({ index, channelName }, ref) => {
+export const ChatEventRow = forwardRef<HTMLDivElement, ChatEventRowProps>(({ index, channelName }, ref) => {
   const event: StoreEvent | undefined = useStore((state) => state.getChannelEvents(channelName)[index]);
 
   const renderEvent = () => {

@@ -1,5 +1,4 @@
-import { ComponentChildren } from "preact";
-import React from "react";
+import { ComponentChildren, h } from "preact";
 import MicroModal from "micromodal";
 import "./index.css";
 
@@ -31,7 +30,7 @@ export const MicroModalWrapper = ({ id, children, title, description }: MicroMod
             <p className="global-modal-description" id={`modal-${id}-description`}>
               {description}
             </p>
-            <button aria-label="Close modal" data-micromodal-close></button>
+            <button aria-label="Close modal" data-micromodal-close />
           </header>
           <div className="global-modal-content" id={`modal-${id}-content`}>
             {children}

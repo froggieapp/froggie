@@ -1,5 +1,4 @@
-import { ComponentChildren } from "preact";
-import React from "react";
+import { ComponentChildren, h } from "preact";
 
 interface ModalButtonWrapperProps {
   children: ComponentChildren;

@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import { ChangeEvent } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getChannelInfo } from "@/react/util/API";
 import { showError } from "@/react/util/util";
@@ -9,9 +9,11 @@ import { MicroModalWrapper, onClose } from "../MicroModalWrapper";
 import { ADD_CHANNEL_MODAL } from "@/react/util/modals";
 import { ModalButtonWrapper } from "../MicroModalWrapper/ModalButtonWrapper";
 import { useLocation } from "wouter-preact";
+import { h } from "preact";
+import { useState } from "preact/hooks";
 
 export const AddChannelModal = () => {
-  const [channelName, setChannelName] = React.useState("");
+  const [channelName, setChannelName] = useState("");
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setChannelName(e.currentTarget.value);
   };

@@ -1,11 +1,19 @@
 import { SendMessageAPIResult } from "../types/SendMessage";
-import { API_URL, API_URL_V1 } from "./constants";
+import { API_URL, API_URL_V1, NO_API_ENDPOINT } from "./constants";
 import { GetChannelAPIResult } from "src/types/GetChannel";
 import { getAPIErrorForKick, getCookie } from "./util";
 import { UserAPIResult } from "../types/UserResult";
+import { GetKickEmotes } from "../types/GetKickEmotes";
+import { GetUserRelationToChannelResult } from "../types/GetUserRelationToChannel";
 
-const fetchEndpoint = async (endpoint: string, init?: RequestInit | undefined, useV1?: boolean) => {
-  const response = await fetch(`${useV1 ? API_URL_V1 : API_URL}/${endpoint}`, init);
+const fetchEndpoint = async (endpoint: string, init?: RequestInit | undefined, version?: "1" | "2" | "none") => {
+  let v = `${NO_API_ENDPOINT}/`;
+  if (version === "1") {
+    v = `${API_URL_V1}/`;
+  } else if (version === "2") {
+    v = `${API_URL}/`;
+  }
+  const response = await fetch(`${v}${endpoint}`, init);
   if (response.status === 429)
     throw new Error(await getAPIErrorForKick(response, "You sent too many requests. Kick is rate-limiting us."));
   if (response.status === 404) throw new Error(await getAPIErrorForKick(response, "Not found"));
@@ -18,7 +26,38 @@ const fetchEndpoint = async (endpoint: string, init?: RequestInit | undefined, u
 };
 
 export const getChannelInfo = (channelName: string) => {
-  return fetchEndpoint(`channels/${channelName}`) as Promise<GetChannelAPIResult | undefined | null>;
+  return fetchEndpoint(`channels/${channelName}`, undefined, "2") as Promise<GetChannelAPIResult | undefined | null>;
+};
+
+export const getUserRelationToChannel = (channelName: string) => {
+  return fetchEndpoint(`channels/${channelName}/me`, undefined, "2") as Promise<
+    GetUserRelationToChannelResult | undefined | null
+  >;
+};
+
+export const getEmotes = (channelName: string) => {
+  const tokenValue = getCookie("XSRF-TOKEN");
+
+  const headers: HeadersInit = {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+  };
+
+  if (tokenValue) {
+    const decodedToken = decodeURIComponent(tokenValue);
+    headers["X-Xsrf-Token"] = decodedToken;
+    headers["Authorization"] = `Bearer ${decodedToken}`;
+  }
+
+  return fetchEndpoint(
+    `emotes/${channelName}`,
+    {
+      credentials: "include",
+      method: "GET",
+      headers,
+    },
+    "none",
+  ) as Promise<GetKickEmotes | undefined | null>;
 };
 
 export const sendMessage = (channelName: string, content: string) => {
@@ -33,15 +72,19 @@ export const sendMessage = (channelName: string, content: string) => {
     Authorization: `Bearer ${decodedToken}`,
   };
 
-  return fetchEndpoint(`messages/send/${channelName}`, {
-    credentials: "include",
-    body: JSON.stringify({
-      content,
-      type: "message",
-    }),
-    method: "POST",
-    headers,
-  }) as Promise<SendMessageAPIResult | undefined | null>;
+  return fetchEndpoint(
+    `messages/send/${channelName}`,
+    {
+      credentials: "include",
+      body: JSON.stringify({
+        content,
+        type: "message",
+      }),
+      method: "POST",
+      headers,
+    },
+    "2",
+  ) as Promise<SendMessageAPIResult | undefined | null>;
 };
 
 export const getUser = () => {
@@ -62,6 +105,6 @@ export const getUser = () => {
       credentials: !tokenValue ? "omit" : "include",
       headers,
     },
-    true,
+    "1",
   ) as Promise<UserAPIResult | undefined | null>;
 };

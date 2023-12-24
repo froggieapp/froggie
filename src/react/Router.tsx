@@ -1,4 +1,4 @@
-import React from "react";
+import { h } from "preact";
 import { Channel } from "./pages/Channel";
 import { Layout } from "./components/Layout";
 import { Config } from "./pages/Config";

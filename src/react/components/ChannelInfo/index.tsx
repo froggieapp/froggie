@@ -1,4 +1,4 @@
-import React from "react";
+import { h } from "preact";
 import { Avatar } from "../Avatar";
 import "./index.css";
 

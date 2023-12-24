@@ -1,4 +1,4 @@
-import React from "react";
+import { h } from "preact";
 import { ChannelList } from "../ChannelList";
 import { ArrowUturnLeftIcon, Cog6ToothIcon } from "@heroicons/react/24/solid";
 import { useStore } from "src/store/Store";

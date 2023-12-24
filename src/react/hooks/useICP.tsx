@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import React from "react";
 import constants from "@shared/constants";
+import { useRef, useEffect } from "preact/hooks";
 export type VALID_EVENT = keyof typeof constants;
 
 export const useICP = (evt: VALID_EVENT, callback: (...args: unknown[]) => void) => {
-  const cbRef = React.useRef(callback);
-  React.useEffect(() => {
+  const cbRef = useRef(callback);
+  useEffect(() => {
     cbRef.current = callback;
   });
-  React.useEffect(() => {
+  useEffect(() => {
     window.electronAPI.receive(evt, (...args) => {
       cbRef.current(...args);
     });

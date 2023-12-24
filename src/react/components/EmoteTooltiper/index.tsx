@@ -1,4 +1,4 @@
-import React from "react";
+import { h } from "preact";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import "./index.css";
 import { EMOTE_TOOLTIP } from "@/react/util/tooltips";

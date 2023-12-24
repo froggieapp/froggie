@@ -30,10 +30,9 @@ export const updateRequestHeaders = <T extends string | string[]>(
 export const getCurrentUrl = () => {
   if (process.env.VITE_DEV_SERVER_URL) {
     return "http://localhost:3000";
-  } else {
-    const { port } = prodServer?.address() as AddressInfo;
-    return `http://localhost:${port}`;
   }
+  const { port } = prodServer?.address() as AddressInfo;
+  return `http://localhost:${port}`;
 };
 
 export const loadLocalURL = (

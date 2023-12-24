@@ -1,8 +1,8 @@
-import React from "react";
+import { useState } from "preact/hooks";
 
 export const useRequest = (fn: () => Promise<void> | void) => {
-  const [isLoading, setIsLoading] = React.useState(false);
-  const [error, setError] = React.useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const call = async () => {
     try {

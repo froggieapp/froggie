@@ -44,3 +44,11 @@ export const getFirstUntouchedMessage = (events: StoreEvent[], content: string) 
   }
   return null;
 };
+
+export const splitArrayInChunks = <T>(arr: T[], chunkSize: number) => {
+  const res: T[][] = new Array(Math.ceil(arr.length / chunkSize));
+  for (let i = 0; i < res.length; i += 1) {
+    res[i] = arr.slice(i * chunkSize, i * chunkSize + chunkSize);
+  }
+  return res;
+};

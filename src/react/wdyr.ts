@@ -1,9 +1,9 @@
 /// <reference types="@welldone-software/why-did-you-render" />
-import React from "react";
+import preact from "preact/compat";
 
 if (import.meta.env.DEV) {
   const whyDidYouRender = await import("@welldone-software/why-did-you-render");
-  whyDidYouRender.default(React, {
+  whyDidYouRender.default(preact, {
     trackAllPureComponents: true,
   });
 }

@@ -1,19 +1,20 @@
-import React from "react";
+import { h } from "preact";
 import { ChatEventRow } from "../ChatEventRow";
 import "./index.css";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { useEventCountSubscribe } from "./useEventCountSubscribe";
+import { useEffect, useRef } from "preact/hooks";
 
 interface ChatMessageListProps {
   channelId: string | undefined;
 }
 
 export const ChatMessageList: React.FC<ChatMessageListProps> = ({ channelId }) => {
-  const listRef = React.useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
   const { eventCount, lastEvent } = useEventCountSubscribe(channelId);
-  const lastScrollTop = React.useRef(0);
-  const isAutoScrolling = React.useRef(false);
-  const scrollAnim = React.useRef<null | number>(null);
+  const lastScrollTop = useRef(0);
+  const isAutoScrolling = useRef(false);
+  const scrollAnim = useRef<null | number>(null);
 
   const virtualizer = useVirtualizer({
     count: eventCount,
@@ -21,7 +22,7 @@ export const ChatMessageList: React.FC<ChatMessageListProps> = ({ channelId }) =
     estimateSize: () => 80,
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (eventCount) {
       virtualizer.scrollToIndex(eventCount - 1);
     }
@@ -43,7 +44,7 @@ export const ChatMessageList: React.FC<ChatMessageListProps> = ({ channelId }) =
   };
 
   const items = virtualizer.getVirtualItems();
-  React.useEffect(() => {
+  useEffect(() => {
     if (!channelId) return;
 
     scrollAnim.current = requestAnimationFrame(() => {

@@ -1,5 +1,5 @@
 import { PlusIcon } from "@heroicons/react/24/solid";
-import React from "react";
+import { h } from "preact";
 import { Tooltip } from "../Tooltip";
 import "./index.css";
 import { onOpen } from "../MicroModalWrapper";

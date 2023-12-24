@@ -1,4 +1,4 @@
-import React from "react";
+import { h } from "preact";
 import "./index.css";
 import { IconMaximize, IconMinus, IconX } from "@tabler/icons-react";
 

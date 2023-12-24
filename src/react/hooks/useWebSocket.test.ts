@@ -1,5 +1,5 @@
-import { act, renderHook } from "@testing-library/react";
 import WS from "jest-websocket-mock";
+import { act, renderHook } from "@testing-library/preact";
 import { useWebSocket } from "./useWebSocket";
 
 describe("useWebSocket", () => {
