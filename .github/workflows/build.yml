@@ -52,8 +52,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
-      - run: npm ci
-      - run: npm run build-storybook
+      - run: yarn install
+      - run: yarn build-storybook
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
@@ -67,4 +67,4 @@ jobs:
       - name: Publish changelog to Discord
         env:
           WEBHOOK_URL: ${{ secrets.RELEASES_WEBHOOK_URL }}
-        run: npm run get-changelog ${{ github.ref_name }}
+        run: yarn get-changelog ${{ github.ref_name }}
