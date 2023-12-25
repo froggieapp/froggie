@@ -1,6 +1,6 @@
 import { Fragment, VNode, h } from "preact";
 import emoji from "react-easy-emoji";
-import * as EmojiIcons from "twemoji-react-assets/assets/react";
+import * as EmojiIcons from "twemoji-react-assets";
 import { StoreEmote } from "../store/createEmoteStore";
 import { DefaultEmote } from "../components/DefaultEmote";
 import { stringRegexToJsx } from "./stringRegexToJsx";
