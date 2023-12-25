@@ -1,6 +1,6 @@
 /// <reference types="vitest" />
 import { defineConfig } from 'vite'
-import { alias } from './vite.config'
+import { alias } from './vite.config.mts'
 
 export default defineConfig({
   test: {

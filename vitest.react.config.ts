@@ -1,6 +1,6 @@
 /// <reference types="vitest" />
 import { defineConfig } from 'vite'
-import { alias } from './vite.config'
+import { alias } from './vite.config.mts'
 import preact from "@preact/preset-vite";
 
 export default defineConfig({

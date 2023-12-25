@@ -53,7 +53,10 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
       },
       build: {
         sourcemap: true,
-        outDir: './build'
+        outDir: './build',
+        rollupOptions: {
+          external: Object.keys('dependencies' in pkg ? pkg.dependencies : {}),
+        },
       },
     plugins: [
       isDev && addReactDevToolsScriptPlugin(),

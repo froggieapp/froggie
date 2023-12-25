@@ -33,6 +33,6 @@
     "types": ["vite/client", "jest"]
   },
   "include": [
-    "./types/**/*.d.ts", "./public/**/*", "./src/**/*", "vite.config.ts", "./types.d.ts"],
+    "./types/**/*.d.ts", "./public/**/*", "./src/**/*", "vite.config.mts", "./types.d.ts"],
     "references": [{ "path": "./tsconfig.node.json" }]
 }
