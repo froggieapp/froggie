@@ -40,6 +40,8 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
   const isBuild = command === 'build'
   const sourcemap = true
 
+  console.log('Vite build', mode, command)
+
   if (isDev) {
     child.exec('npx react-devtools')
   }
