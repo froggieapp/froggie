@@ -10,7 +10,7 @@
 
 .emoji-picker-root,
 .emoji-picker-category-name {
-  background-color: #1d1724;
+  background-color: var(--emoji-picker-root);
 }
 
 .emoji-picker-category-content {
@@ -55,7 +55,7 @@
 }
 
 .emoji-picker-categories > *[data-is-active="true"] {
-  color: rgb(255, 0, 242);
+  color: var(--emoji-picker-active-category-color);
   position: relative;
   width: 28px;
   height: 28px;
@@ -67,7 +67,7 @@
   bottom: -10px;
   left: 0;
   right: 0;
-  background: rgb(255, 0, 242);
+  background: var(--emoji-picker-active-category-color);
   height: 4px;
   border-radius: 5px 5px 0 0;
 }

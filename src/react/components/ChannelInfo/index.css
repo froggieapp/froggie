@@ -3,7 +3,6 @@
   height: 50px;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid var(--sidebar-border-color);
   padding: 8px 16px;
   column-gap: 12px;
 }
@@ -19,7 +18,6 @@
   font-size: 1.125rem;
   font-family: var(--display-font);
   color: var(--primary-color);
-  letter-spacing: 0.133rem;
 }
 
 .channel-profile {

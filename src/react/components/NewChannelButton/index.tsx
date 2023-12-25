@@ -11,7 +11,7 @@ export const NewChannelButton = () => {
   };
   return (
     <Tooltip position="right" label={"Add Channel"}>
-      <button onClick={onClick} className="new-channel-button" type="button">
+      <button onClick={onClick} className="new-channel-button saved-channel light-shadow" type="button">
         <PlusIcon />
       </button>
     </Tooltip>

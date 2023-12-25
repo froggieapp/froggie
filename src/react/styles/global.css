@@ -15,11 +15,16 @@ a:active {
 }
 
 html {
-  --toolbar-bg-color: #28212c;
-  --content-bg-color: #17042f;
-  --sidebar-bg-color: #1d0d41;
-  --sidebar-border-color: rgb(75, 60, 131, 0.55);
-  --message-input-bg-color: #434b4d;
+  --toolbar-bg-color: #001B09;
+  --content-bg-color: #001B09;
+  --sidebar-bg-color: #001B09;
+  --primary-color: #badf12;
+  --accent-color: #badf12;
+  --emoji-picker-root: #062e1f;
+  --scroll-thumb-color: #6c9b14;
+  --emoji-picker-active-category-color: #badf12;
+  --message-input-bg-color: #383833;
+  --message-input-border-hover: #badf1250;
   --message-input-text-color: rgb(240, 237, 239);
   --message-input-text-color-focus: rgb(255, 254, 255);
   --message-input-text-color-placeholder: rgb(211, 209, 211);
@@ -29,15 +34,12 @@ html {
   --main-text-color: rgb(235, 235, 235);
   --logo-text-color: #737a7c;
   --alt-text-color: #8b8b8b;
-  --primary-color: rgb(137, 255, 27);
-  --accent-color: 255, 27, 217;
   --primary-btn-txt-color: rgb(31, 31, 31);
   --primary-btn-color-hover: rgb(58, 104, 16);
   --primary-btn-txt-color-hover: rgb(245, 245, 245);
   --body-font: "Roboto", sans-serif;
-  --display-font: "Pixelify Sans", sans-serif;
-  --scrollbar-track-color: #43225736;
-  --scrollbar-thumb-color: rgb(77, 13, 119);
+  --display-font: "Comfortaa", sans-serif;
+  --scrollbar-track-color: rgba(0, 0, 0, 0.116);
 }
 
 body,
@@ -58,7 +60,7 @@ body ::-webkit-scrollbar-track {
 }
 
 body ::-webkit-scrollbar-thumb {
-  background-color: var(--scrollbar-thumb-color);
+  background-color: var(--scroll-thumb-color);
   border-radius: 4px;
 }
 
@@ -73,6 +75,10 @@ button {
   background-color: transparent;
   border: 0;
   outline: none;
+}
+
+.light-shadow {
+  box-shadow: 0px 3px 16px -4px rgba(206, 205, 123, 0.247);
 }
 
 .primary-btn {
@@ -94,9 +100,11 @@ input[type="password"] {
   border: none;
   border-radius: 8px;
   padding: 4px 12px;
+  background-color: #778072;
 }
 
 .saved-channel,
+.home-icon-wrapper,
 .new-channel-button {
   height: 42px;
   width: 42px;

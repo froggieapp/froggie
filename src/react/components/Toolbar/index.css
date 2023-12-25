@@ -6,8 +6,11 @@
   align-items: center;
   width: 100%;
   height: var(--toolbar-height);
-  background-color: var(--toolbar-bg-color);
+  background: var(--toolbar-bg-color);
   padding: 0 12px;
+  background-attachment: fixed;
+  z-index: 60;
+  position: relative;
 }
 
 .toolbar-left-side {
