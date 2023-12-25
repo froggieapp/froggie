@@ -19,6 +19,6 @@
   pointer-events: none;
 }
 
-.saved-channel-link:hover .saved-channel, .saved-channel-hover {
+.saved-channel-link:hover .saved-channel, .saved-channel:hover {
   border-radius: 12px;
 }
