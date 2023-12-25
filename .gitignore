@@ -4,3 +4,10 @@ build
 storybook-static
 docs/*
 !docs/.nojekyll
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
