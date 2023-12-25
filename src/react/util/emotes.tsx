@@ -3,6 +3,8 @@ import emoji from "react-easy-emoji";
 import * as EmojiIcons from "twemoji-react-assets/assets/react";
 import { StoreEmote } from "../store/createEmoteStore";
 import { DefaultEmote } from "../components/DefaultEmote";
+import { stringRegexToJsx } from "./stringRegexToJsx";
+import { KickEmote } from "../components/KickEmote";
 
 const KICK_EMOTE_REGEXR = /\[emote:(\d{3,9}):([a-zA-Z0-9_]{2,25})\]/g;
 export const GET_KICK_EMOTE_SRC = (id: string) => `https://files.kick.com/emotes/${id}/fullsize`;
@@ -13,12 +15,14 @@ export interface EmoteProps {
   name: string;
 }
 
-export const parseKickEmotesToStore = (msg: string) => {
-  return msg.replace(KICK_EMOTE_REGEXR, "$2");
+export const parseKickEmotes = (msg: string) => {
+  return stringRegexToJsx(msg, KICK_EMOTE_REGEXR, (match, key) => {
+    return <KickEmote id={match[1]} key={key} name={match[2]} />;
+  });
 };
 
-export const parseStoreEmotes = (msg: string, emotes: StoreEmote[]) => {
-  let result: (string | VNode)[] = [msg];
+export const parseStoreEmotes = (input: string | (VNode | string)[], emotes: StoreEmote[]) => {
+  let result: (string | VNode)[] = Array.isArray(input) ? input : [input];
   let key = 0;
   for (let emoteIdx = 0; emoteIdx < emotes.length; emoteIdx += 1) {
     const emote = emotes[emoteIdx];

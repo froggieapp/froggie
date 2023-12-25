@@ -1,7 +1,9 @@
 import type { Preview } from "@storybook/react";
 import { h } from "preact";
 import '../src/react/styles/global.css'
+import { initializeStore } from '../src/react/store/Store'
 
+initializeStore()
 const preview: Preview = {
   decorators: [
     (Story) => (
