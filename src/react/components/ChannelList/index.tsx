@@ -5,8 +5,7 @@ import { NewChannelButton } from "../NewChannelButton";
 import "./index.css";
 import { useLocation } from "wouter-preact";
 import { usePrevLocation } from "@/react/hooks/usePrevLocation";
-import { ArrowUturnLeftIcon, Cog6ToothIcon } from "@heroicons/react/24/solid";
-import { IconAt, IconHome, IconHome2 } from "@tabler/icons-react";
+import { IconAt } from "@tabler/icons-react";
 import { Tooltip } from "../Tooltip";
 
 interface ChannelListProps {
@@ -25,13 +24,13 @@ export const ChannelList: React.FC<ChannelListProps> = ({ channels }) => {
     setLocation("/config");
   };
 
-
   return (
     <div className="channel-list">
-      <Tooltip position="right" label={'Home'}>
-      <button className='home-icon-wrapper saved-channel light-shadow' type="button" onClick={onClickSettings}>
+      <Tooltip position="right" label={"Home"}>
+        <button className="home-icon-wrapper saved-channel light-shadow" type="button" onClick={onClickSettings}>
           <IconAt className="home-icon" />
-        </button></Tooltip>
+        </button>
+      </Tooltip>
       {channels.map((c) => (
         <ChannelAvatar key={c.name} name={c.name} avatar={c.avatar} />
       ))}

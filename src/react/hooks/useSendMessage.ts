@@ -2,7 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { getUniqueId } from "../util/util";
 import { useStore } from "../store/Store";
 import { MessageEvent } from "@/react/store/createEventStore";
-import { sendMessage } from "../util/API";
+import { sendMessage } from "../util/integrations/kick/API";
 import { Kick } from "@FroggieTypes/Kick";
 
 interface MessageInfo {

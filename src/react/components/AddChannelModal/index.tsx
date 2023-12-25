@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getChannelInfo } from "@/react/util/API";
+import { getChannelInfo } from "@/react/util/integrations/kick/API";
 import { showError } from "@/react/util/util";
 import { ErrorMessage } from "../ErrorMessage";
 import { Input } from "../Input";

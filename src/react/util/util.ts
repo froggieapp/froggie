@@ -52,3 +52,7 @@ export const splitArrayInChunks = <T>(arr: T[], chunkSize: number) => {
   }
   return res;
 };
+
+export const sanitizeRegex = (str: string) => {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+};

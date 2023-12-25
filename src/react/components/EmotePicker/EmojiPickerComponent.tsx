@@ -8,6 +8,7 @@ import { Emoji, EmojiPickerList } from "./EmojiPickerList";
 import { useEffect, useMemo, useRef } from "preact/hooks";
 
 export type EmojiPickerCategories = {
+  id: string;
   src?: string;
   svg?: VNode | null;
   name: string;
@@ -54,7 +55,7 @@ export const EmojiPickerComponent = ({
       <div ref={wrapperRef} className="emoji-picker-root">
         <div className="emoji-picker-categories" {...events} ref={draggableCategoriesRef}>
           {allEmojiPickerCategories.map((c) => (
-            <button data-emoji-picker-category={c.name} key={c.name} type="button">
+            <button data-emoji-picker-category={c.name} key={c.id} type="button">
               {c.src ? <img src={c.src} /> : c.svg}
             </button>
           ))}

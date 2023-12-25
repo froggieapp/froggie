@@ -39,8 +39,8 @@
     "build": "vite build",
     "build:local": "vite build && npm run app:dist",
     "dev": "vite",
-    "test:electron": "jest --config=jest.electron.config.js",
-    "test:react": "jest --config=jest.react.config.js",
+    "test:electron": "vitest run --config ./vitest.electron.config.ts",
+    "test:react": "vitest run --config ./vitest.react.config.ts",
     "lint:fix": "npx eslint src --fix",
     "prettier:fix": "npx prettier src --check --write",
     "format": "npm run prettier:fix && npm run lint:fix",
@@ -100,7 +100,8 @@
     "vite": "^5.0.4",
     "vite-plugin-commonjs": "^0.10.1",
     "vite-plugin-electron": "^0.15.4",
-    "vite-plugin-electron-renderer": "^0.14.5"
+    "vite-plugin-electron-renderer": "^0.14.5",
+    "vitest": "^1.1.0"
   },
   "dependencies": {
     "@emoji-mart/data": "^1.1.2",

@@ -12,29 +12,27 @@ export interface StoreEmoteCategory {
   emotes: StoreEmote[];
   src: string;
   name: string;
+  id: string;
 }
 
 export interface EmoteState {
-  emotes: Record<string, StoreEmoteCategory | undefined>;
-  setChannelEmotes: (channel: string, category: StoreEmoteCategory) => void;
+  emotes: StoreEmoteCategory[];
+  setEmotes: (data: StoreEmoteCategory[]) => void;
   clearEmotes: () => void;
 }
 
 export const createEmoteStore: StateCreator<EmoteState, [], [], EmoteState> = (set) => ({
-  emotes: {},
+  emotes: [],
   clearEmotes: () =>
     set(() => {
       return {
-        emotes: {},
+        emotes: [],
       };
     }),
-  setChannelEmotes: (channel: string, category: StoreEmoteCategory) =>
-    set((state) => {
+  setEmotes: (data: StoreEmoteCategory[]) =>
+    set(() => {
       return {
-        emotes: {
-          ...state.emotes,
-          [channel]: category,
-        },
+        emotes: data,
       };
     }),
 });

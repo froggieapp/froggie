@@ -36,6 +36,7 @@ export const dataMartCategoriesToEmojiPickerCategories = (data: EmojiMartData) =
   return data.categories.map((emojiMartCategory) => ({
     svg: getEmojiMartCategoryIcon(emojiMartCategory.id),
     name: emojiMartCategory.id,
+    id: emojiMartCategory.id,
     emojis: emojiMartCategory.emojis.map((e) => {
       const emoji = data.emojis[e];
       return {

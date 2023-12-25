@@ -1,6 +1,7 @@
 import { StoreEmoteCategory } from "@/react/store/createEmoteStore";
 import { $createTextNode, TextNode } from "lexical";
 import { $createEmoteNode } from "./EmoteNode";
+import { sanitizeRegex } from "@/react/util/util";
 
 export const findAndTransformEmotes = (node: TextNode, cats: (StoreEmoteCategory | undefined)[]) => {
   let text = node.getTextContent();
@@ -11,7 +12,7 @@ export const findAndTransformEmotes = (node: TextNode, cats: (StoreEmoteCategory
       for (let emoteIdx = 0; emoteIdx < emotes.length; emoteIdx += 1) {
         const emote = emotes[emoteIdx];
         if (!emote.isLocked) {
-          const regex = new RegExp(`${emote.name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`);
+          const regex = new RegExp(sanitizeRegex(emote.name));
           let matchArr, start;
           let targetNode;
           while ((matchArr = regex.exec(text)) !== null) {

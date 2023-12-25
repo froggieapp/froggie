@@ -27,8 +27,8 @@
       "@shared/*": ["src/react/shared/*"],
       "@styles/*": ["src/react/styles/*"],
       "@FroggieTypes/*": ["types/*"],
-      "react": ["./node_modules/preact/compat/"],
-      "react-dom": ["./node_modules/preact/compat/"]
+      "react": ["node_modules/preact/compat/"],
+      "react-dom": ["node_modules/preact/compat/"]
     },
     "types": ["vite/client", "jest"]
   },

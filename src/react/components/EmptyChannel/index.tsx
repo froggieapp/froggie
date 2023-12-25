@@ -8,7 +8,7 @@ export const EmptyChannel = () => {
   const onClick = () => {
     onOpen(ADD_CHANNEL_MODAL);
   };
-  
+
   return (
     <button onClick={onClick} type="button" className="empty-channel">
       <p className="empty-channel-heading">Add a channel</p>

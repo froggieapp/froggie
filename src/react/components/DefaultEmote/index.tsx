@@ -2,7 +2,7 @@ import "./index.css";
 import { h } from "preact";
 import { EmoteTooltip } from "../EmoteTooltip";
 
-interface DefaultEmoteProps {
+export interface DefaultEmoteProps {
   src: string;
   name: string;
 }

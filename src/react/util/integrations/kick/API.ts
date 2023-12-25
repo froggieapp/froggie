@@ -1,10 +1,10 @@
-import { SendMessageAPIResult } from "../types/SendMessage";
-import { API_URL, API_URL_V1, NO_API_ENDPOINT } from "./constants";
+import { SendMessageAPIResult } from "../../../types/SendMessage";
+import { API_URL, API_URL_V1, NO_API_ENDPOINT } from "../../constants";
 import { GetChannelAPIResult } from "src/types/GetChannel";
-import { getAPIErrorForKick, getCookie } from "./util";
-import { UserAPIResult } from "../types/UserResult";
-import { GetKickEmotes } from "../types/GetKickEmotes";
-import { GetUserRelationToChannelResult } from "../types/GetUserRelationToChannel";
+import { getAPIErrorForKick, getCookie } from "../../util";
+import { UserAPIResult } from "../../../types/UserResult";
+import { GetKickEmotes } from "../../../types/GetKickEmotes";
+import { GetUserRelationToChannelResult } from "../../../types/GetUserRelationToChannel";
 
 const fetchEndpoint = async (endpoint: string, init?: RequestInit | undefined, version?: "1" | "2" | "none") => {
   let v = `${NO_API_ENDPOINT}/`;

@@ -2,11 +2,12 @@ import { h } from "preact";
 import "./index.css";
 import { ExclamationCircleIcon } from "@heroicons/react/20/solid";
 import { Tooltip } from "../Tooltip";
-import { parseKickEmotes } from "@/react/util/emotes";
+import { parseStoreEmotes } from "@/react/util/emotes";
 import { Kick } from "@FroggieTypes/Kick";
 import { KickBadge } from "../KickBadge";
 import { useMemo } from "preact/hooks";
 import { memo } from "preact/compat";
+import { useStore } from "@/react/store/Store";
 
 interface MessageProps {
   senderName: string;
@@ -17,7 +18,8 @@ interface MessageProps {
 }
 
 const _Message: React.FC<MessageProps> = ({ senderName, content, error, nameColor, kickBadges }) => {
-  const contentWithEmojis = parseKickEmotes(content);
+  const emotes = useStore((state) => state.emotes.flatMap((e) => e.emotes));
+  const contentWithEmojis = parseStoreEmotes(content, emotes);
   const nameStyle = useMemo(() => ({ color: nameColor || "#fff" }), [nameColor]);
 
   return (

@@ -1,10 +1,11 @@
 import WS from "jest-websocket-mock";
 import { act, renderHook } from "@testing-library/preact";
 import { useWebSocket } from "./useWebSocket";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 describe("useWebSocket", () => {
   beforeEach(() => {
-    jest.spyOn(console, "error").mockImplementation(jest.fn());
+    vi.spyOn(console, "error").mockImplementation(() => "");
   });
 
   afterEach(() => {
@@ -14,11 +15,11 @@ describe("useWebSocket", () => {
   it("should call listeners on correct time", async () => {
     const server = new WS("ws://localhost:1234", { jsonProtocol: true });
 
-    const mockOnOpen = jest.fn(() => {});
-    const mockOnClose = jest.fn(() => {});
-    const mockBeforeClose = jest.fn(() => {});
-    const mockOnError = jest.fn(() => {});
-    const mockOnMessage = jest.fn(() => {});
+    const mockOnOpen = vi.fn(() => {});
+    const mockOnClose = vi.fn(() => {});
+    const mockBeforeClose = vi.fn(() => {});
+    const mockOnError = vi.fn(() => {});
+    const mockOnMessage = vi.fn(() => {});
 
     const { result } = renderHook(() =>
       useWebSocket("ws://localhost:1234", {
@@ -53,11 +54,11 @@ describe("useWebSocket", () => {
   it("should call callback with errors", async () => {
     const server = new WS("ws://localhost:1234", { jsonProtocol: true });
 
-    const mockOnOpen = jest.fn(() => {});
-    const mockOnClose = jest.fn(() => {});
-    const mockBeforeClose = jest.fn(() => {});
-    const mockOnError = jest.fn(() => {});
-    const mockOnMessage = jest.fn(() => {});
+    const mockOnOpen = vi.fn(() => {});
+    const mockOnClose = vi.fn(() => {});
+    const mockBeforeClose = vi.fn(() => {});
+    const mockOnError = vi.fn(() => {});
+    const mockOnMessage = vi.fn(() => {});
 
     renderHook(() =>
       useWebSocket("ws://localhost:1234", {
@@ -83,11 +84,11 @@ describe("useWebSocket", () => {
   it("should send queued messages", async () => {
     const server = new WS("ws://localhost:1234", { jsonProtocol: true });
 
-    const mockOnOpen = jest.fn(() => {});
-    const mockOnClose = jest.fn(() => {});
-    const mockBeforeClose = jest.fn(() => {});
-    const mockOnError = jest.fn(() => {});
-    const mockOnMessage = jest.fn(() => {});
+    const mockOnOpen = vi.fn(() => {});
+    const mockOnClose = vi.fn(() => {});
+    const mockBeforeClose = vi.fn(() => {});
+    const mockOnError = vi.fn(() => {});
+    const mockOnMessage = vi.fn(() => {});
 
     const { result } = renderHook(() =>
       useWebSocket("ws://localhost:1234", {

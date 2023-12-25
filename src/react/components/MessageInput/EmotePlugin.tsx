@@ -1,4 +1,12 @@
-import { $getSelection, COMMAND_PRIORITY_EDITOR, LexicalCommand, TextNode, createCommand } from "lexical";
+import {
+  $createParagraphNode,
+  $getRoot,
+  $getSelection,
+  COMMAND_PRIORITY_EDITOR,
+  LexicalCommand,
+  TextNode,
+  createCommand,
+} from "lexical";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { Ref, useCallback, useEffect, useImperativeHandle } from "preact/hooks";
 import { $createEmoteNode, EmoteNode } from "./EmoteNode";
@@ -41,7 +49,7 @@ export const EmotePlugin = ({ emotePluginRef }: EmotePluginProps): JSX.Element |
       { equalityFn: shallow, fireImmediately: true },
     );
 
-    editor.registerCommand<InsertEmotePayload>(
+    const cleanInsertEmote = editor.registerCommand<InsertEmotePayload>(
       INSERT_EMOTE_COMMAND,
       (payload) => {
         let emoteNode: EmoteNode | null = null;
@@ -62,7 +70,25 @@ export const EmotePlugin = ({ emotePluginRef }: EmotePluginProps): JSX.Element |
             value: payload.value,
           });
         }
-        if (emoteNode) $getSelection()?.insertNodes([emoteNode]);
+        editor.update(() => {
+          if (!emoteNode) return;
+          const root = $getRoot();
+          const currentSelection = $getSelection();
+          if (currentSelection) {
+            currentSelection.insertNodes([emoteNode]);
+          } else {
+            const firstChild = root.getFirstChild();
+            if (firstChild === null) {
+              const paragraph = $createParagraphNode();
+              paragraph.append(emoteNode);
+              root.append(paragraph);
+            } else {
+              firstChild.append(emoteNode);
+            }
+
+            root.selectEnd();
+          }
+        });
 
         return true;
       },
@@ -71,6 +97,7 @@ export const EmotePlugin = ({ emotePluginRef }: EmotePluginProps): JSX.Element |
 
     return () => {
       cleanSubscribe();
+      cleanInsertEmote();
       if (cleanupNodeTransform) cleanupNodeTransform();
     };
   }, [editor]);
@@ -80,7 +107,6 @@ export const EmotePlugin = ({ emotePluginRef }: EmotePluginProps): JSX.Element |
       if (!editor.hasNodes([EmoteNode])) {
         throw new Error("EmotePlugin: EmoteNode not registered on editor (initialConfig.nodes)");
       }
-
       editor.dispatchCommand(INSERT_EMOTE_COMMAND, {
         name,
         src,

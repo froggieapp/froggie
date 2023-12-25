@@ -7,6 +7,19 @@ import { JSDOM } from 'jsdom'
 import child from 'child_process'
 import preact from "@preact/preset-vite";
 
+export const alias =  {
+  '@': path.resolve(__dirname, './src'),
+  "src": path.resolve(__dirname, "./src/react"),
+  "@electron": path.resolve(__dirname, "./src/electron"),
+  "@styles": path.resolve(__dirname, "./src/react/styles"),
+  "@shared": path.resolve(__dirname, "./src/react/shared"),
+  "@FroggieTypes": path.resolve(__dirname, "./types"),
+  "react": "preact/compat",
+  "react-dom/test-utils": "preact/test-utils",
+  "react-dom": "preact/compat",
+  "react/jsx-runtime": "preact/jsx-runtime"
+}
+
 const addReactDevToolsScriptPlugin = () => ({
   name: 'add-react-devtools-script',
   apply: 'serve',
@@ -31,18 +44,6 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
     child.exec('npx react-devtools')
   }
 
-  const alias =  {
-    '@': path.resolve(__dirname, './src'),
-    "src": path.resolve(__dirname, "./src/react"),
-    "@electron": path.resolve(__dirname, "./src/electron"),
-    "@styles": path.resolve(__dirname, "./src/react/styles"),
-    "@shared": path.resolve(__dirname, "./src/react/shared"),
-    "@FroggieTypes": path.resolve(__dirname, "./types"),
-    "react": "preact/compat",
-    "react-dom/test-utils": "preact/test-utils",
-    "react-dom": "preact/compat",
-    "react/jsx-runtime": "preact/jsx-runtime"
-  }
   return {
     base: '',
     resolve: {

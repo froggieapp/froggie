@@ -1,10 +1,10 @@
-import { KickEmote } from "../components/KickEmote";
 import { Fragment, VNode, h } from "preact";
-import { FC } from "preact/compat";
 import emoji from "react-easy-emoji";
 import * as EmojiIcons from "twemoji-react-assets/assets/react";
+import { StoreEmote } from "../store/createEmoteStore";
+import { DefaultEmote } from "../components/DefaultEmote";
 
-const KICK_EMOTE_REGEXR = new RegExp(/\[emote:(\d{3,9}):([a-zA-Z0-9_]{2,22})\]/g);
+const KICK_EMOTE_REGEXR = /\[emote:(\d{3,9}):([a-zA-Z0-9_]{2,25})\]/g;
 export const GET_KICK_EMOTE_SRC = (id: string) => `https://files.kick.com/emotes/${id}/fullsize`;
 export const GET_KICK_PROFILE_PICTURE_SRC = (id: string) =>
   `https://files.kick.com/images/user/${id}/profile_image/conversion/9cd18533-eddb-4b0d-9d43-cc2cdb1b96ea-thumb.webp`;
@@ -13,39 +13,37 @@ export interface EmoteProps {
   name: string;
 }
 
-export const stringRegexToJsx = (msg: string, regex: RegExp, Element: FC<EmoteProps>) => {
-  const parsedResult: VNode[] = [];
-  const matches = msg.matchAll(regex);
-  let lastIdx = 0;
-  let i = 0;
-  for (const match of matches) {
-    if (match.index !== undefined && match.length >= 3) {
-      const matchText = match[0];
-      const emoteId = match[1];
-      const emoteName = match[2];
-      if (lastIdx !== match.index) {
-        parsedResult.push(<span key={i}>{msg.substring(lastIdx, match.index)}</span>);
-        i += 1;
-      }
-
-      parsedResult.push(<Element key={i} id={emoteId} name={emoteName} />);
-
-      lastIdx = match.index + matchText.length;
-      i += 1;
-    }
-  }
-
-  if (!parsedResult.length) return msg;
-
-  if (lastIdx < msg.length) {
-    parsedResult.push(<span key={i}>{msg.substring(lastIdx)}</span>);
-  }
-
-  return parsedResult;
+export const parseKickEmotesToStore = (msg: string) => {
+  return msg.replace(KICK_EMOTE_REGEXR, "$2");
 };
 
-export const parseKickEmotes = (msg: string) => {
-  return stringRegexToJsx(msg, KICK_EMOTE_REGEXR, KickEmote);
+export const parseStoreEmotes = (msg: string, emotes: StoreEmote[]) => {
+  let result: (string | VNode)[] = [msg];
+  let key = 0;
+  for (let emoteIdx = 0; emoteIdx < emotes.length; emoteIdx += 1) {
+    const emote = emotes[emoteIdx];
+    const parsedResult: (string | VNode)[] = [];
+    for (let nodeIdx = 0; nodeIdx < result.length; nodeIdx += 1) {
+      const node = result[nodeIdx];
+      if (typeof node === "string") {
+        const emoteSlices = node.split(emote.value);
+        if (emoteSlices.length) {
+          for (let emoteSliceIdx = 0; emoteSliceIdx < emoteSlices.length; emoteSliceIdx += 1) {
+            if (emoteSlices[emoteSliceIdx]) parsedResult.push(emoteSlices[emoteSliceIdx]);
+            if (emoteSliceIdx < emoteSlices.length - 1) {
+              parsedResult.push(<DefaultEmote key={key} src={emote.src} name={emote.name} />);
+            }
+
+            key += 1;
+          }
+        }
+      } else {
+        parsedResult.push(node);
+      }
+    }
+    result = parsedResult;
+  }
+  return result;
 };
 
 export const defaultEmoteCategories = [

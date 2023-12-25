@@ -15,9 +15,9 @@ a:active {
 }
 
 html {
-  --toolbar-bg-color: #001B09;
-  --content-bg-color: #001B09;
-  --sidebar-bg-color: #001B09;
+  --toolbar-bg-color: #001b09;
+  --content-bg-color: #001b09;
+  --sidebar-bg-color: #001b09;
   --primary-color: #badf12;
   --accent-color: #badf12;
   --emoji-picker-root: #062e1f;
