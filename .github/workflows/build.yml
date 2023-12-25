@@ -12,7 +12,8 @@ jobs:
     strategy:
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
-
+    permissions:
+      contents: write
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v4
