@@ -6,7 +6,7 @@ import { DefaultEmote } from "../components/DefaultEmote";
 import { stringRegexToJsx } from "./stringRegexToJsx";
 import { KickEmote } from "../components/KickEmote";
 
-const KICK_EMOTE_REGEXR = /\[emote:(\d{3,9}):([a-zA-Z0-9_]{2,25})\]/g;
+const KICK_EMOTE_REGEXR = /\[emote:(\d{3,9}):([-a-zA-Z0-9_]{2,27})\]/g;
 export const GET_KICK_EMOTE_SRC = (id: string) => `https://files.kick.com/emotes/${id}/fullsize`;
 export const GET_KICK_PROFILE_PICTURE_SRC = (id: string) =>
   `https://files.kick.com/images/user/${id}/profile_image/conversion/9cd18533-eddb-4b0d-9d43-cc2cdb1b96ea-thumb.webp`;
