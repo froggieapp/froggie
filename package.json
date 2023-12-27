@@ -1,6 +1,6 @@
 {
   "name": "froggie",
-  "version": "0.2.11",
+  "version": "0.2.12",
   "description": "A chat application",
   "main": "./build/electron/electron.js",
   "homepage": "https://github.com/froggieapp/froggie",
@@ -47,7 +47,6 @@
     "test": "yarn tsc --noEmit && yarn test:electron && yarn test:react",
     "app:dir": "yarn electron-builder --dir",
     "app:dist": "yarn electron-builder",
-    "postinstall": "yarn electron-builder install-app-deps",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "get-changelog": "node ./getChangelog.mjs"
