@@ -20,6 +20,7 @@
     "noImplicitAny": true,
     "sourceMap": true,
     "baseUrl": "./",
+    "types": ["vite/client",  "vitest/globals", "jest"],
     "paths": {
       "@/*": ["src/*"],
       "src/*": ["src/react/*"],
@@ -29,10 +30,9 @@
       "@FroggieTypes/*": ["types/*"],
       "react": ["node_modules/preact/compat/"],
       "react-dom": ["node_modules/preact/compat/"]
-    },
-    "types": ["vite/client", "jest"]
+    }
   },
   "include": [
-    "./types/**/*.d.ts", "./public/**/*", "./src/**/*", "vite.config.mts", "./types.d.ts"],
+    "./types/**/*.d.ts", "./public/**/*", "./src/**/*", "./types.d.ts"],
     "references": [{ "path": "./tsconfig.node.json" }]
 }

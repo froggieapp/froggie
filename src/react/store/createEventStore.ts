@@ -1,6 +1,5 @@
 import { Kick } from "@FroggieTypes/Kick";
 import { StateCreator } from "zustand";
-import { MAX_STORED_MESSAGES } from "../util/constants";
 
 export interface MessageEvent {
   id: string;
@@ -34,60 +33,31 @@ interface GiftedSubEvent {
 export type StoreEvent = MessageEvent | SocketSubscribedEvent | GiftedSubEvent;
 
 export interface EventProps {
-  events: Record<string, StoreEvent[]>;
+  eventChannels: Record<string, StoreEvent[]>;
 }
 
 export interface EventState extends EventProps {
   addEvent: (channelId: string, event: StoreEvent) => void;
-  getChannelEvents: (channelId: string | undefined | null) => StoreEvent[];
   updateEvent: (channelId: string, eventId: string, updateFn: (oldEvent: StoreEvent) => StoreEvent) => void;
 }
 
-export const createEventStore: StateCreator<EventState, [], [], EventState> = (set, get) => ({
-  events: {},
+export const createEventStore: StateCreator<EventState, [["zustand/immer", never]]> = (set) => ({
+  eventChannels: {},
   addEvent: (channelId: string, event: StoreEvent) => {
-    set(({ events }) => {
-      if (!(channelId in events)) {
-        return {
-          events: {
-            ...events,
-            [channelId]: [event],
-          },
-        };
+    set(({ eventChannels }) => {
+      if (!(channelId in eventChannels)) {
+        eventChannels[channelId] = [event];
+        return;
       }
 
-      const channelEvents = events[channelId];
-      const newLength = channelEvents.length + 1;
-
-      if (newLength >= MAX_STORED_MESSAGES) {
-        return {
-          events: {
-            ...events,
-            [channelId]: [...events[channelId].slice(1), event],
-          },
-        };
-      }
-
-      return {
-        events: {
-          ...events,
-          [channelId]: [...events[channelId], event],
-        },
-      };
+      eventChannels[channelId].push(event);
     });
   },
-  getChannelEvents: (channelId: string | undefined | null) => {
-    if (!channelId) return [];
-    const events = get().events;
-    if (!(channelId in events)) return [];
-    return events[channelId];
-  },
   updateEvent: (channelId: string, eventId: string, updateFn: (oldEvent: StoreEvent) => StoreEvent) =>
-    set(({ events }) => {
+    set(({ eventChannels }) => {
       return {
-        events: {
-          ...events,
-          [channelId]: events[channelId].map((e) => (e.id === eventId ? updateFn(e) : e)),
+        eventChannels: {
+          [channelId]: eventChannels[channelId]?.map((e) => (e.id === eventId ? updateFn(e) : e)) || [],
         },
       };
     }),

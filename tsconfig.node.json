@@ -4,7 +4,12 @@
       "module": "ESNext",
       "moduleResolution": "Node",
       "resolveJsonModule": true,
-      "allowSyntheticDefaultImports": true
+      "allowSyntheticDefaultImports": true,
+      "types": ["vite/client",  "vitest/globals", "jest"],
+      "paths": {
+        "react": ["./node_modules/preact/compat/"],
+        "react-dom": ["./node_modules/preact/compat/"]
+      }
     },
-    "include": ["vite.config.mts", "package.json"]
+    "include": [".storybook/main.ts", "vite.config.mts", "package.json"]
   }

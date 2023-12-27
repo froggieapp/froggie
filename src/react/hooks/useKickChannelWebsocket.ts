@@ -30,7 +30,7 @@ interface ChannelWebsockedOptions {
 
 export const useKickChannelWebsocket = ({ onChatMessage, onSubscribed, onGiftedSub }: ChannelWebsockedOptions) => {
   const updateEvent = useStore((state) => state.updateEvent);
-  const eventsRef = useRef(useStore.getState().events);
+  const eventsRef = useRef(useStore.getState().eventChannels);
   const channelCount = useStore((state) => state.channels.length);
   const pingInterval = useRef<null | number>(null);
   const channelsSuccessfulySubscribed = useRef<Record<string, boolean>>({});
@@ -44,7 +44,7 @@ export const useKickChannelWebsocket = ({ onChatMessage, onSubscribed, onGiftedS
   useEffect(
     () =>
       useStore.subscribe(
-        (state) => state.events,
+        (state) => state.eventChannels,
         (events) => {
           eventsRef.current = events;
         },
@@ -118,7 +118,7 @@ export const useKickChannelWebsocket = ({ onChatMessage, onSubscribed, onGiftedS
             if (
               userId &&
               parsedData.sender.id === userId &&
-              (firstUntouchedMessage = getFirstUntouchedMessage(eventsRef.current[channelId], parsedData.content))
+              (firstUntouchedMessage = getFirstUntouchedMessage(eventsRef.current[channelId] || [], parsedData.content))
             ) {
               updateEvent(channelId, firstUntouchedMessage, (e) => ({ ...e, isTouched: true }));
               return;

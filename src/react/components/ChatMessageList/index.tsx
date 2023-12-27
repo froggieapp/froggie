@@ -1,99 +1,86 @@
 import { h } from "preact";
 import { ChatEventRow } from "../ChatEventRow";
 import "./index.css";
-import { useVirtualizer } from "@tanstack/react-virtual";
-import { useEventCountSubscribe } from "./useEventCountSubscribe";
-import { useEffect, useRef } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
+import { Virtuoso, VirtuosoHandle } from "react-virtuoso";
+import { useStore } from "@/react/store/Store";
+import debounce, { DebouncedFunction } from "debounce";
 
 interface ChatMessageListProps {
   channelId: string | undefined;
 }
 
 export const ChatMessageList: React.FC<ChatMessageListProps> = ({ channelId }) => {
-  const listRef = useRef<HTMLDivElement>(null);
-  const { eventCount, lastEvent } = useEventCountSubscribe(channelId);
-  const lastScrollTop = useRef(0);
-  const isAutoScrolling = useRef(false);
-  const scrollAnim = useRef<null | number>(null);
-
-  const virtualizer = useVirtualizer({
-    count: eventCount,
-    getScrollElement: () => listRef.current,
-    estimateSize: () => 80,
-  });
+  const [eventCount, setEventCount] = useState(() =>
+    channelId ? useStore.getState().eventChannels[channelId]?.length || 0 : 0,
+  );
+  const virtuoso = useRef<VirtuosoHandle>(null);
+  const showBottomButtonTimeoutRef = useRef<null | NodeJS.Timeout>(null);
+  const [atBottom, setAtBottom] = useState(false);
+  const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
-    if (eventCount) {
-      virtualizer.scrollToIndex(eventCount - 1);
+    let subscribe: () => void;
+    let debounceCb: DebouncedFunction<(count: number) => void>;
+    if (atBottom) {
+      const updateState = (count: number) => {
+        setEventCount(count);
+      };
+      debounceCb = debounce((count: number) => {
+        updateState(count);
+      }, 50);
+      subscribe = useStore.subscribe((state) => {
+        const events = channelId ? state.eventChannels[channelId] || [] : [];
+        return events.length;
+      }, debounceCb);
     }
-    if (scrollAnim.current) {
-      cancelAnimationFrame(scrollAnim.current);
+
+    return () => {
+      debounceCb?.clear();
+      subscribe?.();
+    };
+  }, [setEventCount, atBottom, channelId]);
+
+  useEffect(() => {
+    return () => {
+      if (showBottomButtonTimeoutRef.current) clearTimeout(showBottomButtonTimeoutRef.current);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (showBottomButtonTimeoutRef.current) clearTimeout(showBottomButtonTimeoutRef.current);
+    if (!atBottom) {
+      showBottomButtonTimeoutRef.current = setTimeout(() => setShowButton(true), 500);
+    } else {
+      setShowButton(false);
     }
-    isAutoScrolling.current = true;
-    lastScrollTop.current = 0;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [channelId]);
+  }, [atBottom, setShowButton]);
 
-  const lastEventId = lastEvent?.id;
-
-  const onWheel: React.JSX.WheelEventHandler<HTMLDivElement> = (e) => {
-    const el = e.currentTarget;
-    if (scrollAnim.current) cancelAnimationFrame(scrollAnim.current);
-    isAutoScrolling.current = el.scrollTop > lastScrollTop.current;
-    lastScrollTop.current = el.scrollTop;
+  const handleAtBottom = (bottom: boolean) => {
+    setEventCount(channelId ? useStore.getState().eventChannels[channelId]?.length || 0 : 0);
+    setAtBottom(bottom);
   };
 
-  const items = virtualizer.getVirtualItems();
-  useEffect(() => {
-    if (!channelId) return;
-
-    scrollAnim.current = requestAnimationFrame(() => {
-      const el = listRef.current;
-      if (!el) return;
-      const rangeEnd = virtualizer.range?.endIndex || 0;
-      const isAtBottom = rangeEnd >= eventCount - 4;
-
-      if (lastEventId && isAutoScrolling.current && isAtBottom) {
-        virtualizer.scrollToIndex(eventCount - 1, {
-          align: "start",
-        });
-      }
-    });
-    return () => {
-      if (scrollAnim.current) cancelAnimationFrame(scrollAnim.current);
-    };
-  }, [eventCount, channelId, lastEventId, virtualizer]);
+  const scrollToBottom = () => {
+    virtuoso.current?.scrollToIndex(eventCount);
+  };
 
   return (
-    <div className="message-list-wrapper">
-      <div ref={listRef} onWheel={onWheel} className="message-list">
-        <div
-          style={{
-            height: `${virtualizer.getTotalSize()}px`,
-            width: "100%",
-            position: "relative",
-          }}
-        >
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              transform: `translateY(${items[0]?.start ?? 0}px)`,
-            }}
-          >
-            {items.map((virtualRow) => (
-              <ChatEventRow
-                key={virtualRow.key}
-                ref={virtualizer.measureElement}
-                channelName={channelId}
-                index={virtualRow.index}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
+    <div className="message-list">
+      <Virtuoso
+        ref={virtuoso}
+        followOutput
+        atBottomThreshold={30}
+        atBottomStateChange={handleAtBottom}
+        initialTopMostItemIndex={eventCount - 1}
+        totalCount={eventCount}
+        itemContent={(index) => <ChatEventRow channelName={channelId} index={index} />}
+      />
+      {showButton ? (
+        <button type="button" onClick={scrollToBottom} className="scroll-to-bottom">
+          Chat is paused. Click to see new messages.
+        </button>
+      ) : null}
     </div>
   );
 };

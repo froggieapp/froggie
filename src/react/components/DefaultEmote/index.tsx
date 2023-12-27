@@ -9,10 +9,8 @@ export interface DefaultEmoteProps {
 
 export const DefaultEmote: React.FC<DefaultEmoteProps> = ({ src, name }) => {
   return (
-    <EmoteTooltip position="top" emoteSrc={src} label={name}>
-      <span className="emote-wrapper">
-        <img className="emote" src={src} alt={name} />
-      </span>
+    <EmoteTooltip className="emote-wrapper" position="top" emoteSrc={src} label={name}>
+      <img className="emote" src={src} alt={name} />
     </EmoteTooltip>
   );
 };

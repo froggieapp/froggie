@@ -7,7 +7,7 @@ import { initializeStore, useStore } from "./store/Store";
 const forsen = async () => {
   const settings = await window.electronAPI.settings();
   initializeStore({
-    events: {},
+    eventChannels: {},
     channels: settings?.channels || [],
   });
   if (!useStore) throw new Error("No store found");

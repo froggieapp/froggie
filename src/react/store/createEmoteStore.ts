@@ -21,18 +21,14 @@ export interface EmoteState {
   clearEmotes: () => void;
 }
 
-export const createEmoteStore: StateCreator<EmoteState, [], [], EmoteState> = (set) => ({
+export const createEmoteStore: StateCreator<EmoteState, [["zustand/immer", never]]> = (set) => ({
   emotes: [],
   clearEmotes: () =>
-    set(() => {
-      return {
-        emotes: [],
-      };
+    set((state) => {
+      state.emotes = [];
     }),
   setEmotes: (data: StoreEmoteCategory[]) =>
-    set(() => {
-      return {
-        emotes: data,
-      };
+    set((state) => {
+      state.emotes = data;
     }),
 });

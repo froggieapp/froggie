@@ -10,9 +10,12 @@ export interface ChatEventRowProps {
   channelName: string | undefined;
 }
 export const ChatEventRow = forwardRef<HTMLDivElement, ChatEventRowProps>(({ index, channelName }, ref) => {
-  const event: StoreEvent | undefined = useStore((state) => state.getChannelEvents(channelName)[index]);
+  const event: StoreEvent | undefined = useStore((state) =>
+    channelName ? state.eventChannels[channelName]?.[index] : undefined,
+  );
 
   const renderEvent = () => {
+    if (!event) return null;
     switch (event.type) {
       case "MESSAGE": {
         return (

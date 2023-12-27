@@ -6,17 +6,18 @@ type TooltipProps = {
   label: string;
   children?: ComponentChildren;
   position: PlacesType;
-  tooltipClassname?: string;
+  className?: string;
   emoteSrc: string;
 };
 
-export const EmoteTooltip = ({ label, children = null, position, emoteSrc }: TooltipProps) => {
+export const EmoteTooltip = ({ label, children = null, position, emoteSrc, className }: TooltipProps) => {
   return (
     <span
       data-tooltip-id={EMOTE_TOOLTIP}
       data-emote-src={emoteSrc}
       data-tooltip-content={label}
       data-tooltip-place={position}
+      className={className}
     >
       {children}
     </span>

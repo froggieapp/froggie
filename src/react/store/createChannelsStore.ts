@@ -17,29 +17,22 @@ export interface ChannelsState extends ChannelsProps {
   removeChannel: (name: string) => void;
 }
 
-export const createChannelsStore: StateCreator<ChannelsState, [], [], ChannelsState> = (set) => ({
+export const createChannelsStore: StateCreator<ChannelsState, [["zustand/immer", never]]> = (set) => ({
   channels: [],
   addChannel: (name: string, avatar: string, channelId: string, chatroomId: string) =>
     set((state) => {
-      if (state.channels.some((c) => c.name === name)) return state;
-      return {
-        channels: [
-          ...state.channels,
-          {
-            order: state.channels.length + 1,
-            name,
-            avatar,
-            channelId,
-            chatroomId,
-          },
-        ],
-      };
+      if (state.channels.some((c) => c.name === name)) return;
+
+      state.channels.push({
+        order: state.channels.length + 1,
+        name,
+        avatar,
+        channelId,
+        chatroomId,
+      });
     }),
   removeChannel: (name: string) =>
     set((state) => {
-      return {
-        ...state,
-        channels: state.channels.filter((c) => c.name !== name),
-      };
+      state.channels = state.channels.filter((c) => c.name !== name);
     }),
 });

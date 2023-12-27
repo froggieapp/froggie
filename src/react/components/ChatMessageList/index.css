@@ -1,12 +1,20 @@
 .message-list {
-  overflow-y: auto;
-  contain: strict;
   padding: 12px 18px 18px 18px;
   min-width: 100%;
   height: 100%;
+  flex: 1;
+  position: relative;
 }
 
-.message-list-wrapper {
-  flex: 1;
-  margin-bottom: 6px;
+.scroll-to-bottom {
+  border-radius: 6px;
+  position: absolute;
+  z-index: 10;
+  bottom: 10px;
+  transform: translateX(-50%);
+  left: 50%;
+  padding: 12px 8px;
+  background-color: rgba(0, 0, 0, 0.603);
+  color: white;
+  font-family: var(--display-font);
 }

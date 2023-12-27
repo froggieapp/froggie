@@ -113,6 +113,7 @@
     "@tanstack/react-query": "^5.12.2",
     "@tanstack/react-virtual": "^3.0.1",
     "debounce": "^2.0.0",
+    "immer": "^10.0.3",
     "lexical": "^0.12.5",
     "micromodal": "^0.4.10",
     "preact": "^10.19.3",
@@ -120,7 +121,8 @@
     "react-toastify": "^9.1.3",
     "react-tooltip": "^5.25.0",
     "react-use-draggable-scroll": "^0.4.7",
-    "twemoji-react-assets": "github:froggieapp/twemoji-react-assets",
+    "react-virtuoso": "^4.6.2",
+    "twemoji-react-assets": "https://github.com/froggieapp/twemoji-react-assets",
     "wouter-preact": "^2.12.2",
     "zustand": "^4.4.6"
   },
