@@ -1,6 +1,6 @@
 {
   "name": "froggie",
-  "version": "0.2.12",
+  "version": "0.2.13",
   "description": "A chat application",
   "main": "./build/electron/electron.js",
   "homepage": "https://github.com/froggieapp/froggie",
@@ -36,8 +36,8 @@
     }
   },
   "scripts": {
-    "build": "vite build",
-    "build:local": "vite build && yarn app:dist",
+    "build": "yarn vite build",
+    "build:local": "yarn vite build && yarn app:dist",
     "dev": "vite",
     "test:electron": "vitest run --config ./vitest.electron.config.ts",
     "test:react": "vitest run --config ./vitest.react.config.ts",
