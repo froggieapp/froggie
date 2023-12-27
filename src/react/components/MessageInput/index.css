@@ -97,9 +97,9 @@
   overflow: hidden;
   user-select: none;
   pointer-events: none;
-  transform: translate(-50%, -50%);
+  transform: translateY(-50%);
   top: 50%;
-  left: 50%;
+  left: 24px;
   font-size: 1.23rem;
   opacity: 0.9;
   display: flex;
