@@ -54,8 +54,10 @@ jobs:
           node-version: 18
       - run: yarn install
       - run: yarn build-storybook
+        continue-on-error: true
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
+        continue-on-error: true
         with:
           folder: storybook-static
           token: ${{ secrets.GITHUB_TOKEN }}
