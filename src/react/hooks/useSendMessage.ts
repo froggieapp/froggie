@@ -7,6 +7,7 @@ import { Kick } from "@FroggieTypes/Kick";
 
 interface MessageInfo {
   sender: string;
+  senderId: string;
   senderNameColor: string;
   kickBadges: Kick.KickBadges;
   chatroomId: string;
@@ -15,11 +16,6 @@ interface MessageInfo {
 }
 
 export const useSendMessage = () => {
-  const { addEvent, updateEvent } = useStore((state) => ({
-    addEvent: state.addEvent,
-    updateEvent: state.updateEvent,
-  }));
-
   return useMutation({
     mutationFn: (msg: MessageInfo) => {
       return sendMessage(msg.chatroomId, msg.content);
@@ -27,6 +23,7 @@ export const useSendMessage = () => {
     onMutate: async (variables) => {
       const optimisticMessage: MessageEvent = {
         id: `temp-${getUniqueId()}`,
+        senderId: variables.senderId,
         messageId: "",
         createdOn: Date.now(),
         sender: variables.sender,
@@ -36,19 +33,19 @@ export const useSendMessage = () => {
         isOptimistic: true,
         kickBadges: variables.kickBadges,
       };
-      addEvent(variables.channelId, optimisticMessage);
+      useStore.getState().addEvent(variables.channelId, optimisticMessage);
       return { optimisticMessage };
     },
     onError(error, variables, context) {
       if (!context?.optimisticMessage.id) return;
-      updateEvent(variables.channelId, context.optimisticMessage.id, (e) => ({
+      useStore.getState().updateEvent(variables.channelId, context.optimisticMessage.id, (e) => ({
         ...e,
         error: error.message,
       }));
     },
     onSuccess: (result, variables, context) => {
       if (!result?.data.id || !context?.optimisticMessage.id) return;
-      updateEvent(variables.channelId, context.optimisticMessage.id, (e) => ({
+      useStore.getState().updateEvent(variables.channelId, context.optimisticMessage.id, (e) => ({
         ...e,
         messageId: result.data.id,
       }));

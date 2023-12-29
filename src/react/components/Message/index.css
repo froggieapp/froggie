@@ -18,6 +18,7 @@ blockquote::after {
   float: left;
   vertical-align: middle;
   height: 20px;
+  cursor: pointer;
 }
 
 .message-sender-identity-wrapper,

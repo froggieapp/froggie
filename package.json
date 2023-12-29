@@ -1,6 +1,6 @@
 {
   "name": "froggie",
-  "version": "0.2.14",
+  "version": "0.2.15",
   "description": "A chat application",
   "main": "./build/electron/electron.js",
   "homepage": "https://github.com/froggieapp/froggie",
@@ -111,6 +111,7 @@
     "@tabler/icons-react": "^2.44.0",
     "@tanstack/react-query": "^5.12.2",
     "@tanstack/react-virtual": "^3.0.1",
+    "dayjs": "^1.11.10",
     "debounce": "^2.0.0",
     "immer": "^10.0.3",
     "lexical": "^0.12.5",

@@ -8,6 +8,7 @@ import { KickBadge } from "../KickBadge";
 import { useMemo } from "preact/hooks";
 import { memo } from "preact/compat";
 import { useStore } from "@/react/store/Store";
+import { useShallow } from "zustand/react/shallow";
 
 interface MessageProps {
   senderName: string;
@@ -18,13 +19,24 @@ interface MessageProps {
 }
 
 const _Message: React.FC<MessageProps> = ({ senderName, content, error, nameColor, kickBadges }) => {
-  const emotes = useStore((state) => state.emotes.flatMap((e) => e.emotes));
+  const { emotes, openUserCard } = useStore(
+    useShallow((state) => ({
+      emotes: state.emotes.flatMap((e) => e.emotes),
+      openUserCard: state.openUserCardModal,
+    })),
+  );
   const contentWithEmojis = parseStoreEmotes(parseKickEmotes(content), emotes);
   const nameStyle = useMemo(() => ({ color: nameColor || "#fff" }), [nameColor]);
-
+  const onClickUsername = (e: MouseEvent) => {
+    const target = e.currentTarget;
+    if (target instanceof HTMLDivElement) {
+      const rect = target.getBoundingClientRect();
+      openUserCard(senderName, rect.left + target.offsetWidth + window.scrollX, rect.top + window.scrollY);
+    }
+  };
   return (
     <div className={!error ? "chat-message" : "chat-message user-message-error"}>
-      <div className="message-sender-identity-wrapper">
+      <div onClick={onClickUsername} className="message-sender-identity-wrapper">
         <div className="message-sender-identity">
           {error ? (
             <Tooltip position="top" label={error}>

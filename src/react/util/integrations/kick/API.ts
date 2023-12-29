@@ -4,7 +4,24 @@ import { GetChannelAPIResult } from "src/types/GetChannel";
 import { getAPIErrorForKick, getCookie } from "../../util";
 import { UserAPIResult } from "../../../types/UserResult";
 import { GetKickEmotes } from "../../../types/GetKickEmotes";
-import { GetUserRelationToChannelResult } from "../../../types/GetUserRelationToChannel";
+import { GetUserRelationToCurrentChannelResult } from "../../../types/GetUserRelationToCurrentChannel";
+import { GetUserRelationToChannelResult } from "@/react/types/GetUserRelationToChannel";
+
+const getHeaders = (shouldThrow?: boolean) => {
+  const headers: HeadersInit = {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+  };
+  const tokenValue = getCookie("XSRF-TOKEN");
+  if (tokenValue) {
+    const decodedToken = decodeURIComponent(tokenValue);
+    headers["X-Xsrf-Token"] = decodedToken;
+    headers["Authorization"] = `Bearer ${decodedToken}`;
+  } else if (shouldThrow) {
+    throw new Error("Not authed. Click on the options icon on top left and add the token.");
+  }
+  return headers;
+};
 
 const fetchEndpoint = async (endpoint: string, init?: RequestInit | undefined, version?: "1" | "2" | "none") => {
   let v = `${NO_API_ENDPOINT}/`;
@@ -14,6 +31,7 @@ const fetchEndpoint = async (endpoint: string, init?: RequestInit | undefined, v
     v = `${API_URL}/`;
   }
   const response = await fetch(`${v}${endpoint}`, init);
+
   if (response.status === 429)
     throw new Error(await getAPIErrorForKick(response, "You sent too many requests. Kick is rate-limiting us."));
   if (response.status === 404) throw new Error(await getAPIErrorForKick(response, "Not found"));
@@ -29,49 +47,33 @@ export const getChannelInfo = (channelName: string) => {
   return fetchEndpoint(`channels/${channelName}`, undefined, "2") as Promise<GetChannelAPIResult | undefined | null>;
 };
 
-export const getUserRelationToChannel = (channelName: string) => {
+export const getUserCurrentRelationToChannel = (channelName: string) => {
   return fetchEndpoint(`channels/${channelName}/me`, undefined, "2") as Promise<
-    GetUserRelationToChannelResult | undefined | null
+    GetUserRelationToCurrentChannelResult | undefined | null
   >;
 };
 
+export const getKickUserCard = async (channelName: string, user: string) => {
+  const data = (await fetchEndpoint(`channels/${channelName}/users/${encodeURI(user)}`, undefined, "2")) as
+    | GetUserRelationToChannelResult
+    | undefined
+    | null;
+  return data;
+};
+
 export const getEmotes = (channelName: string) => {
-  const tokenValue = getCookie("XSRF-TOKEN");
-
-  const headers: HeadersInit = {
-    Accept: "application/json",
-    "Content-Type": "application/json",
-  };
-
-  if (tokenValue) {
-    const decodedToken = decodeURIComponent(tokenValue);
-    headers["X-Xsrf-Token"] = decodedToken;
-    headers["Authorization"] = `Bearer ${decodedToken}`;
-  }
-
   return fetchEndpoint(
     `emotes/${channelName}`,
     {
       credentials: "include",
       method: "GET",
-      headers,
+      headers: getHeaders(),
     },
     "none",
   ) as Promise<GetKickEmotes | undefined | null>;
 };
 
 export const sendMessage = (channelName: string, content: string) => {
-  const tokenValue = getCookie("XSRF-TOKEN");
-  if (!tokenValue) throw new Error("Not authed. Click on the options icon on top left and add the token.");
-
-  const decodedToken = decodeURIComponent(tokenValue);
-  const headers: HeadersInit = {
-    Accept: "application/json",
-    "Content-Type": "application/json",
-    "X-Xsrf-Token": decodedToken,
-    Authorization: `Bearer ${decodedToken}`,
-  };
-
   return fetchEndpoint(
     `messages/send/${channelName}`,
     {
@@ -81,30 +83,36 @@ export const sendMessage = (channelName: string, content: string) => {
         type: "message",
       }),
       method: "POST",
-      headers,
+      headers: getHeaders(true),
     },
     "2",
   ) as Promise<SendMessageAPIResult | undefined | null>;
 };
 
 export const getUser = () => {
-  const headers: HeadersInit = {
-    Accept: "application/json",
-    "Content-Type": "application/json",
-  };
-  const tokenValue = getCookie("XSRF-TOKEN");
-  if (tokenValue) {
-    const decodedToken = decodeURIComponent(tokenValue);
-    headers["X-Xsrf-Token"] = decodedToken;
-    headers["Authorization"] = `Bearer ${decodedToken}`;
-  }
-
   return fetchEndpoint(
     "user",
     {
-      credentials: !tokenValue ? "omit" : "include",
-      headers,
+      credentials: "include",
+      headers: getHeaders(),
     },
     "1",
+  ) as Promise<UserAPIResult | undefined | null>;
+};
+
+export const banUser = (channel: string, username: string, duration: number, permanent: boolean) => {
+  return fetchEndpoint(
+    `channels/${channel}/bans`,
+    {
+      credentials: "include",
+      method: "POST",
+      headers: getHeaders(true),
+      body: JSON.stringify({
+        banned_username: username,
+        duration,
+        permanent,
+      }),
+    },
+    "2",
   ) as Promise<UserAPIResult | undefined | null>;
 };

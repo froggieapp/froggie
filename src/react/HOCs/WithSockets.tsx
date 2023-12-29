@@ -19,9 +19,10 @@ export const WithSockets: React.FC<WithSocketsProps> = ({ children }) => {
           id: messageData.data.id,
           messageId: messageData.data.id,
           type: "MESSAGE",
+          senderId: messageData.data.sender?.id?.toString() ?? "",
           senderNameColor: messageData.data.sender?.identity.color || "",
           createdOn: Number(messageData.data.created_at),
-          sender: messageData.data.sender?.slug || messageData.data.sender?.username || "",
+          sender: messageData.data.sender?.username || messageData.data.sender?.slug || "",
           content: messageData.data.content,
           kickBadges: messageData.data.sender?.identity?.badges?.filter((b) =>
             Kick.SUPPORTED_KICK_BADGES.includes(b.type),

@@ -1,0 +1,7 @@
+.user-card-content {
+  position: relative;
+  background: black;
+  display: flex;
+  padding: 24px 12px;
+  border-radius: 8px;
+}

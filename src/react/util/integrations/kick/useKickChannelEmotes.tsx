@@ -7,13 +7,15 @@ import { StoreEmoteCategory } from "@/react/store/createEmoteStore";
 import { ChannelEmoteHook } from "@/react/types/ChannelEmoteHook";
 
 export const useKickChannelEmotes: ChannelEmoteHook = () => {
-  const { channelName, isSubscribed } = useChannelContext();
+  const { channelName, additionalData } = useChannelContext();
 
   const { data, isLoading } = useQuery({
     queryKey: ["getEmotes", channelName],
     queryFn: () => getEmotes(channelName as string),
     enabled: !!channelName,
   });
+
+  const isSubscribed = !!additionalData?.isSubscribed;
 
   const emotes = useMemo(() => {
     if (!isLoading && data && channelName) {

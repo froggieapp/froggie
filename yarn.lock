@@ -7553,6 +7553,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dayjs@npm:^1.11.10":
+  version: 1.11.10
+  resolution: "dayjs@npm:1.11.10"
+  checksum: 4de9af50639d47df87f2e15fa36bb07e0f9ed1e9c52c6caa1482788ee9a384d668f1dbd00c54f82aaab163db07d61d2899384b8254da3a9184fc6deca080e2fe
+  languageName: node
+  linkType: hard
+
 "debounce@npm:^2.0.0":
   version: 2.0.0
   resolution: "debounce@npm:2.0.0"
@@ -9403,6 +9410,7 @@ __metadata:
     "@typescript-eslint/parser": "npm:^6.13.0"
     "@welldone-software/why-did-you-render": "npm:^7.0.1"
     babel-jest: "npm:^29.7.0"
+    dayjs: "npm:^1.11.10"
     debounce: "npm:^2.0.0"
     electron: "npm:^28.0.0"
     electron-builder: "npm:^24.9.1"

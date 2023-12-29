@@ -3,6 +3,7 @@ import { StateCreator } from "zustand";
 
 export interface MessageEvent {
   id: string;
+  senderId: string;
   type: "MESSAGE";
   createdOn: number;
   sender: string;

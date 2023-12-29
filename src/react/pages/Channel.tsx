@@ -9,6 +9,7 @@ import { useChannelEmotes } from "../util/integrations/useChannelEmotes";
 import { useKickChannelEmotes } from "../util/integrations/kick/useKickChannelEmotes";
 import { useKick7TVEmotes } from "../util/integrations/kick/useKick7TVEmotes";
 import { KickChannelSettings } from "../components/KickChannelSettings";
+import { UserCard } from "../components/UserCardTooltiper";
 
 const ChannelComponent = () => {
   const { id, profileSrc, channelName } = useChannelContext();
@@ -31,6 +32,7 @@ const ChannelComponent = () => {
 export const Channel = () => {
   return (
     <KickChannelSettings>
+      <UserCard />
       <ChannelComponent />
     </KickChannelSettings>
   );

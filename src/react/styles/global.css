@@ -93,6 +93,10 @@ button {
   color: var(--primary-btn-txt-color-hover);
 }
 
+.primary-btn:disabled {
+  background-color: rgb(190, 190, 190);
+}
+
 input[type="text"],
 input[type="password"] {
   height: 32px;
