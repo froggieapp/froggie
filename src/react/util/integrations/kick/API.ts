@@ -48,9 +48,15 @@ export const getChannelInfo = (channelName: string) => {
 };
 
 export const getUserCurrentRelationToChannel = (channelName: string) => {
-  return fetchEndpoint(`channels/${channelName}/me`, undefined, "2") as Promise<
-    GetUserRelationToCurrentChannelResult | undefined | null
-  >;
+  return fetchEndpoint(
+    `channels/${channelName}/me`,
+    {
+      method: "GET",
+      credentials: "include",
+      headers: getHeaders(),
+    },
+    "2",
+  ) as Promise<GetUserRelationToCurrentChannelResult | undefined | null>;
 };
 
 export const getKickUserCard = async (channelName: string, user: string) => {

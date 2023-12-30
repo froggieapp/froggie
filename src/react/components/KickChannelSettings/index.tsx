@@ -28,7 +28,7 @@ const _KickChannelSettings = ({ children }: KickChannelSettingsProps) => {
   const username = user?.username;
   const { mutate } = useSendMessage();
   const isSubscribed = isLoadingUserChannelInfo ? false : !!userChannelInfo?.subscription?.channel;
-  const isMod = isLoadingUserChannelInfo ? false : !!userChannelInfo?.is_moderator;
+  const isMod = !!userChannelInfo?.is_moderator;
   const isChannelOwner = !!currentUserId && channelInfo?.user_id.toString() === currentUserId;
   const channelContextValue: ChannelContextValue = useMemo(() => {
     return {
