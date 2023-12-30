@@ -4,6 +4,7 @@ export const stringRegexToJsx = (
   msg: string,
   regex: RegExp,
   renderFn: (match: RegExpExecArray, key: number) => VNode,
+  className?: string,
 ) => {
   const parsedResult: VNode[] = [];
   const matches = msg.matchAll(regex);
@@ -13,7 +14,11 @@ export const stringRegexToJsx = (
     if (match.index !== undefined && match.length >= 3) {
       const matchText = match[0];
       if (lastIdx !== match.index) {
-        parsedResult.push(<span key={i}>{msg.substring(lastIdx, match.index)}</span>);
+        parsedResult.push(
+          <span className={className} key={i}>
+            {msg.substring(lastIdx, match.index)}
+          </span>,
+        );
         i += 1;
       }
       parsedResult.push(renderFn(match as RegExpExecArray, i));
@@ -23,7 +28,11 @@ export const stringRegexToJsx = (
   }
   if (!parsedResult.length) return msg;
   if (lastIdx < msg.length) {
-    parsedResult.push(<span key={i}>{msg.substring(lastIdx)}</span>);
+    parsedResult.push(
+      <span className={className} key={i}>
+        {msg.substring(lastIdx)}
+      </span>,
+    );
   }
   return parsedResult;
 };

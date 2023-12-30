@@ -1,6 +1,6 @@
 .fgr-EmotePickerList {
   color: rgb(189, 189, 189);
-  contain: "strict";
+  contain: strict;
   font-size: 0.87rem;
   height: 100%;
   overflow-x: hidden;

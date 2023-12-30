@@ -15,45 +15,38 @@
 }
 
 .fgr-Message {
-  display: inline-block;
-  line-height: 1.33;
+  display: block;
+  color: #d1d1d1;
+  font-weight: normal;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+  text-align: left;
+  white-space: pre-wrap;
+  font-family: var(--body-font);
 
   .fgr-Message-badge {
-    column-gap: 3px;
     display: inline-flex;
-  }
-
-  .fgr-Message-senderIdentityWrapper {
-    cursor: pointer;
-    float: left;
-    height: 20px;
+    column-gap: 4px;
+    padding-right: 4px;
+    height: 24px;
+    align-items: center;
     vertical-align: middle;
   }
-  .fgr-Message-senderIdentityWrapper,
-  .fgr-Message-content {
-    display: inline;
-  }
 
   .fgr-Message-content {
-    color: #d1d1d1;
-    font-weight: normal;
-    overflow-wrap: break-word;
-    word-break: break-all;
+    display: inline;
+    vertical-align: middle;
   }
 
   .fgr-Message-senderName {
     font-weight: bold;
-    line-height: 1;
+    cursor: pointer;
+    appearance: none;
+    padding-block: 0;
+    padding-inline: 0;
   }
 
   .fgr-Message-content:first-child {
     margin-left: 0;
-  }
-
-  .fgr-Message-senderIdentity {
-    align-items: center;
-    column-gap: 4px;
-    display: flex;
-    height: 100%;
   }
 }

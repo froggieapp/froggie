@@ -6,6 +6,7 @@ import path from 'path'
 import { JSDOM } from 'jsdom'
 import child from 'child_process'
 import preact from "@preact/preset-vite";
+import { esbuildCommonjs, viteCommonjs } from '@originjs/vite-plugin-commonjs'
 
 export const alias =  {
   '@': path.resolve(__dirname, './src'),
@@ -55,8 +56,16 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
         sourcemap: true,
         outDir: './build',
       },
+      optimizeDeps: {
+        esbuildOptions: {
+          plugins:[
+            esbuildCommonjs(['@capsizecss/metrics']) 
+          ]
+        }
+      },
     plugins: [
       isDev && addReactDevToolsScriptPlugin(),
+      viteCommonjs(),
       preact({
         babel: {
           configFile: true,

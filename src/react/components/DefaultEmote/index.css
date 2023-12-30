@@ -1,11 +1,5 @@
 .fgr-DefaultEmote {
-  display: inline-block;
-  height: 24px;
+  display: inline;
   vertical-align: middle;
-  width: 24px;
-
-  .fgr-DefaultEmote-emote {
-    height: 100%;
-    width: 100%;
-  }
+  max-width: 24px;
 }

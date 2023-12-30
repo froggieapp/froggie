@@ -9,6 +9,7 @@ import { useMemo } from "preact/hooks";
 import { memo } from "preact/compat";
 import { useStore } from "@/react/store/Store";
 import { useShallow } from "zustand/react/shallow";
+import { wrapStringsIntoSpan } from "./util";
 
 interface MessageProps {
   senderName: string;
@@ -25,39 +26,43 @@ const _Message: React.FC<MessageProps> = ({ senderName, content, error, nameColo
       openUserCard: state.openUserCardModal,
     })),
   );
-  const contentWithEmojis = parseStoreEmotes(parseKickEmotes(content), emotes);
+  const contentWithEmojis = wrapStringsIntoSpan(
+    parseStoreEmotes(parseKickEmotes(content), emotes),
+    "fgr-Message-content u-messageBodyFont",
+  );
   const nameStyle = useMemo(() => ({ color: nameColor || "#fff" }), [nameColor]);
   const onClickUsername = (e: MouseEvent) => {
     const target = e.currentTarget;
-    if (target instanceof HTMLDivElement) {
+    if (target instanceof HTMLButtonElement) {
       const rect = target.getBoundingClientRect();
       openUserCard(senderName, rect.left + target.offsetWidth + window.scrollX, rect.top + window.scrollY);
     }
   };
   return (
-    <div className={!error ? "fgr-Message" : "fgr-Message fgr-Message--error"}>
-      <div onClick={onClickUsername} className="fgr-Message-senderIdentityWrapper">
-        <div className="fgr-Message-senderIdentity">
-          {error ? (
-            <Tooltip position="top" label={error}>
-              <p className={"fgr-Message-tooltip"}>
-                <ExclamationCircleIcon className="fgr-Message-tooltipIcon" width={20} />
-              </p>
-            </Tooltip>
-          ) : null}
-          {kickBadges.length ? (
-            <div className="fgr-Message-badge">
-              {kickBadges.map((b) => (
-                <KickBadge key={b.type} type={b.type} text={b.text} count={b.count} />
-              ))}
-            </div>
-          ) : null}
-          <div style={nameStyle} className="fgr-Message-senderName">
-            {`${senderName}:`}&nbsp;
-          </div>
-        </div>
-      </div>
-      <span className="fgr-Message-content">{contentWithEmojis}</span>
+    <div className={!error ? "fgr-Message u-messageBodyFont" : "fgr-Message u-messageBodyFont fgr-Message--error"}>
+      {error ? (
+        <Tooltip position="top" label={error}>
+          <p className={"fgr-Message-tooltip"}>
+            <ExclamationCircleIcon className="fgr-Message-tooltipIcon" width={20} />
+          </p>
+        </Tooltip>
+      ) : null}
+      {kickBadges.length ? (
+        <span className="fgr-Message-badge">
+          {kickBadges.map((b) => (
+            <KickBadge key={b.type} type={b.type} text={b.text} count={b.count} />
+          ))}
+        </span>
+      ) : null}
+      <button
+        role="button"
+        style={nameStyle}
+        onClick={onClickUsername}
+        className="fgr-Message-senderName u-messageBodyFont fgr-Message-content"
+      >
+        {`${senderName}:`}&nbsp;
+      </button>
+      {contentWithEmojis}
     </div>
   );
 };

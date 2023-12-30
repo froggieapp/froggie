@@ -13,15 +13,21 @@ export const GET_KICK_PROFILE_PICTURE_SRC = (id: string) =>
 export interface EmoteProps {
   id: string;
   name: string;
+  className?: string;
 }
 
 export const parseKickEmotes = (msg: string) => {
-  return stringRegexToJsx(msg, KICK_EMOTE_REGEXR, (match, key) => {
-    return <KickEmote id={match[1]} key={key} name={match[2]} />;
-  });
+  return stringRegexToJsx(
+    msg,
+    KICK_EMOTE_REGEXR,
+    (match, key) => {
+      return <KickEmote id={match[1]} key={key} name={match[2]} />;
+    },
+    "fgr-Message-content",
+  );
 };
 
-export const parseStoreEmotes = (input: string | (VNode | string)[], emotes: StoreEmote[]) => {
+export const parseStoreEmotes = (input: string | (VNode | string)[], emotes: StoreEmote[], className?: string) => {
   let result: (string | VNode)[] = Array.isArray(input) ? input : [input];
   let key = 0;
   for (let emoteIdx = 0; emoteIdx < emotes.length; emoteIdx += 1) {
@@ -35,7 +41,7 @@ export const parseStoreEmotes = (input: string | (VNode | string)[], emotes: Sto
           for (let emoteSliceIdx = 0; emoteSliceIdx < emoteSlices.length; emoteSliceIdx += 1) {
             if (emoteSlices[emoteSliceIdx]) parsedResult.push(emoteSlices[emoteSliceIdx]);
             if (emoteSliceIdx < emoteSlices.length - 1) {
-              parsedResult.push(<DefaultEmote key={key} src={emote.src} name={emote.name} />);
+              parsedResult.push(<DefaultEmote key={key} className={className} src={emote.src} name={emote.name} />);
             }
 
             key += 1;

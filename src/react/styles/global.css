@@ -45,7 +45,8 @@ a:active {
 }
 
 body,
-#root {
+#root,
+button {
   color: var(--main-text-color);
   font-family: var(--body-font);
   text-rendering: optimizeLegibility;

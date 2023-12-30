@@ -1,5 +1,6 @@
 import { toast } from "react-toastify";
 import { StoreEvent } from "../store/createEventStore";
+import { precomputeValues } from "@capsizecss/core";
 
 export const showError = (msg: string) => {
   toast.error(msg, {
@@ -55,4 +56,52 @@ export const splitArrayInChunks = <T>(arr: T[], chunkSize: number) => {
 
 export const sanitizeRegex = (str: string) => {
   return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+};
+
+const modules = import.meta.glob("/node_modules/@capsizecss/metrics/*.js");
+
+interface Metrics {
+  familyName: string;
+  category: string;
+  capHeight: number;
+  ascent: number;
+  descent: number;
+  lineGap: number;
+  unitsPerEm: number;
+  xHeight: number;
+  xWidthAvg: number;
+}
+
+export const loadFont = async (className: string, font: string, fontSize: number) => {
+  const fontMetrics = (
+    (await modules[`/node_modules/@capsizecss/metrics/${font.toLowerCase()}.js`]()) as {
+      default: Metrics;
+    }
+  ).default;
+
+  const capsizeValues = precomputeValues({
+    capHeight: fontSize,
+    fontMetrics,
+    lineGap: 12,
+  });
+
+  const styleContent = `.${className} {
+    font-family: ${font}, sans-serif;
+    line-height: ${capsizeValues.lineHeight};
+    font-size: ${capsizeValues.fontSize};
+    margin-top: ${capsizeValues.capHeightTrim};
+	  margin-bottom: ${capsizeValues.baselineTrim};
+  }`;
+
+  let createStyle = false;
+  let style = document.getElementById(className);
+  if (!style) {
+    style = document.createElement("style");
+    createStyle = true;
+  }
+  style.id = className;
+  style.innerHTML = styleContent;
+  if (createStyle) {
+    document.getElementsByTagName("head")[0].appendChild(style);
+  }
 };

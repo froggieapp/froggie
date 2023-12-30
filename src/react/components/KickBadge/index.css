@@ -1,18 +1,14 @@
 .fgr-KickBadge {
-  display: block;
+  display: flex;
+  align-items: center;
   float: left;
   position: relative;
-  height: 20px;
-  width: 20px;
-
-  .fgr-KickBadge-icon {
-    height: 20px;
-    width: 20px;
-  }
+  height: 100%;
+  line-height: inherit;
 
   .fgr-KickBadge-icon,
   .fgr-KickBadge-text {
-    line-height: 0;
+    line-height: inherit;
     user-select: none;
   }
 
@@ -23,7 +19,11 @@
   }
 
   .fgr-KickBadge-verifiedUser {
-    color: rgb(12, 152, 245);
+    color: rgb(0, 174, 255);
+  }
+
+  .fgr-KickBadge-iconMod {
+    color: rgb(12, 245, 51);
   }
 
   .fgr-KickBadge-iconGifter {
@@ -40,10 +40,12 @@
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
   }
 
   .fgr-KickBadge-subscriber {
-    color: #00ff51;
+    color: #fffb00;
   }
 
   .fgr-KickBadge-iconGifter + .fgr-KickBadge-count {
