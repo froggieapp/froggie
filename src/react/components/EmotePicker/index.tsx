@@ -19,7 +19,7 @@ export type CustomCategories = Record<
 interface EmotePickerProps {
   show: boolean;
   onAddEmote: (data: Emoji) => void;
-  onClickOutside: () => void;
+  onClickOutside: (node: Node) => void;
 }
 
 export const EmotePicker = ({ show, onAddEmote, onClickOutside }: EmotePickerProps) => {

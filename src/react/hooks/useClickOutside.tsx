@@ -1,7 +1,7 @@
 import { RefObject } from "preact";
 import { useEffect, useRef } from "preact/hooks";
 
-export const useClickOutside = <T extends HTMLElement>(ref: RefObject<T>, onClickOutside: () => void) => {
+export const useClickOutside = <T extends HTMLElement>(ref: RefObject<T>, onClickOutside: (node: Node) => void) => {
   const onClickOutsideRef = useRef(onClickOutside);
 
   useEffect(() => {
@@ -12,7 +12,7 @@ export const useClickOutside = <T extends HTMLElement>(ref: RefObject<T>, onClic
     const handleClickOutside = (e: MouseEvent) => {
       if (ref.current && e.target && !ref.current.contains(e.target as Node)) {
         e.preventDefault();
-        onClickOutsideRef.current();
+        onClickOutsideRef.current(e.target as Node);
       }
     };
     document.addEventListener("click", handleClickOutside, true);
