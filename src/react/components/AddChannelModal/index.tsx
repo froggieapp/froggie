@@ -11,6 +11,7 @@ import { ModalButtonWrapper } from "../MicroModalWrapper/ModalButtonWrapper";
 import { useLocation } from "wouter-preact";
 import { h } from "preact";
 import { useState } from "preact/hooks";
+import { Button } from "../Button";
 
 export const AddChannelModal = () => {
   const [channelName, setChannelName] = useState("");
@@ -70,9 +71,9 @@ export const AddChannelModal = () => {
       <div>
         <ErrorMessage>{error?.message}</ErrorMessage>
         <ModalButtonWrapper>
-          <button disabled={isLoading} onClick={onAddChannel} type="button" className="primary-btn">
+          <Button disabled={isLoading} onClick={onAddChannel}>
             Add channel
-          </button>
+          </Button>
         </ModalButtonWrapper>
       </div>
     </MicroModalWrapper>

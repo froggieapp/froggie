@@ -1,3 +1,7 @@
 .u-shadowSm {
-  box-shadow: 0 3px 16px -4px rgba(206, 205, 123, 0.247);
+  box-shadow: 10px 10px 60px -17px rgba(0, 0, 0, 0.52);
+}
+
+.u-shadowLg {
+  box-shadow: 10px 10px 31px -5px rgba(0, 0, 0, 0.67);
 }

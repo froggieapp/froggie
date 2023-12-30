@@ -1,8 +1,8 @@
 .fgr-MessageInput {
-  background-color: var(--message-input-bg-color);
+  background-color: var(--secondary-color);
   border: none;
   border-radius: 16px;
-  color: var(--message-input-text-color);
+  color: var(--secondary-text-color);
   cursor: text;
   font-size: 0.97rem;
   outline: none;
@@ -98,12 +98,12 @@
 }
 
 .fgr-MessageInput:focus-within {
-  outline: 2px solid var(--message-input-border-hover);
+  outline: 2px solid var(--primary-color);
 }
 
 .fgr-MessageInput:focus-within,
 .fgr-MessageInput:hover {
   .fgr-MessageInput-placeholder {
-    color: white;
+    color: var(--highlight-text-color);
   }
 }

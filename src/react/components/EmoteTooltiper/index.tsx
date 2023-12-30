@@ -6,7 +6,7 @@ import { EMOTE_TOOLTIP } from "@/react/util/tooltips";
 export const EmoteTooltiper = () => {
   return (
     <ReactTooltip
-      className="global-tooltip"
+      className="global-tooltip u-shadowSm"
       id={EMOTE_TOOLTIP}
       render={({ content, activeAnchor }) => {
         return (

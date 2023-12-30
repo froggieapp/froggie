@@ -5,5 +5,5 @@ interface ModalButtonWrapperProps {
 }
 
 export const ModalButtonWrapper = ({ children }: ModalButtonWrapperProps) => {
-  return <div className="fgr-GlobalModal-buttonWrapper">{children}</div>;
+  return <div className="fgr-MicroModalWrapper-buttonWrapper">{children}</div>;
 };

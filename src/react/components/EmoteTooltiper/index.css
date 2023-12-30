@@ -16,5 +16,6 @@
   .fgr-EmoteTooltiper-emoteName {
     font-size: 1.11rem;
     font-weight: bold;
+    font-family: var(--display-font);
   }
 }

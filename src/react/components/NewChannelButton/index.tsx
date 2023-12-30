@@ -13,7 +13,7 @@ export const NewChannelButton = () => {
     <Tooltip position="right" label={"Add Channel"}>
       <button
         onClick={onClick}
-        className="u-relative u-avatarSize fgr-NewChannelButton u-borderTransition fgr-u-shadowSm"
+        className="u-relative u-avatarSize fgr-NewChannelButton u-borderTransition u-shadowSm"
         type="button"
       >
         <PlusIcon className="fgr-NewChannelButton-icon" />

@@ -7,6 +7,7 @@ import { showError, showInfo } from "@/react/util/util";
 import { useStore } from "@/react/store/Store";
 import { useCountdown } from "@/react/hooks/useCountdown";
 import { h } from "preact";
+import { Button } from "../../Button";
 
 type KickUserCardProps = UserCardModal["additionalData"];
 
@@ -90,15 +91,15 @@ export const KickUserCard = ({ id: userId }: KickUserCardProps) => {
             <div className="fgr-KickUserCard-kickUserCardActionsGroup">
               <p>Timeout</p>
               <div className="fgr-KickUserCard-contentBtnGroup">
-                <button disabled={mutation.isPending} onClick={handleTimeout(1)} className="primary-btn" type="button">
+                <Button disabled={mutation.isPending} onClick={handleTimeout(1)}>
                   1m
-                </button>
-                <button disabled={mutation.isPending} onClick={handleTimeout(5)} className="primary-btn" type="button">
+                </Button>
+                <Button disabled={mutation.isPending} onClick={handleTimeout(5)}>
                   5m
-                </button>
-                <button disabled={mutation.isPending} onClick={handleTimeout(60)} className="primary-btn" type="button">
+                </Button>
+                <Button disabled={mutation.isPending} onClick={handleTimeout(60)}>
                   1hr
-                </button>
+                </Button>
               </div>
             </div>
           ) : null}

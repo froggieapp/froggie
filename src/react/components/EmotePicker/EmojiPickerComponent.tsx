@@ -52,7 +52,7 @@ export const EmojiPickerComponent = ({
 
   return (
     <EmojiPickerProvider value={emojiPickerCtxValue}>
-      <div ref={wrapperRef} className="fgr-EmotePicker">
+      <div ref={wrapperRef} className="fgr-EmotePicker u-shadowLg">
         <div className="fgr-EmotePicker-emojiPickerCategories" {...events} ref={draggableCategoriesRef}>
           {allEmojiPickerCategories.map((c) => (
             <button data-emoji-picker-category={c.name} key={c.id} type="button">

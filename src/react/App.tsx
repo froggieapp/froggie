@@ -17,8 +17,10 @@ export const App = () => {
       <QueryClientProvider client={queryClient}>
         <WithSockets>
           <>
-            <ReactTooltip className="global-tooltip" id={GLOBAL_TOOLTIP} />
-            <EmoteTooltiper />
+            <div className="global-tooltip-wrapper">
+              <ReactTooltip disableStyleInjection className="global-tooltip u-shadowLg" id={GLOBAL_TOOLTIP} />
+              <EmoteTooltiper />
+            </div>
             <Modals />
             <Listener />
             <Router />

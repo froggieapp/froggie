@@ -1,0 +1,18 @@
+.fgr-Button {
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+.fgr-Button--primary {
+  background-color: var(--primary-color);
+  color: var(--black);
+}
+
+.fgr-Button--primary:hover {
+  background-color: var(--secondary-color);
+  color: var(--highlight-text-color);
+}
+
+.fgr-Button--primary:disabled {
+  background-color: rgb(190, 190, 190);
+}

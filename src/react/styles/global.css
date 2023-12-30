@@ -15,31 +15,33 @@ a:active {
 }
 
 :root {
+  /* Main Colors */
+  --primary-color: #badf12;
+  --secondary-color: #05412b;
+  --accent-color: #badf12;
   --toolbar-bg-color: #001b09;
   --content-bg-color: #001b09;
   --sidebar-bg-color: #001b09;
-  --primary-color: #badf12;
-  --accent-color: #badf12;
-  --emoji-picker-root: #062e1f;
-  --scroll-thumb-color: #6c9b14;
-  --emoji-picker-active-category-color: #badf12;
-  --message-input-bg-color: #383833;
-  --message-input-border-hover: #badf1250;
-  --message-input-text-color: rgb(240, 237, 239);
-  --message-input-text-color-focus: rgb(255, 254, 255);
-  --message-input-text-color-placeholder: rgb(211, 209, 211);
+  --black: rgb(27, 27, 27);
+  /* Text Colors */
+  --main-text-color: rgb(235, 235, 235);
+  --secondary-text-color: rgb(240, 237, 239);
+  --highlight-text-color: white;
+  --logo-text-color: #737a7c;
+  --alt-text-color: #8b8b8b;
+
+  /* Fonts */
+  --body-font: "Roboto", sans-serif;
+  --display-font: "Comfortaa", sans-serif;
+
+  /* Toolbar */
   --toolbar-icon-color: rgba(91, 245, 150, 0.568);
   --toolbar-icon-color-hover: rgba(91, 245, 150, 0.932);
   --toolbar-height: 25px;
-  --main-text-color: rgb(235, 235, 235);
-  --logo-text-color: #737a7c;
-  --alt-text-color: #8b8b8b;
-  --primary-btn-txt-color: rgb(31, 31, 31);
-  --primary-btn-color-hover: rgb(58, 104, 16);
-  --primary-btn-txt-color-hover: rgb(245, 245, 245);
-  --body-font: "Roboto", sans-serif;
-  --display-font: "Comfortaa", sans-serif;
+
+  /* Scrollbar */
   --scrollbar-track-color: rgba(0, 0, 0, 0.116);
+  --scroll-thumb-color: #6c9b14;
 }
 
 body,
@@ -77,30 +79,15 @@ button {
   outline: none;
 }
 
-.primary-btn {
-  background-color: var(--primary-color);
+.global-tooltip-wrapper .global-tooltip {
+  background: var(--secondary-color);
+  color: var(--main-text-color);
+  font-family: var(--display-font);
   border-radius: 4px;
-  color: var(--primary-btn-txt-color);
-  padding: 8px 12px;
-}
-
-.primary-btn:hover {
-  background-color: var(--primary-btn-color-hover);
-  color: var(--primary-btn-txt-color-hover);
-}
-
-.primary-btn:disabled {
-  background-color: rgb(190, 190, 190);
-}
-
-.global-tooltip {
-  background-color: rgb(39, 37, 37);
-  border: 1px solid rgba(233, 233, 233, 0.438);
-  border-radius: 4px;
-  box-shadow: 13px 10px 26px -10px rgba(0, 0, 0, 0.7);
   font-size: 0.92rem;
-  padding: 6px 8px;
+  padding: 12px 12px;
   z-index: 10;
+  opacity: 1;
 }
 
 input[type="text"],

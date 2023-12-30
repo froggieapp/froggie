@@ -9,7 +9,7 @@
     background-color: rgba(0, 0, 0, 0.603);
     border-radius: 6px;
     bottom: 10px;
-    color: white;
+    color: var(--highlight-text-color);
     font-family: var(--display-font);
     left: 50%;
     padding: 12px 8px;

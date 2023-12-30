@@ -1,5 +1,6 @@
 import { h } from "preact";
 import "@styles/pages/Config.css";
+import { Button } from "../components/Button";
 
 export const Config = () => {
   const onClick = () => {
@@ -7,9 +8,7 @@ export const Config = () => {
   };
   return (
     <div className="fgr-Config">
-      <button type="button" onClick={onClick} className="primary-btn">
-        Log in to Kick
-      </button>
+      <Button onClick={onClick}>Log in to Kick</Button>
     </div>
   );
 };
