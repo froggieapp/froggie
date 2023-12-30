@@ -15,7 +15,7 @@ export const KickUserCard = ({ id: userId }: KickUserCardProps) => {
   const { channelName, additionalData } = useChannelContext();
   const onClose = useStore((state) => state.closeUserCardModal);
 
-  const { data, isLoading, error, refetch } = useQuery({
+  const { data, isLoading, isFetching, error, refetch, isPending } = useQuery({
     queryKey: ["fetchKickUserCard", channelName, userId],
     queryFn: () => getKickUserCard(channelName, userId ?? ""),
     enabled: !!userId && !!channelName,
@@ -65,13 +65,15 @@ export const KickUserCard = ({ id: userId }: KickUserCardProps) => {
     });
   };
 
-  if (isLoading) {
+  if (isLoading || isFetching || isPending) {
     return <div>Loading...</div>;
   }
 
   if (error?.message) {
     return <p>{error.message}</p>;
   }
+
+  const showTimeoutButtons = !isModOrOwner && showModActions && !isTimed;
 
   return (
     <>
@@ -86,30 +88,34 @@ export const KickUserCard = ({ id: userId }: KickUserCardProps) => {
           ) : null}
           <p className="fgr-KickUserCard-kickUserCardName">{userName}</p>
         </div>
-        <div className="fgr-KickUserCard-kickUserCardActions">
-          {!isModOrOwner && showModActions && !isTimed ? (
-            <div className="fgr-KickUserCard-kickUserCardActionsGroup">
-              <p>Timeout</p>
-              <div className="fgr-KickUserCard-contentBtnGroup">
-                <Button disabled={mutation.isPending} onClick={handleTimeout(1)}>
-                  1m
-                </Button>
-                <Button disabled={mutation.isPending} onClick={handleTimeout(5)}>
-                  5m
-                </Button>
-                <Button disabled={mutation.isPending} onClick={handleTimeout(60)}>
-                  1hr
-                </Button>
-              </div>
+        {showTimeoutButtons || isTimed ? (
+          <>
+            <div className="fgr-KickUserCard-kickUserCardActions">
+              {showTimeoutButtons ? (
+                <div className="fgr-KickUserCard-kickUserCardActionsGroup">
+                  <p>Timeout</p>
+                  <div className="fgr-KickUserCard-contentBtnGroup">
+                    <Button disabled={mutation.isPending} onClick={handleTimeout(1)}>
+                      1m
+                    </Button>
+                    <Button disabled={mutation.isPending} onClick={handleTimeout(5)}>
+                      5m
+                    </Button>
+                    <Button disabled={mutation.isPending} onClick={handleTimeout(60)}>
+                      1hr
+                    </Button>
+                  </div>
+                </div>
+              ) : null}
+              {isTimed ? (
+                <div className="fgr-KickUserCard-kickUserCardActionsGroup">
+                  <p>Timed out</p>
+                  <p>{timeoutCountdown}</p>
+                </div>
+              ) : null}
             </div>
-          ) : null}
-          {isTimed ? (
-            <div className="fgr-KickUserCard-kickUserCardActionsGroup">
-              <p>Timed out</p>
-              <p>{timeoutCountdown}</p>
-            </div>
-          ) : null}
-        </div>
+          </>
+        ) : null}
       </div>
     </>
   );
