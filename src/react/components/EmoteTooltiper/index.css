@@ -1,20 +1,20 @@
-.emote-tooltip-preview img {
-  width: 42px;
-  height: 42px;
-}
-
-.emote-tooltip-preview {
+.fgr-EmoteTooltiper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   max-height: 300px;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
   padding: 12px;
   row-gap: 6px;
-}
 
-.emote-tooltip-preview p {
-  font-weight: bold;
-  font-size: 1.11rem;
+  .fgr-EmoteTooltiper-emoteImg {
+    height: 42px;
+    width: 42px;
+  }
+
+  .fgr-EmoteTooltiper-emoteName {
+    font-size: 1.11rem;
+    font-weight: bold;
+  }
 }

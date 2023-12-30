@@ -1,0 +1,8 @@
+.u-borderTransition {
+  border-radius: 50%;
+  transition: border-radius 0.2s ease-out 100ms;
+}
+
+.u-borderTransition:hover {
+  border-radius: 12px;
+}

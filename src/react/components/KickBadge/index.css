@@ -1,53 +1,52 @@
-.kick-badge-icon,
-.kick-badge-icon-text {
-  line-height: 0;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-.kick-badge-icon,
-.kick-badge-wrapper {
-  width: 20px;
-  height: 20px;
-}
-
-.kick-badge-icon-text {
-  font-size: 15px;
+.fgr-KickBadge {
   display: block;
-  line-height: 0;
-}
-
-.kick-badge-icon-subscriber {
-  color: #00ff51;
-}
-
-.kick-badge-icon-gifter {
-  color: #ff006a;
-}
-
-.kick-badge-icon-gifter + .kick-badge-count {
-  color: white;
-}
-
-.kick-badge-icon-verified-user {
-  color: rgb(12, 152, 245);
-}
-
-.kick-badge-wrapper {
-  display: block;
-  position: relative;
   float: left;
-}
+  position: relative;
+  height: 20px;
+  width: 20px;
 
-.kick-badge-count {
-  font-size: 0.64rem;
-  color: black;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: block;
-  font-weight: 700;
-  font-family: Consolas, monaco, monospace;
+  .fgr-KickBadge-icon {
+    height: 20px;
+    width: 20px;
+  }
+
+  .fgr-KickBadge-icon,
+  .fgr-KickBadge-text {
+    line-height: 0;
+    user-select: none;
+  }
+
+  .fgr-KickBadge-text {
+    display: block;
+    font-size: 15px;
+    line-height: 0;
+  }
+
+  .fgr-KickBadge-verifiedUser {
+    color: rgb(12, 152, 245);
+  }
+
+  .fgr-KickBadge-iconGifter {
+    color: #ff006a;
+  }
+
+  .fgr-KickBadge-count {
+    color: black;
+    display: block;
+    font-family: Consolas, monaco, monospace;
+    font-size: 0.64rem;
+    font-weight: 700;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .fgr-KickBadge-subscriber {
+    color: #00ff51;
+  }
+
+  .fgr-KickBadge-iconGifter + .fgr-KickBadge-count {
+    color: white;
+  }
 }

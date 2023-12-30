@@ -1,7 +1,7 @@
-.user-card-content {
-  position: relative;
+.fgr-UserCardTooltiper {
   background: black;
+  border-radius: 8px;
   display: flex;
   padding: 24px 12px;
-  border-radius: 8px;
+  position: relative;
 }

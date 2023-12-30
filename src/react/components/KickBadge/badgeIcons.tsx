@@ -13,8 +13,8 @@ export const badgeIcons: Record<Kick.SUPPORTED_KICK_BADGE, KickBadgeFC> = {
 };
 
 export const badgeClassnames: Record<Kick.SUPPORTED_KICK_BADGE, string> = {
-  subscriber: "kick-badge-icon kick-badge-icon-subscriber",
-  sub_gifter: "kick-badge-icon kick-badge-icon-gifter",
-  moderator: "kick-badge-icon-text",
-  verified: "kick-badge-icon kick-badge-icon-verified-user",
+  subscriber: "fgr-KickBadge-icon fgr-KickBadge-subscriber",
+  sub_gifter: "fgr-KickBadge-icon fgr-KickBadge-iconGifter",
+  moderator: "fgr-KickBadge-text",
+  verified: "fgr-KickBadge-icon fgr-KickBadge-verifiedUser",
 };

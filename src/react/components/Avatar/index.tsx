@@ -11,10 +11,10 @@ interface AvatarProps {
 export const Avatar: React.FC<AvatarProps> = ({ alt, src, className, name }) => {
   if (!src) {
     return (
-      <div className={`avatar ${className}`} role="img">
-        <span>{name?.charAt(0)}</span>
+      <div className={`fgr-Avatar ${className}`} role="img">
+        <span className="fgr-Avatar-text">{name?.charAt(0)}</span>
       </div>
     );
   }
-  return <img className={`avatar ${className}`} alt={alt} src={src} />;
+  return <img className={`fgr-Avatar ${className}`} alt={alt} src={src} />;
 };

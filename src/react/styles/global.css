@@ -1,9 +1,9 @@
 *,
-*:after,
-*:before {
+*::after,
+*::before {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 a,
@@ -14,7 +14,7 @@ a:active {
   text-decoration: none;
 }
 
-html {
+:root {
   --toolbar-bg-color: #001b09;
   --content-bg-color: #001b09;
   --sidebar-bg-color: #001b09;
@@ -50,8 +50,8 @@ body,
 }
 
 body ::-webkit-scrollbar {
-  width: 1rem;
   background-color: var(--scrollbar-track-color);
+  width: 1rem;
 }
 
 body ::-webkit-scrollbar-track {
@@ -65,27 +65,23 @@ body ::-webkit-scrollbar-thumb {
 }
 
 #root {
-  overflow: hidden;
   height: 100vh;
+  overflow: hidden;
   width: 100vw;
 }
 
 button {
-  cursor: pointer;
   background-color: transparent;
   border: 0;
+  cursor: pointer;
   outline: none;
 }
 
-.light-shadow {
-  box-shadow: 0px 3px 16px -4px rgba(206, 205, 123, 0.247);
-}
-
 .primary-btn {
-  padding: 8px 12px;
   background-color: var(--primary-color);
-  color: var(--primary-btn-txt-color);
   border-radius: 4px;
+  color: var(--primary-btn-txt-color);
+  padding: 8px 12px;
 }
 
 .primary-btn:hover {
@@ -97,21 +93,22 @@ button {
   background-color: rgb(190, 190, 190);
 }
 
-input[type="text"],
-input[type="password"] {
-  height: 32px;
-  outline: none;
-  border: none;
-  border-radius: 8px;
-  padding: 4px 12px;
-  background-color: #778072;
+.global-tooltip {
+  background-color: rgb(39, 37, 37);
+  border: 1px solid rgba(233, 233, 233, 0.438);
+  border-radius: 4px;
+  box-shadow: 13px 10px 26px -10px rgba(0, 0, 0, 0.7);
+  font-size: 0.92rem;
+  padding: 6px 8px;
+  z-index: 10;
 }
 
-.saved-channel,
-.home-icon-wrapper,
-.new-channel-button {
-  height: 42px;
-  width: 42px;
-  position: relative;
-  z-index: 1;
+input[type="text"],
+input[type="password"] {
+  background-color: #778072;
+  border: none;
+  border-radius: 8px;
+  height: 32px;
+  outline: none;
+  padding: 4px 12px;
 }

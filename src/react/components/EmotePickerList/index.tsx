@@ -1,11 +1,12 @@
 import { h } from "preact";
-import { EmojiPickerCategories } from "./EmojiPickerComponent";
+import { EmojiPickerCategories } from "../EmotePicker/EmojiPickerComponent";
 import { Range, defaultRangeExtractor, useVirtualizer } from "@tanstack/react-virtual";
-import { useEmojiPickerContext } from "./EmojiPickerContext";
+import { useEmojiPickerContext } from "../EmotePicker/EmojiPickerContext";
 import { svgEmoji } from "@/react/util/emotes";
 import { splitArrayInChunks } from "@/react/util/util";
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "preact/hooks";
 import { IconLock } from "@tabler/icons-react";
+import "./index.css";
 
 interface EmojiPickerListProps {
   categories: EmojiPickerCategories;
@@ -101,7 +102,7 @@ export const EmojiPickerList = ({ categories, emojiWidth, gapX = 2, gapY = 2 }: 
   const { onClickEmote } = useEmojiPickerContext();
   const handleEmoteClick = useCallback((emote: Emoji) => () => onClickEmote(emote), [onClickEmote]);
   return (
-    <div ref={parentRef} className="emoji-picker-emote-list">
+    <div ref={parentRef} className="fgr-EmotePickerList">
       <div
         style={{
           height: virtualizer.getTotalSize(),
@@ -116,7 +117,7 @@ export const EmojiPickerList = ({ categories, emojiWidth, gapX = 2, gapY = 2 }: 
             return (
               <div
                 key={virtualRow.key}
-                className="emoji-picker-category-name"
+                className="fgr-EmotePickerList-categoryName"
                 data-is-active-sticky={isActiveStickyVal}
                 data-category-value={row}
                 data-sticky-category-index={virtualRow.index}
@@ -154,7 +155,7 @@ export const EmojiPickerList = ({ categories, emojiWidth, gapX = 2, gapY = 2 }: 
                 display: "flex",
                 padding: `${gapY}px 0`,
               }}
-              className="emoji-list"
+              className="fgr-EmotePickerList-content"
             >
               {row.map((emoji) => (
                 <button
@@ -166,16 +167,16 @@ export const EmojiPickerList = ({ categories, emojiWidth, gapX = 2, gapY = 2 }: 
                     padding: `0 ${gapX}px`,
                   }}
                   onClick={handleEmoteClick(emoji)}
-                  className="emote-content"
+                  className="fgr-EmotePickerList-emoteContent"
                 >
                   {emoji.skins[0].src ? (
                     <img loading="lazy" src={emoji.skins[0].src} />
                   ) : (
-                    svgEmoji(emoji.skins[0].text || "")
+                    svgEmoji(emoji.skins[0].text || "", "fgr-EmotePickerList-emoteContentIcon")
                   )}
                   {emoji.isLocked ? (
-                    <span aria-label="Subscribers only" className="emote-content-locked-overlay">
-                      <IconLock />
+                    <span aria-label="Subscribers only" className="fgr-EmotePickerList-emoteContentLockedOverlay">
+                      <IconLock className="fgr-EmotePickerList-lockedIcon" />
                     </span>
                   ) : null}
                 </button>

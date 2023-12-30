@@ -10,9 +10,9 @@ export const KickBadge: React.FC<Kick.KickBadges[number]> = ({ type, text, count
   const className = useMemo(() => badgeClassnames[type], [type]);
   return (
     <Tooltip position="top" label={count && count > 1 ? `${count}x ${text}` : text}>
-      <div className="kick-badge-wrapper">
+      <div className="fgr-KickBadge">
         <Icon size={20} className={className} />
-        {count && count > 1 ? <span className="kick-badge-count">{count}</span> : null}
+        {count && count > 1 ? <span className="fgr-KickBadge-count">{count}</span> : null}
       </div>
     </Tooltip>
   );

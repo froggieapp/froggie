@@ -7,5 +7,5 @@ interface ErrorMessageProps {
 
 export const ErrorMessage: React.FC<ErrorMessageProps> = ({ children }) => {
   if (!children) return null;
-  return <p className="error-message">{children}</p>;
+  return <p className="fgr-ErrorMessage">{children}</p>;
 };

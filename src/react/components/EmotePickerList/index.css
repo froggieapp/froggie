@@ -1,0 +1,64 @@
+.fgr-EmotePickerList {
+  color: rgb(189, 189, 189);
+  contain: "strict";
+  font-size: 0.87rem;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  .fgr-EmotePickerList-categoryName {
+    align-items: center;
+    display: flex;
+    text-transform: capitalize;
+    z-index: 1;
+  }
+
+  &,
+  .fgr-EmotePickerList-categoryName {
+    background-color: var(--emoji-picker-root);
+  }
+
+  /* postcss-bem-linter: ignore */
+  .fgr-EmotePickerList-content > button {
+    display: block;
+  }
+  /* postcss-bem-linter: ignore */
+  .fgr-EmotePickerList-content img {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+
+  .fgr-EmotePickerList-emoteContent {
+    position: relative;
+  }
+
+  .fgr-EmotePickerList-emoteContentLockedOverlay {
+    align-items: center;
+    backdrop-filter: blur(1px);
+    background-color: #24242421;
+    bottom: 0;
+    color: white;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+  }
+
+  .fgr-EmotePickerList-emoteContent .fgr-EmotePickerList-emoteContentIcon {
+    height: 100%;
+    width: 100%;
+  }
+
+  .fgr-EmotePickerList-emoteContent .fgr-EmotePickerList-emoteContentLockedOverlay .fgr-EmotePickerList-lockedIcon {
+    width: 15px;
+  }
+
+  .fgr-EmotePickerList-emoteContent .fgr-EmotePickerList-emoteContentIcon:not(:first-child) {
+    display: none;
+  }
+}

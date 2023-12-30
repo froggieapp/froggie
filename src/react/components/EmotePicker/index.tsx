@@ -4,7 +4,7 @@ import { h } from "preact";
 import data, { EmojiMartData } from "@emoji-mart/data";
 import { useCategories } from "@/react/hooks/useCategories";
 import { EmojiPickerComponent } from "./EmojiPickerComponent";
-import { Emoji } from "./EmojiPickerList";
+import { Emoji } from "../EmotePickerList";
 import { useClickOutside } from "@/react/hooks/useClickOutside";
 import { useRef } from "preact/hooks";
 

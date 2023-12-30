@@ -1,55 +1,65 @@
-.modal-overlay {
-  background: rgba(1, 31, 3, 0.63);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: grid;
-  place-items: center;
-  z-index: 50;
+.fgr-MicroModalWrapper {
   backdrop-filter: blur(1px);
-}
-.global-modal-wrapper {
+  background: rgba(1, 31, 3, 0.63);
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 50;
   display: none;
+
+  .fgr-MicroModalWrapper-overlay {
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    display: flex;
+  }
+
+  .fgr-MicroModalWrapper-content {
+    background-color: var(--content-bg-color);
+    border-radius: 6px;
+    box-shadow: 10px 10px 34px -4px rgba(0, 0, 0, 0.79);
+    display: flex;
+    flex-direction: column;
+    min-height: 200px;
+    min-width: 250px;
+    padding: 12px 18px;
+    row-gap: 4px;
+  }
+
+  .fgr-MicroModalWrapper-title {
+    color: var(--primary-color);
+    font-family: var(--display-font);
+    font-size: 1.44rem;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .fgr-MicroModalWrapper-description {
+    color: var(--alt-text-color);
+    font-size: 0.88rem;
+    text-align: center;
+  }
+
+  .fgr-MicroModalWrapper-childrenWrapper {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 8px;
+  }
+
+  .fgr-MicroModalWrapper-buttonWrapper {
+    align-items: center;
+    column-gap: 8px;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+  }
 }
-.global-modal-wrapper.is-open {
+
+.fgr-MicroModalWrapper.is-open {
   display: block;
-}
-.global-modal {
-  background-color: var(--content-bg-color);
-  padding: 12px 18px;
-  min-height: 200px;
-  min-width: 250px;
-  border-radius: 6px;
-  display: flex;
-  flex-direction: column;
-  row-gap: 4px;
-  box-shadow: 10px 10px 34px -4px rgba(0, 0, 0, 0.79);
-}
-.global-modal-title {
-  text-align: center;
-  font-weight: bold;
-  font-family: var(--display-font);
-  font-size: 1.44rem;
-  color: var(--primary-color);
-}
-.global-modal-description {
-  text-align: center;
-  font-size: 0.88rem;
-  color: var(--alt-text-color);
-}
-.global-modal-content {
-  margin-top: 8px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.modal-button-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  column-gap: 8px;
-  margin-top: 8px;
 }

@@ -1,18 +1,18 @@
-.layout {
+.fgr-Layout {
   display: flex;
   flex-direction: row;
+  min-width: 0;
   width: 100%;
-  min-width: 0px;
-}
 
-.layout-section {
-  flex: 1;
-  flex-basis: 200px;
-}
+  .fgr-Layout-section {
+    flex: 1;
+    flex-basis: 200px;
+  }
 
-.main-content {
-  display: flex;
-  width: 100%;
-  height: calc(100vh - var(--toolbar-height));
-  background-color: var(--content-bg-color);
+  .fgr-Layout-content {
+    background-color: var(--content-bg-color);
+    display: flex;
+    height: calc(100vh - var(--toolbar-height));
+    width: 100%;
+  }
 }

@@ -11,10 +11,10 @@ export const Layout = ({ children }: LayoutProps) => {
   return (
     <div>
       <Toolbar />
-      <div className="layout">
+      <div className="fgr-Layout">
         <Sidebar />
-        <div className="layout-section">
-          <div className={`main-content`}>{children}</div>
+        <div className="fgr-Layout-section">
+          <div className="fgr-Layout-content">{children}</div>
         </div>
       </div>
     </div>

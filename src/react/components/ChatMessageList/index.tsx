@@ -66,7 +66,7 @@ export const ChatMessageList: React.FC<ChatMessageListProps> = ({ channelId }) =
   };
 
   return (
-    <div className="message-list">
+    <div className="fgr-ChatMessageList">
       <Virtuoso
         ref={virtuoso}
         followOutput
@@ -77,7 +77,7 @@ export const ChatMessageList: React.FC<ChatMessageListProps> = ({ channelId }) =
         itemContent={(index) => <ChatEventRow channelName={channelId} index={index} />}
       />
       {showButton ? (
-        <button type="button" onClick={scrollToBottom} className="scroll-to-bottom">
+        <button type="button" onClick={scrollToBottom} className="fgr-ChatMessageList-scrollToBottom">
           Chat is paused. Click to see new messages.
         </button>
       ) : null}

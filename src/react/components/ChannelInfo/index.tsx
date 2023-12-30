@@ -12,10 +12,15 @@ export const ChannelInfo: React.FC<ChannelInfoProps> = ({ name, avatar }) => {
     window.electronAPI.openBrowser(`https://kick.com/${name}`);
   };
   return (
-    <div className="channel-info">
-      <button type="button" className="user-info" onClick={onOpen}>
-        <Avatar className="channel-profile" name={name} alt={`${name}'s avatar`} src={avatar} />
-        <span className="channel-name">{name}</span>
+    <div className="fgr-ChannelInfo">
+      <button type="button" className="fgr-ChannelInfo-button" onClick={onOpen}>
+        <Avatar
+          className="fgr-ChannelInfo-avatar u-shadowSm u-avatarSize"
+          name={name}
+          alt={`${name}'s avatar`}
+          src={avatar}
+        />
+        <span className="fgr-ChannelInfo-name">{name}</span>
       </button>
     </div>
   );

@@ -17,8 +17,8 @@ interface MessageEditorProps {
 }
 
 const theme: EditorThemeClasses = {
-  root: "editor-root",
-  paragraph: "input-editor-paragraph",
+  root: "fgr-MessageInput-editorRoot",
+  paragraph: "fgr-MessageInput-editorParagraph",
 };
 
 function onError(error: Error) {
@@ -34,11 +34,11 @@ export const MessageEditor = ({ emotePluginRef }: MessageEditorProps) => {
   };
 
   return (
-    <div className="input-editor">
+    <div className="fgr-MessageInput-editor">
       <LexicalComposer initialConfig={initialConfig}>
         <PlainTextPlugin
           contentEditable={<ContentEditable />}
-          placeholder={<div className="editor-placeholder">Type your message 🐸</div>}
+          placeholder={<div className="fgr-MessageInput-placeholder">Type your message 🐸</div>}
           ErrorBoundary={LexicalErrorBoundary}
         />
         <CommandsPlugin />

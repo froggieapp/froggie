@@ -2,7 +2,7 @@ import { h } from "preact";
 import { MessageInput } from "src/components/MessageInput";
 import { ChannelInfo } from "../components/ChannelInfo";
 import { EmptyChannel } from "src/components/EmptyChannel";
-import "@styles/Channel.css";
+import "@styles/pages/Channel.css";
 import { ChatMessageList } from "../components/ChatMessageList";
 import { useChannelContext } from "../util/ChannelContext";
 import { useChannelEmotes } from "../util/integrations/useChannelEmotes";
@@ -21,7 +21,7 @@ const ChannelComponent = () => {
   }
 
   return (
-    <div className="channel">
+    <div className="fgr-Channel">
       <ChannelInfo avatar={profileSrc ?? ""} name={channelName ?? ""} />
       <ChatMessageList key={id} channelId={id} />
       <MessageInput />

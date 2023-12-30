@@ -1,23 +1,10 @@
-.sidebar {
+.fgr-Sidebar {
+  background: var(--sidebar-bg-color);
+  background-attachment: fixed;
   flex-basis: 150px;
   flex-grow: 1;
-  height: 100%;
-  max-width: 80px;
-  width: 20vw;
-  position: relative;
-  background: var(--sidebar-bg-color);
   height: calc(100vh - var(--toolbar-height));
+  max-width: 80px;
   position: relative;
-  background-attachment: fixed;
-}
-
-.home-icon {
-  color: var(--primary-btn-txt-color);
-  height: 24px;
-  width: 24px;
-}
-
-.home-icon-wrapper {
-  background-color: var(--accent-color);
-  border-radius: 50%;
+  width: 20vw;
 }

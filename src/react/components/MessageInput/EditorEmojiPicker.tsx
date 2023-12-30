@@ -1,5 +1,5 @@
 import { useCallback, useState } from "preact/hooks";
-import { Emoji } from "../EmotePicker/EmojiPickerList";
+import { Emoji } from "../EmotePickerList";
 import { EmotePicker } from "../EmotePicker";
 import { FaceSmileIcon } from "@heroicons/react/20/solid";
 import { RefObject, h } from "preact";
@@ -25,14 +25,12 @@ export const EditorEmojiPicker = ({ emotePluginRef }: EditorEmojiPickerProps) =>
 
   return (
     <>
-      <div className="message-input-options">
-        <button onClick={onToggleEmojiPicker} type="button">
-          <FaceSmileIcon className="input-smile-icon" data-open={showEmojiPicker || undefined} />
+      <div className="fgr-MessageInput-options">
+        <button className="fgr-MessageInput-optionsButton" onClick={onToggleEmojiPicker} type="button">
+          <FaceSmileIcon className="fgr-MessageInput-inputSmileIcon" data-open={showEmojiPicker || undefined} />
         </button>
       </div>
-      <div className="emote-picker-wrapper">
-        <EmotePicker onClickOutside={onClickOutsideEmojiPicker} onAddEmote={onAddEmote} show={showEmojiPicker} />
-      </div>
+      <EmotePicker onClickOutside={onClickOutsideEmojiPicker} onAddEmote={onAddEmote} show={showEmojiPicker} />
     </>
   );
 };

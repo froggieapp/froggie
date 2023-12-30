@@ -2,6 +2,7 @@
 import { h, render } from "preact";
 import { App } from "./App";
 import "./styles/global.css";
+import "./styles/utilities/index";
 import { initializeStore, useStore } from "./store/Store";
 
 const forsen = async () => {

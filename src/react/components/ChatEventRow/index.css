@@ -1,12 +1,12 @@
-.info-chat-event {
-  color: rgb(199, 199, 199);
-}
-
-.gifted-sub-gifter,
-.gifted-sub-receiver {
-  font-weight: bold;
-}
-
-.event-wrapper {
+.fgr-ChatEventRow {
   padding: 5px 0;
+
+  .fgr-ChatEventRow-giftedSubGifter,
+  .fgr-ChatEventRow-giftedSubReceiver {
+    font-weight: bold;
+  }
+
+  .fgr-ChatEventRow-infoChatEvent {
+    color: rgb(199, 199, 199);
+  }
 }

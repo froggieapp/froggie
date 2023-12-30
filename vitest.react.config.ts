@@ -15,6 +15,6 @@ export default defineConfig({
     include: ['src/react/**/*.{test,spec}.?(c|m)[jt]s?(x)'],
     globals: true,
     alias,
-    environment: 'jsdom',
+    environment: 'jsdom'
   },
 })

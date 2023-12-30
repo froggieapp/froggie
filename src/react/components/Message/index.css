@@ -1,64 +1,59 @@
-blockquote::after {
-  display: block;
-  content: " (source: " attr(cite) ") ";
-  color: hotpink;
+.fgr-Message--error {
+  .fgr-Message-tooltip {
+    display: inline-block;
+    margin-right: 4px;
+  }
+
+  .fgr-Message-tooltip .fgr-Message-tooltipIcon,
+  .fgr-Message-content {
+    color: rgb(255, 33, 63);
+  }
+
+  .fgr-Message-senderName {
+    color: rgba(255, 0, 34, 0.575);
+  }
 }
 
-.chat-message {
+.fgr-Message {
   display: inline-block;
   line-height: 1.33;
-}
 
-.message-badge-wrapper {
-  display: inline-flex;
-  column-gap: 3px;
-}
+  .fgr-Message-badge {
+    column-gap: 3px;
+    display: inline-flex;
+  }
 
-.message-sender-identity-wrapper {
-  float: left;
-  vertical-align: middle;
-  height: 20px;
-  cursor: pointer;
-}
+  .fgr-Message-senderIdentityWrapper {
+    cursor: pointer;
+    float: left;
+    height: 20px;
+    vertical-align: middle;
+  }
+  .fgr-Message-senderIdentityWrapper,
+  .fgr-Message-content {
+    display: inline;
+  }
 
-.message-sender-identity-wrapper,
-.message-content {
-  display: inline;
-}
+  .fgr-Message-content {
+    color: #d1d1d1;
+    font-weight: normal;
+    overflow-wrap: break-word;
+    word-break: break-all;
+  }
 
-.message-sender-identity {
-  display: flex;
-  column-gap: 4px;
-  align-items: center;
-  height: 100%;
-}
+  .fgr-Message-senderName {
+    font-weight: bold;
+    line-height: 1;
+  }
 
-.chat-message .sender-name {
-  font-weight: bold;
-  line-height: 1;
-}
+  .fgr-Message-content:first-child {
+    margin-left: 0;
+  }
 
-.user-message-error-tooltip {
-  margin-right: 4px;
-  display: inline-block;
-}
-
-.user-message-error .message-content-wrapper .sender-name {
-  color: rgba(255, 0, 34, 0.575);
-}
-
-.user-message-error-tooltip svg,
-.user-message-error .message-content {
-  color: rgb(255, 33, 63);
-}
-
-.message-content {
-  font-weight: normal;
-  color: #d1d1d1;
-  overflow-wrap: break-word;
-  word-break: break-all;
-}
-
-.message-content:first-child {
-  margin-left: 0;
+  .fgr-Message-senderIdentity {
+    align-items: center;
+    column-gap: 4px;
+    display: flex;
+    height: 100%;
+  }
 }

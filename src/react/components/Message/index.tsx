@@ -35,29 +35,29 @@ const _Message: React.FC<MessageProps> = ({ senderName, content, error, nameColo
     }
   };
   return (
-    <div className={!error ? "chat-message" : "chat-message user-message-error"}>
-      <div onClick={onClickUsername} className="message-sender-identity-wrapper">
-        <div className="message-sender-identity">
+    <div className={!error ? "fgr-Message" : "fgr-Message fgr-Message--error"}>
+      <div onClick={onClickUsername} className="fgr-Message-senderIdentityWrapper">
+        <div className="fgr-Message-senderIdentity">
           {error ? (
             <Tooltip position="top" label={error}>
-              <p className={"user-message-error-tooltip"}>
-                <ExclamationCircleIcon width={20} />
+              <p className={"fgr-Message-tooltip"}>
+                <ExclamationCircleIcon className="fgr-Message-tooltipIcon" width={20} />
               </p>
             </Tooltip>
           ) : null}
           {kickBadges.length ? (
-            <div className="message-badge-wrapper">
+            <div className="fgr-Message-badge">
               {kickBadges.map((b) => (
                 <KickBadge key={b.type} type={b.type} text={b.text} count={b.count} />
               ))}
             </div>
           ) : null}
-          <div style={nameStyle} className="sender-name">
+          <div style={nameStyle} className="fgr-Message-senderName">
             {`${senderName}:`}&nbsp;
           </div>
         </div>
       </div>
-      <span className="message-content">{contentWithEmojis}</span>
+      <span className="fgr-Message-content">{contentWithEmojis}</span>
     </div>
   );
 };

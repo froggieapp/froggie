@@ -14,25 +14,25 @@ export const onOpen = (id: string) => MicroModal.show(`modal-${id}`);
 
 export const MicroModalWrapper = ({ id, children, title, description }: MicroModalWrapperProps) => {
   return (
-    <div className="global-modal-wrapper" id={`modal-${id}`} aria-hidden="true">
-      <div className="modal-overlay" tabIndex={-1} data-micromodal-close>
+    <div className="fgr-MicroModalWrapper" id={`modal-${id}`} aria-hidden="true">
+      <div className="fgr-MicroModalWrapper-overlay" tabIndex={-1} data-micromodal-close>
         <div
           role="dialog"
           aria-modal="true"
-          className="global-modal"
+          className="fgr-MicroModalWrapper-content"
           aria-labelledby={`modal-${id}-title`}
           aria-describedby={`modal-${id}-description`}
         >
           <header>
-            <h2 className="global-modal-title" id={`modal-${id}-title`}>
+            <h2 className="fgr-MicroModalWrapper-title" id={`modal-${id}-title`}>
               {title}
             </h2>
-            <p className="global-modal-description" id={`modal-${id}-description`}>
+            <p className="fgr-MicroModalWrapper-description" id={`modal-${id}-description`}>
               {description}
             </p>
             <button aria-label="Close modal" data-micromodal-close />
           </header>
-          <div className="global-modal-content" id={`modal-${id}-content`}>
+          <div className="fgr-MicroModalWrapper-childrenWrapper" id={`modal-${id}-content`}>
             {children}
           </div>
         </div>

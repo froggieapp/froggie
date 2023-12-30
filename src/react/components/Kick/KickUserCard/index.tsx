@@ -74,18 +74,22 @@ export const KickUserCard = ({ id: userId }: KickUserCardProps) => {
 
   return (
     <>
-      <div className="kick-user-card-container">
-        <div className="kick-user-card-content-info">
+      <div className="fgr-KickUserCard">
+        <div className="fgr-KickUserCard-kickUserCardContentInfo">
           {profilePicture ? (
-            <img className="kick-user-card-profile" src={profilePicture} alt={`${userName}'s profile picture`} />
+            <img
+              className="fgr-KickUserCard-userCardProfile"
+              src={profilePicture}
+              alt={`${userName}'s profile picture`}
+            />
           ) : null}
-          <p className="kick-user-card-name">{userName}</p>
+          <p className="fgr-KickUserCard-kickUserCardName">{userName}</p>
         </div>
-        <div className="kick-user-card-content-actions">
+        <div className="fgr-KickUserCard-kickUserCardActions">
           {!isModOrOwner && showModActions && !isTimed ? (
-            <div>
+            <div className="fgr-KickUserCard-kickUserCardActionsGroup">
               <p>Timeout</p>
-              <div className="kick-user-card-content-btn-group">
+              <div className="fgr-KickUserCard-contentBtnGroup">
                 <button disabled={mutation.isPending} onClick={handleTimeout(1)} className="primary-btn" type="button">
                   1m
                 </button>
@@ -99,7 +103,7 @@ export const KickUserCard = ({ id: userId }: KickUserCardProps) => {
             </div>
           ) : null}
           {isTimed ? (
-            <div>
+            <div className="fgr-KickUserCard-kickUserCardActionsGroup">
               <p>Timed out</p>
               <p>{timeoutCountdown}</p>
             </div>

@@ -1,9 +1,0 @@
-.global-tooltip {
-  background-color: rgb(39, 37, 37);
-  border: 1px solid rgba(233, 233, 233, 0.438);
-  padding: 6px 8px;
-  border-radius: 4px;
-  box-shadow: 13px 10px 26px -10px rgba(0, 0, 0, 0.7);
-  font-size: 0.92rem;
-  z-index: 10;
-}

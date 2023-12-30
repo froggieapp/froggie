@@ -59,7 +59,10 @@ export class EmoteNode extends DecoratorNode<JSX.Element> {
 
   createDOM(): HTMLElement {
     const el = document.createElement("span");
-    addClassNamesToElement(el, this.isTextEmoji ? "input-emote-wrapper-text" : "input-emote-wrapper");
+    addClassNamesToElement(
+      el,
+      this.isTextEmoji ? "fgr-MessageInput-emoteWrapperText" : "fgr-MessageInput-emoteWrapper",
+    );
     return el;
   }
 
@@ -91,7 +94,7 @@ export class EmoteNode extends DecoratorNode<JSX.Element> {
 
   decorate(): JSX.Element {
     if (this.isTextEmoji) {
-      return svgEmoji(this.src, "text-input-emote");
+      return svgEmoji(this.src, "fgr-MessageInput-emote");
     }
     return <EmoteComponent alt={this.alt} src={this.src} name={this.name} nodeKey={this.getKey()} />;
   }

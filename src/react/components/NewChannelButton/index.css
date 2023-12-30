@@ -1,19 +1,19 @@
-.new-channel-button {
-  display: flex;
+.fgr-NewChannelButton {
   align-items: center;
-  justify-content: center;
-  color: var(--primary-btn-txt-color);
   background-color: rgba(255, 255, 255, 0.411);
+  color: var(--primary-btn-txt-color);
+  display: flex;
+  justify-content: center;
   transition:
     background-color 0.5s ease,
     border-radius 0.5s ease;
+
+  .fgr-NewChannelButton-icon {
+    height: 20px;
+    width: 20px;
+  }
 }
 
-.new-channel-button:hover {
+.fgr-NewChannelButton:hover {
   background-color: var(--accent-color);
-}
-
-.new-channel-button svg {
-  width: 20px;
-  height: 20px;
 }

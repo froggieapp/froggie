@@ -1,46 +1,46 @@
-.kick-user-card-container {
+.fgr-KickUserCard {
+  column-gap: 24px;
   display: flex;
   justify-content: space-between;
   width: 100%;
-  column-gap: 24px;
-}
 
-.kick-user-card-profile {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: black;
-}
+  .fgr-KickUserCard-kickUserCardContentInfo {
+    flex: 1;
+  }
 
-.kick-user-card-content-actions,
-.kick-user-card-content-info,
-.kick-user-card-content-actions > div {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  row-gap: 8px;
-  text-align: center;
-  align-items: center;
-  justify-content: space-evenly;
-}
+  .fgr-KickUserCard-kickUserCardActions > .fgr-KickUserCard-kickUserCardActionsGroup {
+    width: 100%;
+  }
 
-.kick-user-card-content-btn-group {
-  display: flex;
-  column-gap: 6px;
-  align-items: center;
-  justify-content: space-evenly;
-}
+  .fgr-KickUserCard-kickUserCardActions,
+  .fgr-KickUserCard-kickUserCardContentInfo,
+  .fgr-KickUserCard-kickUserCardActions > .fgr-KickUserCard-kickUserCardActionsGroup {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-evenly;
+    row-gap: 8px;
+    text-align: center;
+  }
 
-.kick-user-card-content-actions > div {
-  width: 100%;
-}
+  .fgr-KickUserCard-userCardProfile {
+    background: black;
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+  }
 
-.kick-user-card-content-info {
-  flex: 1;
-}
+  .fgr-KickUserCard-kickUserCardName {
+    font-family: var(--display-font);
+    font-weight: bold;
+    text-align: center;
+  }
 
-.kick-user-card-name {
-  text-align: center;
-  font-family: var(--display-font);
-  font-weight: bold;
+  .fgr-KickUserCard-contentBtnGroup {
+    align-items: center;
+    column-gap: 6px;
+    display: flex;
+    justify-content: space-evenly;
+  }
 }

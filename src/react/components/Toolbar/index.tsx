@@ -19,17 +19,17 @@ export const Toolbar = () => {
   };
 
   return (
-    <div className="toolbar">
-      <div className="toolbar-left-side">Froggie</div>
-      <div className="toolbar-right-side">
-        <button type="button" id="minimizeBtn" onClick={handleMinimize}>
-          <IconMinus className="icon" />
+    <div className="fgr-Toolbar">
+      <div className="fgr-Toolbar-leftSide">Froggie</div>
+      <div className="fgr-Toolbar-rightSide">
+        <button className="fgr-Toolbar-button" type="button" id="minimizeBtn" onClick={handleMinimize}>
+          <IconMinus className="fgr-Toolbar-icon" />
         </button>
-        <button type="button" id="maximizeBtn" onClick={handleMaximize}>
-          <IconMaximize className="icon" />
+        <button className="fgr-Toolbar-button" type="button" id="maximizeBtn" onClick={handleMaximize}>
+          <IconMaximize className="fgr-Toolbar-icon" />
         </button>
-        <button type="button" id="closeBtn" onClick={handleClose}>
-          <IconX className="icon" />
+        <button className="fgr-Toolbar-button" type="button" id="closeBtn" onClick={handleClose}>
+          <IconX className="fgr-Toolbar-icon" />
         </button>
       </div>
     </div>

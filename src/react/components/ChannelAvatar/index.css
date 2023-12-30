@@ -1,25 +1,11 @@
-.saved-channel-link {
-  text-decoration: none;
-}
-
-.channel-avatar {
-  border-radius: 0px;
-}
-
-.saved-channel {
-  overflow: hidden;
-  transition: border-radius 0.2s ease-out 100ms;
-  border-radius: 50%;
+.fgr-ChannelAvatar {
+  display: block;
   flex-basis: 42px;
   flex-grow: 0;
   flex-shrink: 0;
-}
+  overflow: hidden;
 
-.saved-channel-link .saved-channel {
-  pointer-events: none;
-}
-
-.saved-channel-link:hover .saved-channel,
-.saved-channel:hover {
-  border-radius: 12px;
+  .fgr-ChannelAvatar-avatar {
+    border-radius: 0;
+  }
 }

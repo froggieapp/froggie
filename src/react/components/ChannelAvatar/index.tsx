@@ -12,14 +12,14 @@ interface ChannelAvatarProps {
 
 export const ChannelAvatar: React.FC<ChannelAvatarProps> = ({ name, avatar }) => {
   return (
-    <Tooltip position="right" label={name}>
+    <Tooltip className="fgr-ChannelAvatar u-borderTransition u-shadowSm u-avatarSize" position="right" label={name}>
       <Link href={`/channel/${name}`}>
-        <a className="saved-channel-link" data-id={contexts.CHANNEL_AVATAR} data-channel={name}>
+        <a data-id={contexts.CHANNEL_AVATAR} data-channel={name}>
           <Avatar
             name={name}
             src={avatar}
-            className="saved-channel channel-avatar light-shadow"
             alt={`${name}'s channel picture`}
+            className="fgr-ChannelAvatar-avatar u-pointerNone"
           />
         </a>
       </Link>

@@ -9,5 +9,5 @@ interface EmoteComponentProps {
 }
 
 export const EmoteComponent = ({ src, alt }: EmoteComponentProps) => {
-  return <img className="text-input-emote" src={src} alt={alt} />;
+  return <img className="fgr-MessageInput-emote" src={src} alt={alt} />;
 };

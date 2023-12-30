@@ -9,8 +9,8 @@ interface InputProps {
 // todo: fix accessibility here
 export const Input: React.FC<InputProps> = ({ children, label }) => {
   return (
-    <div className="input-wrapper">
-      <p className="input-label">{label}</p>
+    <div className="fgr-Input">
+      <p className="fgr-Input-inputLabel">{label}</p>
       {children}
     </div>
   );

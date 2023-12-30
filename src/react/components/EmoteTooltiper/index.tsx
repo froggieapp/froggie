@@ -10,9 +10,13 @@ export const EmoteTooltiper = () => {
       id={EMOTE_TOOLTIP}
       render={({ content, activeAnchor }) => {
         return (
-          <div className="emote-tooltip-preview">
-            <img src={activeAnchor?.getAttribute("data-emote-src") || ""} alt={content || ""} />
-            <p>{content}</p>
+          <div className="fgr-EmoteTooltiper">
+            <img
+              className="fgr-EmoteTooltiper-emoteImg"
+              src={activeAnchor?.getAttribute("data-emote-src") || ""}
+              alt={content || ""}
+            />
+            <p className="fgr-EmoteTooltiper-emoteName">{content}</p>
           </div>
         );
       }}

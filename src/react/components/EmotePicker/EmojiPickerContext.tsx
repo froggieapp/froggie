@@ -1,6 +1,6 @@
 import { createContext } from "preact";
 import { useContext } from "preact/hooks";
-import { Emoji } from "./EmojiPickerList";
+import { Emoji } from "../EmotePickerList";
 
 export interface EmojiPickerContextValue {
   onClickEmote: (emote: Emoji) => void;

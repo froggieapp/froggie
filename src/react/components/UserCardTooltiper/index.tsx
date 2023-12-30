@@ -27,7 +27,7 @@ export const UserCard = () => {
   return (
     <div
       ref={wrapperRef}
-      className="user-card-content"
+      className="fgr-UserCardTooltiper"
       style={{
         position: "fixed",
         top: userCard.y,

@@ -4,7 +4,7 @@ import { h, RefObject, VNode } from "preact";
 import { useDraggable } from "react-use-draggable-scroll";
 import { dataMartCategoriesToEmojiPickerCategories } from "./util";
 import { EmojiPickerContextValue, EmojiPickerProvider } from "./EmojiPickerContext";
-import { Emoji, EmojiPickerList } from "./EmojiPickerList";
+import { Emoji, EmojiPickerList } from "../EmotePickerList";
 import { useEffect, useMemo, useRef } from "preact/hooks";
 
 export type EmojiPickerCategories = {
@@ -52,16 +52,16 @@ export const EmojiPickerComponent = ({
 
   return (
     <EmojiPickerProvider value={emojiPickerCtxValue}>
-      <div ref={wrapperRef} className="emoji-picker-root">
-        <div className="emoji-picker-categories" {...events} ref={draggableCategoriesRef}>
+      <div ref={wrapperRef} className="fgr-EmotePicker">
+        <div className="fgr-EmotePicker-emojiPickerCategories" {...events} ref={draggableCategoriesRef}>
           {allEmojiPickerCategories.map((c) => (
             <button data-emoji-picker-category={c.name} key={c.id} type="button">
               {c.src ? <img src={c.src} /> : c.svg}
             </button>
           ))}
         </div>
-        <div className="emoji-picker-content">
-          <input placeholder="Search emote" type="text" className="emoji-picker-search" />
+        <div className="fgr-EmotePicker-emojiPickerContent">
+          <input placeholder="Search emote" type="text" className="fgr-EmotePicker-emojiPickerSearch" />
           <EmojiPickerList emojiWidth={emojiWidth} categories={allEmojiPickerCategories} />
         </div>
       </div>

@@ -1,15 +1,26 @@
-.channel-list {
-  display: flex;
+.fgr-ChannelList {
   align-items: center;
+  display: flex;
   flex-direction: column;
-  row-gap: 12px;
-  overflow-y: auto;
   height: 100%;
   max-height: 100%;
-  padding-top: 12px;
+  overflow-y: auto;
   padding-bottom: 64px;
+  padding-top: 12px;
+  row-gap: 12px;
+
+  .fgr-ChannelList-button {
+    background-color: var(--accent-color);
+    border-radius: 50%;
+  }
+
+  .fgr-ChannelList-icon {
+    color: var(--primary-btn-txt-color);
+    height: 24px;
+    width: 24px;
+  }
 }
 
-.channel-list::-webkit-scrollbar {
+.fgr-ChannelList::-webkit-scrollbar {
   display: none;
 }

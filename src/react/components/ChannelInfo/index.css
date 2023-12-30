@@ -1,26 +1,28 @@
-.channel-info {
-  width: 100%;
+.fgr-ChannelInfo {
+  align-items: center;
+  column-gap: 24px;
+  display: flex;
   height: 50px;
-  display: flex;
-  align-items: center;
   padding: 8px 16px;
-  column-gap: 12px;
-}
+  width: 100%;
 
-.channel-info .user-info {
-  display: flex;
-  align-items: center;
-  column-gap: 6px;
-}
+  .fgr-ChannelInfo-button {
+    align-items: center;
+    column-gap: 12px;
+    display: flex;
+  }
 
-.channel-info .channel-name {
-  font-weight: bold;
-  font-size: 1.125rem;
-  font-family: var(--display-font);
-  color: var(--primary-color);
-}
+  .fgr-ChannelInfo-avatar {
+    color: var(--primary-color);
+    font-family: var(--display-font);
+    font-size: 1.125rem;
+    font-weight: bold;
+  }
 
-.channel-profile {
-  height: 30px;
-  width: 30px;
+  .fgr-ChannelInfo-name {
+    color: var(--primary-color);
+    font-family: var(--display-font);
+    font-size: 1.125rem;
+    font-weight: bold;
+  }
 }

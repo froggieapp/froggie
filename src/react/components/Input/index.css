@@ -1,17 +1,18 @@
-.input-wrapper {
+.fgr-Input {
+  align-items: center;
   display: flex;
   flex-wrap: wrap;
-  row-gap: 6px;
-  align-items: center;
   justify-items: center;
-}
+  row-gap: 6px;
 
-.input-label {
-  text-align: center;
-  font-size: 0.92rem;
-  color: var(--alt-text-color);
-}
+  /* postcss-bem-linter: ignore */
+  input[type="text"] {
+    width: 100%;
+  }
 
-.input-wrapper input[type="text"] {
-  width: 100%;
+  .fgr-Input-inputLabel {
+    color: var(--alt-text-color);
+    font-size: 0.92rem;
+    text-align: center;
+  }
 }

@@ -1,47 +1,47 @@
-.toolbar {
-  -webkit-user-select: none;
+.fgr-Toolbar {
+  align-items: center;
   -webkit-app-region: drag;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: var(--toolbar-height);
   background: var(--toolbar-bg-color);
-  padding: 0 12px;
   background-attachment: fixed;
-  z-index: 60;
+  display: flex;
+  height: var(--toolbar-height);
+  justify-content: space-between;
+  padding: 0 12px;
   position: relative;
-}
+  user-select: none;
+  width: 100%;
+  z-index: 60;
 
-.toolbar-left-side {
-  color: var(--logo-text-color);
-  font-weight: bold;
-  font-size: 0.77rem;
-  font-family: var(--display-font);
-}
+  .fgr-Toolbar-leftSide {
+    color: var(--logo-text-color);
+    font-family: var(--display-font);
+    font-size: 0.77rem;
+    font-weight: bold;
+  }
 
-.toolbar-right-side {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  column-gap: 6px;
-}
+  .fgr-Toolbar-rightSide {
+    align-items: center;
+    column-gap: 6px;
+    display: flex;
+    justify-content: center;
+  }
 
-.toolbar button {
-  display: flex;
-  align-items: center;
-}
+  .fgr-Toolbar-button {
+    align-items: center;
+    display: flex;
+  }
 
-.toolbar button,
-.toolbar button svg {
-  -webkit-app-region: no-drag;
-  width: 18px;
-}
+  .fgr-Toolbar-button,
+  .fgr-Toolbar-button .fgr-Toolbar-button {
+    -webkit-app-region: no-drag;
+    width: 18px;
+  }
 
-.toolbar .icon {
-  color: var(--toolbar-icon-color);
-}
+  .fgr-Toolbar-icon {
+    color: var(--toolbar-icon-color);
+  }
 
-.toolbar .icon:hover {
-  color: var(--toolbar-icon-color-hover);
+  .fgr-Toolbar-icon:hover {
+    color: var(--toolbar-icon-color-hover);
+  }
 }

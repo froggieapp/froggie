@@ -7,7 +7,7 @@ export const Sidebar = () => {
   const channels = useStore((state) => state.channels);
 
   return (
-    <div className="sidebar">
+    <div className="fgr-Sidebar">
       <ChannelList channels={channels} />
     </div>
   );

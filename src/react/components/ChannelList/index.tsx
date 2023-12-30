@@ -25,10 +25,14 @@ export const ChannelList: React.FC<ChannelListProps> = ({ channels }) => {
   };
 
   return (
-    <div className="channel-list">
+    <div className="fgr-ChannelList">
       <Tooltip position="right" label={"Home"}>
-        <button className="home-icon-wrapper saved-channel light-shadow" type="button" onClick={onClickSettings}>
-          <IconAt className="home-icon" />
+        <button
+          className="u-relative u-avatarSize fgr-ChannelList-button u-shadowSm u-borderTransition"
+          type="button"
+          onClick={onClickSettings}
+        >
+          <IconAt className="fgr-ChannelList-icon" />
         </button>
       </Tooltip>
       {channels.map((c) => (
