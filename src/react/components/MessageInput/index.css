@@ -97,5 +97,5 @@
 }
 
 .fgr-MessageInput:focus-within {
-  border: 1px solid var(--message-input-border-hover);
+  outline: 2px solid var(--message-input-border-hover);
 }
