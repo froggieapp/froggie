@@ -2,6 +2,6 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 0 6px 18px 6px;
+  padding: 8px 16px 24px 6px;
   width: 100%;
 }

@@ -87,15 +87,22 @@
 
   .fgr-MessageInput-inputSmileIcon {
     width: 20px;
+    transition:transform .25s ease;
   }
 
   /* postcss-bem-linter: ignore */
   .fgr-MessageInput-inputSmileIcon[data-open] {
     color: rgb(255, 166, 0);
-    width: 22px;
+    transform: scale(1.23);
   }
 }
 
 .fgr-MessageInput:focus-within {
   outline: 2px solid var(--message-input-border-hover);
+}
+
+.fgr-MessageInput:focus-within, .fgr-MessageInput:hover {
+  .fgr-MessageInput-placeholder {
+    color: white;
+  }
 }
