@@ -14,12 +14,12 @@ export const onOpen = (id: string) => MicroModal.show(`modal-${id}`);
 
 export const MicroModalWrapper = ({ id, children, title, description }: MicroModalWrapperProps) => {
   return (
-    <div className="fgr-MicroModalWrapper" id={`modal-${id}`} aria-hidden="true">
+    <div className="fgr-MicroModalWrapper u-overlay" id={`modal-${id}`} aria-hidden="true">
       <div className="fgr-MicroModalWrapper-overlay" tabIndex={-1} data-micromodal-close>
         <div
           role="dialog"
           aria-modal="true"
-          className="fgr-MicroModalWrapper-content"
+          className="fgr-MicroModalWrapper-content u-shadowLg"
           aria-labelledby={`modal-${id}-title`}
           aria-describedby={`modal-${id}-description`}
         >

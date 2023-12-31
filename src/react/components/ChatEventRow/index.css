@@ -7,6 +7,6 @@
   }
 
   .fgr-ChatEventRow-infoChatEvent {
-    color: rgb(199, 199, 199);
+    color: var(--alt-text-color);
   }
 }

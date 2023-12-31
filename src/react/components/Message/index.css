@@ -6,17 +6,17 @@
 
   .fgr-Message-tooltip .fgr-Message-tooltipIcon,
   .fgr-Message-content {
-    color: rgb(255, 33, 63);
+    color: var(--red);
   }
 
   .fgr-Message-senderName {
-    color: rgba(255, 0, 34, 0.575);
+    color: var(--text-error);
   }
 }
 
 .fgr-Message {
   display: block;
-  color: #d1d1d1;
+  color: var(--main-text-color);
   font-weight: normal;
   word-break: break-all;
   overflow-wrap: anywhere;

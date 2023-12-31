@@ -5,3 +5,8 @@
 .u-relative {
   position: relative;
 }
+
+.u-overlay {
+  background: var(--background-overlay);
+  backdrop-filter: blur(1px);
+}

@@ -175,7 +175,7 @@ export const EmojiPickerList = ({ categories, emojiWidth, gapX = 2, gapY = 2 }: 
                     svgEmoji(emoji.skins[0].text || "", "fgr-EmotePickerList-emoteContentIcon")
                   )}
                   {emoji.isLocked ? (
-                    <span aria-label="Subscribers only" className="fgr-EmotePickerList-emoteContentLockedOverlay">
+                    <span aria-label="Subscribers only" className="fgr-EmotePickerList-emoteContentLockedOverlay u-overlay">
                       <IconLock className="fgr-EmotePickerList-lockedIcon" />
                     </span>
                   ) : null}

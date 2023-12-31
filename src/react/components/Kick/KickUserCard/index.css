@@ -25,7 +25,7 @@
   }
 
   .fgr-KickUserCard-userCardProfile {
-    background: black;
+    background: var(--black);
     border-radius: 50%;
     height: 60px;
     width: 60px;

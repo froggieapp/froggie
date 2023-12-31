@@ -19,19 +19,19 @@
   }
 
   .fgr-KickBadge-verifiedUser {
-    color: rgb(0, 174, 255);
+    color: var(--blue);
   }
 
   .fgr-KickBadge-iconMod {
-    color: rgb(12, 245, 51);
+    color: var(--green);
   }
 
   .fgr-KickBadge-iconGifter {
-    color: #ff006a;
+    color: var(--red);
   }
 
   .fgr-KickBadge-count {
-    color: black;
+    color: var(--black);
     display: block;
     font-family: Consolas, monaco, monospace;
     font-size: 0.64rem;
@@ -45,10 +45,10 @@
   }
 
   .fgr-KickBadge-subscriber {
-    color: #fffb00;
+    color: var(--yellow);
   }
 
   .fgr-KickBadge-iconGifter + .fgr-KickBadge-count {
-    color: white;
+    color: var(--white);
   }
 }

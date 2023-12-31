@@ -1,5 +1,5 @@
 .fgr-EmotePickerList {
-  color: rgb(189, 189, 189);
+  color: var(--alt-text-color);
   contain: strict;
   font-size: 0.87rem;
   height: 100%;
@@ -35,10 +35,8 @@
 
   .fgr-EmotePickerList-emoteContentLockedOverlay {
     align-items: center;
-    backdrop-filter: blur(1px);
-    background-color: #24242421;
     bottom: 0;
-    color: white;
+    color: var(--highlight-text-color);
     display: flex;
     height: 100%;
     justify-content: center;

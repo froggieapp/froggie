@@ -1,8 +1,8 @@
 .fgr-LoginBanner {
   align-items: center;
-  background-color: rgb(48, 48, 48);
+  background-color: var(--secondary-color);
   border-radius: 4px;
-  color: rgb(223, 223, 223);
+  color: var(--alt-text-color);
   display: flex;
   font-size: 1.12rem;
   justify-content: center;

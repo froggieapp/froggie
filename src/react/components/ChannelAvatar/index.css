@@ -4,8 +4,15 @@
   flex-grow: 0;
   flex-shrink: 0;
   overflow: hidden;
+  color: var(--main-text-color);
+  background-color: var(--secondary-color);
 
   .fgr-ChannelAvatar-avatar {
     border-radius: 0;
   }
+}
+
+.fgr-ChannelAvatar:hover {
+  background-color: var(--primary-color);
+  color: var(--black);
 }

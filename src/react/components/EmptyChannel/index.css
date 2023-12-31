@@ -15,7 +15,7 @@
   }
 
   .fgr-EmptyChannel-emptyChannelAlt {
-    color: #d6d6d6;
+    color: var(--alt-text-color);
     font-family: var(--body-font);
     font-size: 1.12rem;
   }

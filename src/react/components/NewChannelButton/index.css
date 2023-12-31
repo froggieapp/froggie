@@ -1,7 +1,7 @@
 .fgr-NewChannelButton {
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.411);
-  color: var(--black);
+  background-color: var(--secondary-color);
+  color: var(--highlight-text-color);
   display: flex;
   justify-content: center;
   transition:
@@ -16,4 +16,5 @@
 
 .fgr-NewChannelButton:hover {
   background-color: var(--accent-color);
+  color: var(--black);
 }

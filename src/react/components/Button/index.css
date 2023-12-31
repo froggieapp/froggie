@@ -14,5 +14,5 @@
 }
 
 .fgr-Button--primary:disabled {
-  background-color: rgb(190, 190, 190);
+  background-color: var(--background-disabled);
 }

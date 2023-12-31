@@ -23,12 +23,21 @@ a:active {
   --content-bg-color: #001b09;
   --sidebar-bg-color: #001b09;
   --black: rgb(27, 27, 27);
+  --background-overlay: rgba(1, 31, 3, 0.63);
   /* Text Colors */
   --main-text-color: rgb(235, 235, 235);
   --secondary-text-color: rgb(240, 237, 239);
   --highlight-text-color: white;
   --logo-text-color: #737a7c;
   --alt-text-color: #8b8b8b;
+  /* Additional Colors */
+  --text-error: red;
+  --background-error: rgba(255, 216, 216, 0.897);
+  --background-disabled: rgb(133, 133, 133);
+  --blue: rgb(0, 174, 255);
+  --green: rgb(12, 245, 51);
+  --red: #ff006a;
+  --yellow: rgb(255, 166, 0);
 
   /* Fonts */
   --body-font: "Roboto", sans-serif;
@@ -99,4 +108,8 @@ input[type="password"] {
   height: 32px;
   outline: none;
   padding: 4px 12px;
+}
+
+a:-webkit-any-link {
+  color: inherit;
 }

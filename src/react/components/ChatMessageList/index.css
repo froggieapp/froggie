@@ -6,7 +6,7 @@
   position: relative;
 
   .fgr-ChatMessageList-scrollToBottom {
-    background-color: rgba(0, 0, 0, 0.603);
+    background: var(--background-overlay);
     border-radius: 6px;
     bottom: 10px;
     color: var(--highlight-text-color);
