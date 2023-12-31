@@ -9,6 +9,7 @@
   padding: 6px 36px 6px 12px;
   position: relative;
   width: 100%;
+  transition: outline 0.1s ease-in-out;
 
   .fgr-MessageInput-editor {
     height: 32px;
