@@ -44,3 +44,5 @@ export const loadLocalURL = (
   const formattedPath = url.path ? `/${url.path}` : "";
   browserWindow.loadURL(`${getCurrentUrl()}${formattedPath}`);
 };
+
+export const isOverlayMode = process.argv.some((arg) => arg === "--overlay");

@@ -11,7 +11,11 @@ import { useKick7TVEmotes } from "../util/integrations/kick/useKick7TVEmotes";
 import { KickChannelSettings } from "../components/KickChannelSettings";
 import { UserCard } from "../components/UserCardTooltiper";
 
-const ChannelComponent = () => {
+interface ChannelProps {
+  isOverlayMode?: boolean;
+}
+
+const ChannelComponent = ({ isOverlayMode }: ChannelProps) => {
   const { id, profileSrc, channelName } = useChannelContext();
 
   useChannelEmotes(useKickChannelEmotes, useKick7TVEmotes);
@@ -21,19 +25,19 @@ const ChannelComponent = () => {
   }
 
   return (
-    <div className="fgr-Channel">
-      <ChannelInfo avatar={profileSrc ?? ""} name={channelName ?? ""} />
+    <div className={`fgr-Channel ${isOverlayMode && "fgr-Channel--overlay"}`}>
+      {!isOverlayMode ? <ChannelInfo avatar={profileSrc ?? ""} name={channelName ?? ""} /> : null}
       <ChatMessageList key={id} channelId={id} />
-      <MessageInput />
+      {!isOverlayMode ? <MessageInput /> : null}
     </div>
   );
 };
 
-export const Channel = () => {
+export const Channel = ({ isOverlayMode }: ChannelProps) => {
   return (
     <KickChannelSettings>
       <UserCard />
-      <ChannelComponent />
+      <ChannelComponent isOverlayMode={isOverlayMode} />
     </KickChannelSettings>
   );
 };

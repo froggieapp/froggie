@@ -2,7 +2,7 @@ import { BrowserWindow } from "electron";
 import path from "path";
 import { filterKickHeaders } from "../utils/filterKickHeaders";
 import { settings } from "../settings";
-import { getCurrentUrl, loadLocalURL } from "../utils/util";
+import { getCurrentUrl, isOverlayMode, loadLocalURL } from "../utils/util";
 
 export const createMainWindow = () => {
   const browserWindow = new BrowserWindow({
@@ -12,8 +12,8 @@ export const createMainWindow = () => {
     minWidth: 400,
     minHeight: 400,
     frame: false,
-    transparent: false,
-    hasShadow: true,
+    transparent: isOverlayMode,
+    hasShadow: !isOverlayMode,
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
@@ -37,9 +37,13 @@ export const createMainWindow = () => {
 
   const channels = settings.data?.channels;
   const initialChannel = channels?.length ? channels[0] : null;
-  loadLocalURL(browserWindow, {
-    path: initialChannel ? `channel/${initialChannel.name}` : "",
-  });
+  if (!isOverlayMode) {
+    loadLocalURL(browserWindow, {
+      path: initialChannel ? `channel/${initialChannel.name}` : "",
+    });
+  } else {
+    loadLocalURL(browserWindow, { path: "overlay" });
+  }
   if (process.env.VITE_DEV_SERVER_URL) {
     // browserWindow.webContents.session.clearCache();
     // browserWindow.webContents.session.clearStorageData();

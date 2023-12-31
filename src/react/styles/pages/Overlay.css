@@ -1,0 +1,17 @@
+.fgr-Overlay {
+  -webkit-app-region: drag;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: var(--content-bg-color);
+  row-gap: 14px;
+}
+
+/* postcss-bem-linter: ignore */
+button,
+input {
+  -webkit-app-region: no-drag;
+}
