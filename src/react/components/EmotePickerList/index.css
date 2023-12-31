@@ -18,6 +18,12 @@
     background-color: var(--EmotePicker-root);
   }
 
+  .fgr-EmotePickerList-content {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+  }
+
   /* postcss-bem-linter: ignore */
   .fgr-EmotePickerList-content > button {
     display: block;
@@ -27,6 +33,7 @@
     display: block;
     height: 100%;
     width: 100%;
+    object-fit: contain;
   }
 
   .fgr-EmotePickerList-emoteContent {

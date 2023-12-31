@@ -96,7 +96,7 @@ button {
   border-radius: 4px;
   font-size: 0.92rem;
   padding: 12px 12px;
-  z-index: 10;
+  z-index: 100;
   opacity: 1;
 }
 

@@ -10,6 +10,7 @@ import {
   IconTrees,
 } from "@tabler/icons-react";
 import { h } from "preact";
+import { EmojiPickerCategories } from "./EmojiPickerComponent";
 
 const emojiMartIcons = {
   people: <IconMoodSmileFilled />,
@@ -50,5 +51,18 @@ export const dataMartCategoriesToEmojiPickerCategories = (data: EmojiMartData) =
         aliases: emoji.keywords,
       };
     }),
+  }));
+};
+
+export const fillterEmoteCategories = (search: string, categories: EmojiPickerCategories) => {
+  if (!search) return categories;
+  const lowerCaseSearch = search.toLowerCase();
+  return categories.map((c) => ({
+    ...c,
+    emojis: c.emojis.filter(
+      (e) =>
+        e.name.toLowerCase().includes(lowerCaseSearch) ||
+        e.aliases.some((a) => a.toLowerCase().includes(lowerCaseSearch)),
+    ),
   }));
 };

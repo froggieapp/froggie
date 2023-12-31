@@ -30,7 +30,7 @@ export const EmotePicker = ({ show, onAddEmote, onClickOutside }: EmotePickerPro
   return (
     <EmojiPickerComponent
       wrapperRef={ref}
-      emojiWidth={30}
+      emojiWidth={42}
       onClickEmote={onAddEmote}
       categories={categories}
       data={data as EmojiMartData}

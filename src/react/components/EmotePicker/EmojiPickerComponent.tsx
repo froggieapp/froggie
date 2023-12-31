@@ -2,10 +2,13 @@ import { EmojiMartData } from "@emoji-mart/data";
 import "./index.css";
 import { h, RefObject, VNode } from "preact";
 import { useDraggable } from "react-use-draggable-scroll";
-import { dataMartCategoriesToEmojiPickerCategories } from "./util";
+import { dataMartCategoriesToEmojiPickerCategories, fillterEmoteCategories } from "./util";
 import { EmojiPickerContextValue, EmojiPickerProvider } from "./EmojiPickerContext";
 import { Emoji, EmojiPickerList } from "../EmotePickerList";
-import { useEffect, useMemo, useRef } from "preact/hooks";
+import { useEffect, useMemo, useRef, useState } from "preact/hooks";
+import { ChangeEvent } from "preact/compat";
+import { useCallback } from "react";
+import debounce from "debounce";
 
 export type EmojiPickerCategories = {
   id: string;
@@ -31,6 +34,14 @@ export const EmojiPickerComponent = ({
   emojiWidth,
 }: EmojiPickerComponentProps) => {
   const memoizedClickEmoteCb = useRef(onClickEmote);
+  const [searchEmote, setSearchEmote] = useState("");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const handleChangeSearch = useCallback(
+    debounce((e: ChangeEvent) => {
+      if (e.target instanceof HTMLInputElement) setSearchEmote(e.target.value);
+    }, 50),
+    [setSearchEmote],
+  );
   useEffect(() => {
     memoizedClickEmoteCb.current = onClickEmote;
   });
@@ -39,9 +50,9 @@ export const EmojiPickerComponent = ({
     applyRubberBandEffect: true,
   });
   const allEmojiPickerCategories: EmojiPickerCategories = useMemo(() => {
-    return [...categories, ...dataMartCategoriesToEmojiPickerCategories(data)];
+    return fillterEmoteCategories(searchEmote, [...categories, ...dataMartCategoriesToEmojiPickerCategories(data)]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [categories]);
+  }, [categories, searchEmote]);
 
   const emojiPickerCtxValue: EmojiPickerContextValue = useMemo(
     () => ({
@@ -61,7 +72,12 @@ export const EmojiPickerComponent = ({
           ))}
         </div>
         <div className="fgr-EmotePicker-emojiPickerContent">
-          <input placeholder="Search emote" type="text" className="fgr-EmotePicker-emojiPickerSearch" />
+          <input
+            onChange={handleChangeSearch}
+            placeholder="Search emote"
+            type="text"
+            className="fgr-EmotePicker-emojiPickerSearch"
+          />
           <EmojiPickerList emojiWidth={emojiWidth} categories={allEmojiPickerCategories} />
         </div>
       </div>

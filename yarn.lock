@@ -4800,25 +4800,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/react-virtual@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "@tanstack/react-virtual@npm:3.0.1"
-  dependencies:
-    "@tanstack/virtual-core": "npm:3.0.0"
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 2b9464dab8a975734b651211402a4eaf10e4ae6d9570138576891db350cfabe11e444fea8f17ef0b26ef8ede0adc230bec9c8fe859e61ca66147831076b77bb2
-  languageName: node
-  linkType: hard
-
-"@tanstack/virtual-core@npm:3.0.0":
-  version: 3.0.0
-  resolution: "@tanstack/virtual-core@npm:3.0.0"
-  checksum: d0899fe470b43f80a2ccc567a01138cc015900f13d91b82abc784fc7bc46419e9c8b99c102a5c6ee76d15933db61aecc68c0ae8e92e9cb9ded9ae2f51a01cf4c
-  languageName: node
-  linkType: hard
-
 "@testing-library/dom@npm:^8.11.1":
   version: 8.20.1
   resolution: "@testing-library/dom@npm:8.20.1"
@@ -9863,7 +9844,6 @@ __metadata:
     "@storybook/test": "npm:^7.6.4"
     "@tabler/icons-react": "npm:^2.44.0"
     "@tanstack/react-query": "npm:^5.12.2"
-    "@tanstack/react-virtual": "npm:^3.0.1"
     "@testing-library/preact": "npm:^3.2.3"
     "@types/babel__core": "npm:^7"
     "@types/jest": "npm:^29.5.11"

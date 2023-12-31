@@ -13,7 +13,7 @@ const forsen = async () => {
     channels: settings?.channels || [],
   });
   if (!useStore) throw new Error("No store found");
-  loadFont("u-messageBodyFont", "Roboto", 12, 24);
+  loadFont("u-messageBodyFont", "Roboto", 12);
   render(<App />, document.getElementById("root") as HTMLElement);
 };
 
