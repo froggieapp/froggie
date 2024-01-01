@@ -125,6 +125,7 @@
     "@tanstack/react-query": "^5.12.2",
     "dayjs": "^1.11.10",
     "debounce": "^2.0.0",
+    "fastest-levenshtein": "^1.0.16",
     "immer": "^10.0.3",
     "lexical": "^0.12.5",
     "micromodal": "^0.4.10",

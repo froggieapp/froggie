@@ -3,15 +3,20 @@ import {
   COMMAND_PRIORITY_HIGH,
   INSERT_LINE_BREAK_COMMAND,
   KEY_ENTER_COMMAND,
+  LexicalCommand,
   SerializedEditorState,
   SerializedLexicalNode,
   SerializedParagraphNode,
   SerializedTextNode,
+  createCommand,
 } from "lexical";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { useCallback, useEffect } from "preact/hooks";
-import { SerializedEmoteNode } from "./EmoteNode";
+import { SerializedEmoteNode } from "../CustomNodes/EmoteNode";
 import { useChannelContext } from "@/react/util/ChannelContext";
+import { mergeRegister } from "@lexical/utils";
+
+export const SUGGESTION_COMMAND: LexicalCommand<KeyboardEvent> = createCommand("SUGGESTION_COMMAND");
 
 export const CommandsPlugin = (): JSX.Element | null => {
   const [editor] = useLexicalComposerContext();
@@ -45,33 +50,45 @@ export const CommandsPlugin = (): JSX.Element | null => {
   );
 
   useEffect(() => {
-    const enterCleanup = editor.registerCommand(
-      KEY_ENTER_COMMAND,
-      (event) => {
-        if (!event) return false;
-        const { shiftKey, key } = event;
-
-        if (key == "Enter" && shiftKey == false) {
-          event.preventDefault();
-          onSubmit(editor.getEditorState().toJSON());
-          editor.dispatchCommand(CLEAR_EDITOR_COMMAND, undefined);
+    return mergeRegister(
+      editor.registerRootListener((rootElement, prevRootElement) => {
+        const onKeyDown = (event: KeyboardEvent) => {
+          if (event.code === "Slash") {
+            editor.dispatchCommand(SUGGESTION_COMMAND, event);
+          }
+        };
+        if (prevRootElement !== null) {
+          prevRootElement.removeEventListener("keydown", onKeyDown);
         }
+        if (rootElement !== null) {
+          rootElement.addEventListener("keydown", onKeyDown);
+        }
+      }),
+      editor.registerCommand(
+        KEY_ENTER_COMMAND,
+        (event) => {
+          if (!event) return false;
+          const { shiftKey, key } = event;
 
-        return true;
-      },
-      COMMAND_PRIORITY_HIGH,
+          if (key == "Enter" && shiftKey == false) {
+            event.preventDefault();
+            onSubmit(editor.getEditorState().toJSON());
+            editor.dispatchCommand(CLEAR_EDITOR_COMMAND, undefined);
+            return true;
+          }
+
+          return false;
+        },
+        COMMAND_PRIORITY_HIGH,
+      ),
+      editor.registerCommand(
+        INSERT_LINE_BREAK_COMMAND,
+        () => {
+          return true;
+        },
+        COMMAND_PRIORITY_HIGH,
+      ),
     );
-    const addParagraphCleanup = editor.registerCommand(
-      INSERT_LINE_BREAK_COMMAND,
-      () => {
-        return true;
-      },
-      COMMAND_PRIORITY_HIGH,
-    );
-    return () => {
-      enterCleanup();
-      addParagraphCleanup();
-    };
   }, [editor, onSubmit]);
   return null;
 };

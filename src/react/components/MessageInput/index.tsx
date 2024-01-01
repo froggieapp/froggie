@@ -4,7 +4,7 @@ import { useUser } from "@/react/hooks/useUser";
 import { h } from "preact";
 import { MessageEditor } from "./MessageEditor";
 import { EditorEmojiPicker } from "./EditorEmojiPicker";
-import { EmotePluginRef } from "./EmotePlugin";
+import { EmotePluginRef } from "./plugins/EmotePlugin";
 import { LoginBanner } from "../LoginBanner";
 
 export const MessageInput = () => {

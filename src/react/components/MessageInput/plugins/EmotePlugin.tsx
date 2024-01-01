@@ -9,10 +9,10 @@ import {
 } from "lexical";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { Ref, useCallback, useEffect, useImperativeHandle } from "preact/hooks";
-import { $createEmoteNode, EmoteNode } from "./EmoteNode";
+import { $createEmoteNode, EmoteNode } from "../CustomNodes/EmoteNode";
 import { useStore } from "@/react/store/Store";
 import { shallow } from "zustand/shallow";
-import { textNodeToEmoteTransform } from "./util";
+import { textNodeToEmoteTransform } from "../util";
 
 type InsertEmotePayload = {
   src: string | undefined;

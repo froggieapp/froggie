@@ -5,12 +5,16 @@ import { PlainTextPlugin } from "@lexical/react/LexicalPlainTextPlugin";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
-import { EmoteNode } from "./EmoteNode";
-import { EmotePlugin, EmotePluginRef } from "./EmotePlugin";
+import { EmoteNode } from "./CustomNodes/EmoteNode";
+import { EmotePlugin, EmotePluginRef } from "./plugins/EmotePlugin";
 import { EditorThemeClasses } from "lexical";
-import { MaxLengthPlugin } from "./MaxLengthPlugin";
-import { CommandsPlugin } from "./CommandsPlugin";
+import { MaxLengthPlugin } from "./plugins/MaxLengthPlugin";
+import { CommandsPlugin } from "./plugins/CommandsPlugin";
 import { ClearEditorPlugin } from "@lexical/react/LexicalClearEditorPlugin";
+import { SuggestionsPlugin } from "./plugins/SuggestionsPlugin";
+import { SuggestionNode } from "./CustomNodes/SuggestionNode";
+import { SharedSuggestionContext } from "./context/SharedSuggestionContext";
+import { DecoratorArrowNavigation } from "./plugins/DecoratorArrowNavigation";
 
 interface MessageEditorProps {
   emotePluginRef: RefObject<EmotePluginRef>;
@@ -30,22 +34,26 @@ export const MessageEditor = ({ emotePluginRef }: MessageEditorProps) => {
     namespace: "MessageEditor",
     theme,
     onError,
-    nodes: [EmoteNode],
+    nodes: [SuggestionNode, EmoteNode],
   };
 
   return (
     <div className="fgr-MessageInput-editor">
       <LexicalComposer initialConfig={initialConfig}>
-        <PlainTextPlugin
-          contentEditable={<ContentEditable />}
-          placeholder={<div className="fgr-MessageInput-placeholder">Type your message 🐸</div>}
-          ErrorBoundary={LexicalErrorBoundary}
-        />
-        <CommandsPlugin />
-        <ClearEditorPlugin />
-        <MaxLengthPlugin maxLength={KICK_MSG_MAX_CHAR} />
-        <EmotePlugin emotePluginRef={emotePluginRef} />
-        <HistoryPlugin />
+        <SharedSuggestionContext>
+          <PlainTextPlugin
+            contentEditable={<ContentEditable />}
+            placeholder={<div className="fgr-MessageInput-placeholder">Type your message 🐸</div>}
+            ErrorBoundary={LexicalErrorBoundary}
+          />
+          <DecoratorArrowNavigation />
+          <CommandsPlugin />
+          <SuggestionsPlugin />
+          <ClearEditorPlugin />
+          <MaxLengthPlugin maxLength={KICK_MSG_MAX_CHAR} />
+          <EmotePlugin emotePluginRef={emotePluginRef} />
+          <HistoryPlugin />
+        </SharedSuggestionContext>
       </LexicalComposer>
     </div>
   );

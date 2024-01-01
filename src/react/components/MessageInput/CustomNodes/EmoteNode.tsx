@@ -1,6 +1,6 @@
 import { addClassNamesToElement } from "@lexical/utils";
 import { $applyNodeReplacement, DecoratorNode, LexicalNode, NodeKey, SerializedLexicalNode } from "lexical";
-import { EmoteComponent } from "./EmoteComponent";
+import { EmoteComponent } from "../EmoteComponent";
 import { svgEmoji } from "@/react/util/emotes";
 import { h } from "preact";
 
@@ -54,6 +54,10 @@ export class EmoteNode extends DecoratorNode<JSX.Element> {
   }
 
   isInline(): boolean {
+    return true;
+  }
+
+  isKeyboardSelectable(): boolean {
     return true;
   }
 

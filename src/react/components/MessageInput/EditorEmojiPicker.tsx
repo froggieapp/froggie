@@ -3,7 +3,7 @@ import { Emoji } from "../EmotePickerList";
 import { EmotePicker } from "../EmotePicker";
 import { FaceSmileIcon } from "@heroicons/react/20/solid";
 import { RefObject, h } from "preact";
-import { EmotePluginRef } from "./EmotePlugin";
+import { EmotePluginRef } from "./plugins/EmotePlugin";
 
 interface EditorEmojiPickerProps {
   emotePluginRef: RefObject<EmotePluginRef | null>;
