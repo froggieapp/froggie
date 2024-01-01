@@ -152,7 +152,7 @@ export const SuggestionsPlugin = (): JSX.Element | null => {
         name: emote.name,
         alt: emote.name,
         isTextEmoji: false,
-        value: emote.name,
+        value: emote.value,
       });
 
       const prevNode = suggestionNode.getPreviousSibling();
