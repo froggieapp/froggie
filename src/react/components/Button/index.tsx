@@ -5,11 +5,18 @@ interface ButtonProps {
   children: VNode | string;
   onClick: () => void;
   disabled?: boolean;
+  "data-testid"?: string;
 }
 
-export const Button = ({ children, onClick, disabled }: ButtonProps) => {
+export const Button = ({ children, onClick, disabled, ...props }: ButtonProps) => {
   return (
-    <button onClick={onClick} disabled={disabled} className="fgr-Button fgr-Button--primary u-shadowSm" type="button">
+    <button
+      onClick={onClick}
+      {...props}
+      disabled={disabled}
+      className="fgr-Button fgr-Button--primary u-shadowSm"
+      type="button"
+    >
       {children}
     </button>
   );

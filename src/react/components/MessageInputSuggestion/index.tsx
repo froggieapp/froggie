@@ -35,7 +35,9 @@ export const MessageInputSuggestion = ({ suggestions, activeSuggestion }: Messag
           key={s.id}
         >
           <img className="fgr-MessageInputSuggestion-emoteImg" src={s.src} width={25} />
-          <span className="fgr-MessageInputSuggestion-emoteName">{s.name}</span>
+          <span data-testid="suggestion" className="fgr-MessageInputSuggestion-emoteName">
+            {s.name}
+          </span>
         </div>
       ))}
     </div>

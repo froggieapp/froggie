@@ -33,6 +33,7 @@ export const EditorEmojiPicker = ({ emotePluginRef }: EditorEmojiPickerProps) =>
     <>
       <div className="fgr-MessageInput-options">
         <button
+          data-testid="emote-picker-open-btn"
           className="fgr-MessageInput-optionsButton"
           ref={openEmojiPickerRef}
           onClick={onToggleEmojiPicker}

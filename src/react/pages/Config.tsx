@@ -8,7 +8,9 @@ export const Config = () => {
   };
   return (
     <div className="fgr-Config">
-      <Button onClick={onClick}>Log in to Kick</Button>
+      <Button data-testid="kick-log-in" onClick={onClick}>
+        Log in to Kick
+      </Button>
     </div>
   );
 };

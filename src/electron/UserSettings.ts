@@ -8,7 +8,11 @@ export class UserSettings {
   data: undefined | UserSettings.UserSettingsData;
   constructor() {
     try {
-      this.data = JSON.parse(fs.readFileSync(SETTINGS_FILE).toString());
+      if (process.env.NODE_ENV === "test") {
+        this.data = undefined;
+      } else {
+        this.data = JSON.parse(fs.readFileSync(SETTINGS_FILE).toString());
+      }
     } catch (e) {
       console.error(e);
     }

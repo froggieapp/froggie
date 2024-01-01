@@ -12,7 +12,7 @@ export const MessageInput = () => {
   const { data: user, isLoading } = useUser();
 
   if (!isLoading && !user?.username) {
-    return <LoginBanner>Please log in to use chat. Click on the green gear on bottom left to log in.</LoginBanner>;
+    return <LoginBanner>Please log in to use chat. Click on the home button on top left to log in.</LoginBanner>;
   }
 
   if (isLoading) {

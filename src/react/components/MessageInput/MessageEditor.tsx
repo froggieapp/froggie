@@ -42,7 +42,7 @@ export const MessageEditor = ({ emotePluginRef }: MessageEditorProps) => {
       <LexicalComposer initialConfig={initialConfig}>
         <SharedSuggestionContext>
           <PlainTextPlugin
-            contentEditable={<ContentEditable />}
+            contentEditable={<ContentEditable data-testid="message-input" />}
             placeholder={<div className="fgr-MessageInput-placeholder">Type your message 🐸</div>}
             ErrorBoundary={LexicalErrorBoundary}
           />

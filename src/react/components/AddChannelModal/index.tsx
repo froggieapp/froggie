@@ -66,12 +66,12 @@ export const AddChannelModal = () => {
       description="Add a new channel and start spam immediately"
     >
       <Input label="Channel name">
-        <input type="text" value={channelName} onChange={handleChange} />
+        <input data-testid="input-channel-name" type="text" value={channelName} onChange={handleChange} />
       </Input>
       <div>
         <ErrorMessage>{error?.message}</ErrorMessage>
         <ModalButtonWrapper>
-          <Button disabled={isLoading} onClick={onAddChannel}>
+          <Button data-testid="add-channel-btn" disabled={isLoading} onClick={onAddChannel}>
             Add channel
           </Button>
         </ModalButtonWrapper>

@@ -97,7 +97,7 @@ export const EmojiPickerList = ({ categories, emojiWidth, gapX = 2, gapY = 2 }: 
   };
 
   return (
-    <div className="fgr-EmotePickerList" ref={parentRef}>
+    <div data-testid="emote-picker-container" className="fgr-EmotePickerList" ref={parentRef}>
       <Virtuoso
         totalCount={rows.length}
         rangeChanged={onChangeRange}
@@ -143,6 +143,7 @@ export const EmojiPickerList = ({ categories, emojiWidth, gapX = 2, gapY = 2 }: 
                   className="fgr-EmotePickerList-emoteContent"
                   data-tooltip-id={GLOBAL_TOOLTIP}
                   data-tooltip-content={emoji.name}
+                  data-emojibtn={emoji.name}
                   data-tooltip-place="top"
                 >
                   {emoji.skins[0].src ? (

@@ -28,6 +28,7 @@ export const ChannelList: React.FC<ChannelListProps> = ({ channels }) => {
     <div className="fgr-ChannelList">
       <Tooltip position="right" label={"Home"}>
         <button
+          data-testid="home-button"
           className="u-relative u-avatarSize fgr-ChannelList-button u-shadowSm u-borderTransition"
           type="button"
           onClick={onClickSettings}

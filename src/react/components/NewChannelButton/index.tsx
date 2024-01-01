@@ -12,6 +12,7 @@ export const NewChannelButton = () => {
   return (
     <Tooltip position="right" label={"Add Channel"}>
       <button
+        data-testid="add-channel-modal-btn"
         onClick={onClick}
         className="u-relative u-avatarSize fgr-NewChannelButton u-borderTransition u-shadowSm"
         type="button"

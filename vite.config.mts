@@ -35,9 +35,10 @@ const addReactDevToolsScriptPlugin = () => ({
 } as Plugin)
 
 export default defineConfig(({ command, mode }: ConfigEnv) => {
-  rmSync('dist', { recursive: true, force: true })
-
   const isDev = mode === 'development'
+  if (!isDev)
+    rmSync('dist', { recursive: true, force: true });
+
   const isBuild = command === 'build'
   const sourcemap = true
 
