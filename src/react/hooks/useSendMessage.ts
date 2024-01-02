@@ -37,14 +37,14 @@ export const useSendMessage = () => {
       return { optimisticMessage };
     },
     onError(error, variables, context) {
-      if (!context?.optimisticMessage.id) return;
+      if (!context?.optimisticMessage?.id) return;
       useStore.getState().updateEvent(variables.channelId, context.optimisticMessage.id, (e) => ({
         ...e,
         error: error.message,
       }));
     },
     onSuccess: (result, variables, context) => {
-      if (!result?.data.id || !context?.optimisticMessage.id) return;
+      if (!result?.data?.id || !context?.optimisticMessage?.id) return;
       useStore.getState().updateEvent(variables.channelId, context.optimisticMessage.id, (e) => ({
         ...e,
         messageId: result.data.id,

@@ -69,7 +69,7 @@ export const ChatMessageList: React.FC<ChatMessageListProps> = ({ channelId }) =
     <div className="fgr-ChatMessageList">
       <Virtuoso
         ref={virtuoso}
-        followOutput
+        followOutput='smooth'
         atBottomThreshold={30}
         atBottomStateChange={handleAtBottom}
         initialTopMostItemIndex={eventCount - 1}

@@ -14,7 +14,7 @@ export const WithSockets: React.FC<WithSocketsProps> = ({ children }) => {
 
   useKickChannelWebsocket({
     onChatMessage(messageData, sourceChannel) {
-      if (messageData.data) {
+      if (messageData.data?.id) {
         addEvent(sourceChannel, {
           id: messageData.data.id,
           messageId: messageData.data.id,
